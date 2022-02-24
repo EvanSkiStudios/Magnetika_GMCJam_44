@@ -2,11 +2,11 @@
 
 #region default things
 //GAME RES SETTINGS
-#macro WINDOW_WIDTH 960
-#macro WINDOW_HEIGHT 540
+#macro WINDOW_WIDTH 1280
+#macro WINDOW_HEIGHT 720
 
-#macro GAME_RES_WIDTH 960
-#macro GAME_RES_HEIGHT 540
+#macro GAME_RES_WIDTH 640
+#macro GAME_RES_HEIGHT 360
 
 //Direction macros
 #macro DIR_RIGHT 0

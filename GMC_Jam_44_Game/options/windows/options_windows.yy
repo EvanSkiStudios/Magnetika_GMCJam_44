@@ -1,9 +1,9 @@
 {
-  "option_windows_display_name": "Created with GameMaker Studio 2",
-  "option_windows_executable_name": "${project_name}.exe",
+  "option_windows_display_name": "Magnetika",
+  "option_windows_executable_name": "Magnetika.exe",
   "option_windows_version": "1.0.0.0",
   "option_windows_company_info": "Pixellated Hammered Raccoon",
-  "option_windows_product_info": "Created with GameMaker Studio 2",
+  "option_windows_product_info": "Magnetika",
   "option_windows_copyright_info": "2022",
   "option_windows_description_info": "A GameMaker Studio 2 Game",
   "option_windows_display_cursor": true,

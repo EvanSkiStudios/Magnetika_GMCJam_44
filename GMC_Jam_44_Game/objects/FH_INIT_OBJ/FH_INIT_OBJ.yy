@@ -23,8 +23,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "FHInput",
-    "path": "folders/FHInput.yy",
+    "name": "GMC_Jam_44_Game",
+    "path": "GMC_Jam_44_Game.yyp",
   },
   "resourceVersion": "1.0",
   "name": "FH_INIT_OBJ",

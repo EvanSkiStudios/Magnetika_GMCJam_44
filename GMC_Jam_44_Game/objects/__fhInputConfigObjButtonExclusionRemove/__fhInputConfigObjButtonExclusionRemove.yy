@@ -1,10 +1,16 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "__fhInputSprButton",
+    "path": "sprites/__fhInputSprButton/__fhInputSprButton.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "__fhInputConfigObjButtonParent",
+    "path": "objects/__fhInputConfigObjButtonParent/__fhInputConfigObjButtonParent.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -23,7 +29,7 @@
   ],
   "properties": [],
   "overriddenProperties": [
-    {"propertyId":{"name":"myText","path":"objects/__fhInputConfigObjButtonParent/__fhInputConfigObjButtonParent.yy",},"objectId":null,"value":"Remove","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+    {"propertyId":{"name":"myText","path":"objects/__fhInputConfigObjButtonParent/__fhInputConfigObjButtonParent.yy",},"objectId":{"name":"__fhInputConfigObjButtonParent","path":"objects/__fhInputConfigObjButtonParent/__fhInputConfigObjButtonParent.yy",},"value":"Remove","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
   ],
   "parent": {
     "name": "Exclusions",
