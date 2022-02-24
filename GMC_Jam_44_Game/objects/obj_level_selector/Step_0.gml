@@ -1,14 +1,14 @@
 if (!selector_enabled) return;
 
-if keyboard_check_pressed(vk_right) {
+if fhInputActionCheckPressed(FHINPUTACTION_Right) {
 	selected_level = ( (selected_level != lvl_select_list_end) ? (selected_level + 1) : 0 );
 }
 
-if keyboard_check_pressed(vk_left) {
+if fhInputActionCheckPressed(FHINPUTACTION_Left) {
 	selected_level = ( (selected_level != 0) ? (selected_level - 1) :  lvl_select_list_end);
 }
 
-if keyboard_check_released(vk_space){
+if fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) || fhInputActionCheckPressed(FHINPUTACTION_ActivateMenuAlt) {
 	//collect data
 	var level = lvl_array[selected_level];
 	selected_level_room = level._room;

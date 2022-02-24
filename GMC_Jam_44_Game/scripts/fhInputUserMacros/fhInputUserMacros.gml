@@ -21,10 +21,10 @@
 #macro FHINPUTACTION_Down 1
 #macro FHINPUTACTION_Left 2
 #macro FHINPUTACTION_Right 3
-#macro FHINPUTACTION_Action1 4
-#macro FHINPUTACTION_Action2 5
-#macro FHINPUTACTION_Action3 6
-#macro FHINPUTACTION_Action4 7
+#macro FHINPUTACTION_Activate 4
+#macro FHINPUTACTION_ActivateAlt 5
+#macro FHINPUTACTION_ActivateAltLH 6
+#macro FHINPUTACTION_ActivateMenuAlt 7
 
 //Device macros, For advanced usage involving directly setting action maps, resolving conflicts, etc...
 #macro FHINPUTDEVICE_None 0
