@@ -1,0 +1,1 @@
+__fhInputMapperObjCtl.startSearch(myAction);

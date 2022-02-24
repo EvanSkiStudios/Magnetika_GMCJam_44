@@ -1,0 +1,1 @@
+#macro DEBUG_MODE true
