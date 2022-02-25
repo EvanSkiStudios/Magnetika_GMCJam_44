@@ -13,7 +13,6 @@ global.ETW_Game_lang = game_langs.english;
 //          FUNCTIONS
 //=====================================
 function ETW_Create_typewriter(text_convo_number,  _text_wrap=400, _x=32, _y=304, _depth=depth){
-	global.text_wrap = _text_wrap
 	global.game_convo_number = text_convo_number;
 	
 	instance_create_depth(_x,_y,_depth,obj_ETW_Dialog_Typewriter);

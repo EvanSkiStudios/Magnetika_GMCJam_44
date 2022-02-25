@@ -10,6 +10,8 @@ delay = 0;
 current_tile_pos = [0,0];
 potential_tile = -1;
 
+current_moveable_piece = -1;
+
 _x = 0;
 _y = 0;
 
@@ -39,6 +41,54 @@ enum TILE_DIRECTIONS {
 	DOWN,
 	LEFT,
 	RIGHT
+}
+
+/// @function shoot_gun(dir);
+shoot_gun = function (dir) {
+	current_moveable_piece = -1;
+	var blocked = false;
+	var offset = [0,0];
+	switch (dir) {
+		case TILE_DIRECTIONS.LEFT:
+			offset = [-1, 0];
+		break;
+		case TILE_DIRECTIONS.RIGHT:
+			offset = [1, 0];
+		break;
+		case TILE_DIRECTIONS.UP:
+			offset = [0, -1];
+		break;
+		case TILE_DIRECTIONS.DOWN:
+			offset = [0, 1];
+		break;
+	}
+	
+	var check_position = current_tile_pos;
+	check_position[0] += offset[0];
+	check_position[1] += offset[1];
+	
+	//CHECK EACH SQUARE IN A LINE UNTIL WE EITHER 
+	//HIT END OF ROOM, BLOCKER, OR GRAB A MOVABLE PIECE
+	while(blocked == false) {
+		//check movable pieces
+		if (check_position[0] >= 0 && check_position[0] <= room_width / global.tile_width && check_position[1] >= 0 && check_position[1] <= room_height / global.tile_height) {
+			
+			//check for moveable piece
+			var movable_piece = get_moveable_at(check_position[0], check_position[1]);
+			if (movable_piece != -1) {
+				//FOUND VALID PIECE
+				//SET GUN TO ACTIVATED
+				show_debug_message("FOUND PIECE. GUN ACTIVATED")
+				current_moveable_piece = movable_piece;
+				return;
+			}
+			//set check position further
+			check_position[0] += offset[0];
+			check_position[1] += offset[1];
+		} else {
+			blocked = false;	
+		}
+	}
 }
 
 run = function (dir) {
@@ -72,17 +122,6 @@ run = function (dir) {
 			image_xscale = 1;
 			y += y_run_speed;
 		break;
-	}
-	
-	
-	with (obj_floor) {
-		//show_debug_message("TILE POS:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
-		if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {
-			obj_girl.dip_current = dip_current;
-			state = FLOOR_STATES.standing;	
-		} else {
-			state = FLOOR_STATES.idle;	
-		}
 	}
 	
 	with (obj_floor_switch) {

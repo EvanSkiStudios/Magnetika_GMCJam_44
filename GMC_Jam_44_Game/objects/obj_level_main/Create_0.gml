@@ -2,7 +2,7 @@ state = LEVEL_STATES.intro;
 timer = 0;
 
 time_to_scaffold_on = 1 * room_speed;
-global.room_complete = false;
+global.level_intro_done = false;
 global.level_completed = false;
 
 enum LEVEL_STATES {

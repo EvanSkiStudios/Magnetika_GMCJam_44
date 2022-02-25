@@ -2,40 +2,39 @@ depth = -_y;
 
 switch (state) {
 	
-	case FLOOR_STATES.idle:
-		
-		y = lerp(y, _y, .1);
-		dip_current =  _y - y;
+	case FLOOR_STATES.standby:
 	
 	break;
 	
-	case FLOOR_STATES.standing:
-		
-		y = lerp(y, _y + dip_height, .1);
-		
-		dip_current =  (_y - y);
+	case FLOOR_STATES.idle:
+	
+		y = lerp(y, _y + dip_current, .1);
 		
 		if (instance_exists(obj_girl)) {
 			if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {
-				state = FLOOR_STATES.idle;	
+				dip_current = dip_height;
+			} else {
+				dip_current = 0;
 			}
 		}
-		
+	
 	break;
 	
 	case FLOOR_STATES.intro:
-	
 	x = _x;
 	y = lerp(y, _y, .1);
 	
 	if (y <= _y + 1) {
 		y = _y;
+		//show_debug_message("floor:" + string(id) + ",x:" + string(_x) + ", y:" + string(_y) + ", timer:" + string(timer) + ", delay:" + string(delay));
 		state = FLOOR_STATES.idle;
 		
 		var alldone = true;
 		with (obj_floor) {
-			if (state == FLOOR_STATES.intro || state == FLOOR_STATES.init) {
-				alldone = false;	
+			if (state != FLOOR_STATES.idle) {
+				if (!in_waiting) {
+					alldone = false;
+				}
 			}
 		}
 		if (alldone) {
@@ -98,15 +97,11 @@ switch (state) {
 		x = _x;
 		y = _y + intro_height;
 		
-		update_tile_position();
-		
 		timer ++;
 		if (timer >= delay) {
 			timer = 0;
 			state = FLOOR_STATES.intro;
 		}
 		
-		
-	
 	break;
 }

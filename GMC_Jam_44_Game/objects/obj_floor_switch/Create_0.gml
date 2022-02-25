@@ -25,13 +25,14 @@ activate_switch = function () {
 		show_debug_message("SWITCH ACTIVATED!");
 		image_index = 1;
 		switch_activated = true;
-		spawn_floor_list();
+		spawn_floor_list(floor_list, floor_entry_delay);
 	}
 	
 }
 
+/*
 /// @function spawn_floor_list();
-spawn_floor_list = function () {
+spawn_floor_list = function (floor_list) {
 	
 	if (!instance_exists(obj_icon_hidden_floor)) return;
 	
@@ -55,21 +56,12 @@ spawn_floor_list = function () {
 				
 				a_floor.update_tile_position();
 				a_floor.do_intro(this_delay);
-				//a_floor.set_delay(other.delay);
-				//a_floor.state = FLOOR_STATES.init;
 				
 				this_delay += floor_entry_delay;
 				show_debug_message("SPAWNING NEW FLOORS:" + string(this_delay));
 				instance_destroy(a_floor_icon);//kill the icon
 				
 			}
-			
-		}
-			
-		//var a_floor = instance_find(obj_floor,k);
-			
-		with (obj_icon_hidden_floor) {
-
 			
 		}
 	 }

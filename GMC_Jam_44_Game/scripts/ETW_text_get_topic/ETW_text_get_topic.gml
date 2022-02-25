@@ -9,7 +9,8 @@
 
 enum Typewriter_text_ref{
 	error = 0,
-	level_1
+	level_1_intro,
+	level_1_outro
 }
 
 //wrapper function that auto fills info
@@ -43,9 +44,13 @@ function ETW_texttopic(){
 		// text[i][TContent] = struct_name.string_ref_name;
 		// call ETW_Topic with optinal arguments to customize text
 
-		//testing
-		case Typewriter_text_ref.level_1:{			
+		case Typewriter_text_ref.level_1_intro:{			
 			text[i][TContent] = ETW_Text_lang.level_1_intro;
+			ETW_Topic(i,,,,1,,);
+		}break;
+		
+		case Typewriter_text_ref.level_1_outro:{			
+			text[i][TContent] = ETW_Text_lang.level_1_outro;
 			ETW_Topic(i,,,,1,,);
 		}break;
 	}

@@ -4,6 +4,8 @@ event_inherited();
 /// @function do_level_exit();
 do_level_exit = function () {
 	
+	global.level_end_reached = true;
+	
 	var floor_arrays_container = get_floor_circular_arrays(current_tile_pos[0], current_tile_pos[1]);
 	var drop_delay = 0;
 	

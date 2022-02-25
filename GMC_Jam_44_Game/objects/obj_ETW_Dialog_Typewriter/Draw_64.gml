@@ -108,6 +108,7 @@ text_color = text[text_current][TColor];
 //supplies text from array pased through draw_set_color
 var _str = string_copy(text[text_current][TContent], 1, char_current);
 
+/*
 if (os_type == os_windows){
 	if (room == rm_Level1){
 		if (char_current >= 60){
@@ -117,6 +118,7 @@ if (os_type == os_windows){
 		_str = string_replace(_str,"[USER_NAME]",USER_NAME);
 	}
 }
+*/
 
 draw_text_color(text_x, background_y_start+10,  _str, text_color,text_color,text_color,text_color,1);
 
