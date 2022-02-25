@@ -17,3 +17,6 @@
 #macro GAMESPEED game_get_speed(gamespeed_fps)
 
 #endregion
+
+#macro color_purple $fddebf
+#macro color_ltpurple $B55689

@@ -3,7 +3,9 @@ then pressing skip will draw the whole line rightto the end instantly
 If the current line has finished being drawn, then pressing skip will go to the next line and
 start drawing that */
 
-if mouse_check_button_pressed(mb_left){
+var activate = (fhInputActionCheckReleased(FHINPUTACTION_Activate) || fhInputActionCheckReleased(FHINPUTACTION_ActivateAlt) || fhInputActionCheckReleased(FHINPUTACTION_ActivateAltLH) );
+
+if (activate){
 	next_line = true;
 }
 

@@ -21,10 +21,10 @@
 #macro FHINPUTACTION_Down 1
 #macro FHINPUTACTION_Left 2
 #macro FHINPUTACTION_Right 3
-#macro FHINPUTACTION_Activate 4
-#macro FHINPUTACTION_ActivateAlt 5
-#macro FHINPUTACTION_ActivateAltLH 6
-#macro FHINPUTACTION_ActivateMenuAlt 7
+#macro FHINPUTACTION_Activate 4 //space A
+#macro FHINPUTACTION_ActivateAlt 5 //numpad 0 B
+#macro FHINPUTACTION_ActivateAltLH 6 //right contrl select
+#macro FHINPUTACTION_ActivateMenuAlt 7 //enter start
 
 //Device macros, For advanced usage involving directly setting action maps, resolving conflicts, etc...
 #macro FHINPUTDEVICE_None 0

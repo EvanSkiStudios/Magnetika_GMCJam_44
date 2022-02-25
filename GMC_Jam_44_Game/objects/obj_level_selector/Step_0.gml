@@ -12,6 +12,11 @@ if fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPresse
 	//collect data
 	var level = lvl_array[selected_level];
 	selected_level_room = level._room;
+	if !room_exists(selected_level_room) selected_level_room = rm_levelselect;
 	fadetoroom(selected_level_room,15,$fddebf);
 	selector_enabled = false;
+}
+
+if keyboard_check_pressed(vk_escape) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) {
+	fadetoroom(rm_mainmenu,20,$fddebf);
 }

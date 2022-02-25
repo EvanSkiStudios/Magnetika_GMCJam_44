@@ -45,13 +45,7 @@ function ETW_texttopic(){
 
 		//testing
 		case Typewriter_text_ref.level_1:{			
-			text[i][TContent] = ETW_Text_lang.gl_level_1;
-			ETW_Topic(i,,,,1,,);
-			
-			text[++i][TContent] = ETW_Text_lang.gl_level_1_a;
-			ETW_Topic(i,,,,1,,);
-			
-			text[++i][TContent] = ETW_Text_lang.gl_level_1_b;
+			text[i][TContent] = ETW_Text_lang.level_1_intro;
 			ETW_Topic(i,,,,1,,);
 		}break;
 	}

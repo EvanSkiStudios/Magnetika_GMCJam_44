@@ -18,5 +18,10 @@ var spr_h = (sprite_height/2);
 
 draw_text(
 	x, (y + 50 + spr_h),
-	selected_level_title
+	("= "+selected_level_title+" =")
+);
+
+draw_text(
+	x, (y - 50 - spr_h),
+	"Level: "+string(selected_level+1)
 );

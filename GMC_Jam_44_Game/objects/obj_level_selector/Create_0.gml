@@ -11,10 +11,10 @@ lvl_select = function(rm_id, img_id=0, title="ERROR!!") constructor{
 //create structs
 var i = 0;
 lvl_array[i] = new lvl_select(rm_test, 1, "Only a Test");
-lvl_array[++i] = new lvl_select(rm_test2, 0, "A test concluded");
+lvl_array[++i] = new lvl_select(rm_test, 0, "A test concluded");
 
 //create global ref
-global.lvl_list_array = lvl_array;
+//global.lvl_list_array = lvl_array;
 
 //selector
 selected_level = 0;
@@ -23,3 +23,4 @@ lvl_select_list_end = (array_length(lvl_array) - 1);
 
 //controll flag
 selector_enabled = true;
+

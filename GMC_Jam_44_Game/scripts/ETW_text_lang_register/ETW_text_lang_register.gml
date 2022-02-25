@@ -20,9 +20,7 @@ struct_ref_game_uses_to_get_strings = {
 		case game_langs.english:{
 
 			ETW_Text_lang = {
-				gl_level_1 :  "Your mom is gay! Fatty Fatty no parents!",
-				gl_level_1_a :  "And no one loves you!",
-				gl_level_1_b :  "you will die alone!"
+				level_1_intro :  "Hello, Welcome to the testing center [SUBJECT_NAME_HERE].    Your goal is simple, make it from point A to point B.",
 			};
 		}break;
 	}
