@@ -24,6 +24,8 @@ enum menu_element_type{
 //CREATE MENU PAGES
 if (room == rm_mainmenu){
 	var play_game = "Start Game";	
+}else{
+	var play_game = "Resume Game";	
 }
 
 ds_menu_main = create_menu_page(
@@ -34,7 +36,7 @@ ds_menu_main = create_menu_page(
 
 ds_menu_settings = create_menu_page(
 	["AUDIO",		menu_element_type.page_transfer,	menu_page.audio],
-	["CONTROLS",	menu_element_type.script_runner,	controls_switchroom],
+	["CONTROLS",	menu_element_type.shift,	controls_scheme, 0, ["W-A-S-D", "Arrow Keys", "Gamepad-JoyStick", "Gamepad-DPad"]],
 	["BACK",		menu_element_type.page_transfer,	menu_page.main]
 );
 

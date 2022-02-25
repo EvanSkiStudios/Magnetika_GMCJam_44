@@ -18,5 +18,21 @@
 
 #endregion
 
+#macro USER_NAME string(environment_get_variable("USERNAME"))
+
 #macro color_purple $fddebf
 #macro color_ltpurple $B55689
+
+global.GAMEPAD_ISCONNECTED = false;
+
+function do_event_message (str){
+	
+	if (!instance_exists(obj_event_messager)) {
+		
+		var evt_msgr = instance_create_depth(0,0, depth, obj_event_messager);
+		evt_msgr.do_message(str);
+		
+	} else {
+			obj_event_messager.do_message(str);
+	}
+}

@@ -23,8 +23,40 @@ function create_menu_page(){
 
 }
 
-function controls_switchroom(){
+function controls_scheme(){
+	switch(argument0){
+		default:
+		case 0:{
+			//WASD
+			fhInputActionMapSetDefault(0);	
+		}break;
 		
+		case 1:{
+			//Arrow keys
+			fhInputActionMapSetDefault(3);
+		}break;
+		
+		case 2:{
+			//Gamepad-joystick
+			if (global.GAMEPAD_ISCONNECTED){
+				fhInputActionMapSetDefault(1);
+			}else{
+				fhInputActionMapSetDefault(0);
+				do_event_message("NO GAMEPAD CONNECTED!!");	
+			}
+		}break;
+		
+		case 3:{
+			//Gamepad-dpad
+			if (global.GAMEPAD_ISCONNECTED){
+				fhInputActionMapSetDefault(2);
+			}else{
+				fhInputActionMapSetDefault(0);
+				do_event_message("NO GAMEPAD CONNECTED!!");	
+			}
+		}break;
+		
+	}
 }
 
 function resume_game(){

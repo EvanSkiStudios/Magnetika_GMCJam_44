@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "Sprites",
-    "path": "folders/Tile_System/Sprites.yy",
+    "path": "folders/Tile_System/PatsFolder/Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_block_floor",

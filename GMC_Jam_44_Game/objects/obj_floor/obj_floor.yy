@@ -27,8 +27,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Tile_System",
-    "path": "folders/Tile_System.yy",
+    "name": "Objects",
+    "path": "folders/Tile_System/PatsFolder/Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_floor",

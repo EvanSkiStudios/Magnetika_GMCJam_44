@@ -10,7 +10,7 @@ lvl_select = function(rm_id, img_id=0, title="ERROR!!") constructor{
 
 //create structs
 var i = 0;
-lvl_array[i] = new lvl_select(rm_test, 1, "Only a Test");
+lvl_array[i] = new lvl_select(rm_Level1, 1, "Only a Test");
 lvl_array[++i] = new lvl_select(rm_test, 0, "A test concluded");
 
 //create global ref

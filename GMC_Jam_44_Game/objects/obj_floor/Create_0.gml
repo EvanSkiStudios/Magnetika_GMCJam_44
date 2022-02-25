@@ -1,23 +1,75 @@
-dip_height = 3;
+dip_height = 2;
+dip_current = 0;
+
 intro_height = 1000;
 timer = 0;
 delay = 0;
 
+outro_drop_speed = 0;
+outro_drop_accel = 0.1;
+
+outro_platform_rise_speed = 0;
+outro_platform_rise_accel = 0.02;
+
+did_outro = false;
+did_intro = false;
+
+current_tile_pos = [0,0];
+
 _x = 0;
 _y = 0;
 
-state = FLOOR_STATES.init;
+image_speed = 0;
+
+state = FLOOR_STATES.standby;
 
 enum FLOOR_STATES {
 	idle,
 	standing,
 	intro,
+	exit_platform_outro,
+	outro_init,
 	outro,
 	init,
+	level_complete,
+	standby,
 }
 
-function set_delay (_delay) {
+update_tile_position = function () {
+	current_tile_pos[0] = floor(_x / global.tile_width);
+	current_tile_pos[1] = floor(_y / global.tile_height);
+}
+
+/// @function set_delay(_delay);
+set_delay = function (_delay) {
+	//show_debug_message ("set_delay:" + string(_delay));
 	delay = _delay * room_speed;	
 }
 
-show_debug_message("A floor is created.");
+/// @function get_floor_at(_tile_x, _tile_y);
+get_floor_at = function (_tile_x, _tile_y) {
+	if (current_tile_pos[0] == _tile_x && current_tile_pos[1] == _tile_y) {
+		return self;	
+	}
+	return -1;
+}
+
+/// @function do_intro(_delay);
+do_intro = function (_delay) {
+	if (!did_intro) {
+		did_intro = true;
+		set_delay(_delay);
+		state = FLOOR_STATES.init;
+	}
+}
+
+/// @function do_outro(_delay);
+do_outro = function (_delay) {
+	if (!did_outro) {
+		did_outro = true;
+		set_delay(_delay);
+		state = FLOOR_STATES.outro_init;
+	}
+}
+
+//show_debug_message("A floor is created.");

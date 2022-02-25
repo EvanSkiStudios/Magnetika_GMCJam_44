@@ -1,2 +1,10 @@
-ETW_Create_typewriter(Text_convo_ref,text_wrap,,,-1000);
-instance_destroy();
+text_wrap = 1000;
+
+switch(room){
+	default: Text_convo_ref = Typewriter_text_ref.error; break;	
+	
+	case rm_Level1:{
+		Text_convo_ref = Typewriter_text_ref.level_1;
+	} break;
+	
+}

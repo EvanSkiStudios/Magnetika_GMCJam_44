@@ -13,7 +13,7 @@ enum Typewriter_text_ref{
 }
 
 //wrapper function that auto fills info
-function ETW_Topic(text_num, settings_loop=false, text_color=c_white, text_sprite=-1, text_voice=-1, text_font=fnt_text_small, text_speed=0.25){
+function ETW_Topic(text_num, settings_loop=false, text_color=c_white, text_sprite=-1, text_voice=-1, text_font=fnt_text, text_speed=0.25){
 		text[text_num][TLoop] = settings_loop;
 		text[text_num][TColor] = text_color;
 		text[text_num][TFont] = text_font;

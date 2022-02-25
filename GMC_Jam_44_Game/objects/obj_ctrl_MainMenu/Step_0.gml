@@ -1,8 +1,18 @@
+input_up_p = fhInputActionCheckPressed(FHINPUTACTION_Up) || keyboard_check_released(vk_up);
+input_down_p = fhInputActionCheckPressed(FHINPUTACTION_Down) || keyboard_check_released(vk_down);
+input_enter_p =(
+	fhInputActionCheckPressed(FHINPUTACTION_Activate) || 
+	fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || 
+	fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) || 
+	fhInputActionCheckPressed(FHINPUTACTION_ActivateMenuAlt) ||
+	keyboard_check_released(vk_enter)
+);
 
+input_left = fhInputActionCheckPressed(FHINPUTACTION_Left) || keyboard_check_released(vk_left);
+input_right = fhInputActionCheckPressed(FHINPUTACTION_Right) || keyboard_check_released(vk_right);
 
-input_up_p = fhInputActionCheckPressed(FHINPUTACTION_Up);
-input_down_p = fhInputActionCheckPressed(FHINPUTACTION_Down);
-input_enter_p = fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) || fhInputActionCheckPressed(FHINPUTACTION_ActivateMenuAlt);
+input_left_down = fhInputActionCheckDown(FHINPUTACTION_Left) || keyboard_check(vk_left);
+input_right_down = fhInputActionCheckDown(FHINPUTACTION_Right) || keyboard_check(vk_right);
 
 var ds_grid = menu_pages[page]; 
 var ds_height = ds_grid_height(ds_grid);
@@ -10,7 +20,7 @@ var ds_height = ds_grid_height(ds_grid);
 if (inputting){
 	switch(ds_grid[# 1, menu_option[page]]){
 		case menu_element_type.shift:{
-			var hinput = fhInputActionCheckPressed(FHINPUTACTION_Right) - fhInputActionCheckPressed(FHINPUTACTION_Left);
+			var hinput = input_right - input_left;
 			if (hinput != 0){
 				//audio
 				//audio_play_sound(snd_sfx_wep_cast_fire,1,false);
@@ -27,7 +37,7 @@ if (inputting){
 			}
 			
 			
-			var hinput = fhInputActionCheckDown(FHINPUTACTION_Right) - fhInputActionCheckDown(FHINPUTACTION_Left);
+			var hinput = input_right_down - input_left_down;
 			
 			if (hinput != 0){
 				ds_grid[# 3, menu_option[page]] += hinput*0.01;
@@ -37,7 +47,7 @@ if (inputting){
 		}break;
 		
 		case menu_element_type.toggle:{
-			var hinput = fhInputActionCheckPressed(FHINPUTACTION_Right) - fhInputActionCheckPressed(FHINPUTACTION_Left);
+			var hinput = input_right - input_left;
 			if (hinput != 0){
 				//audio
 				//audio_play_sound(snd_sfx_wep_cast_fire,1,false);

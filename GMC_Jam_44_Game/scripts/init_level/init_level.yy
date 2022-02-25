@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Tile_System",
-    "path": "folders/Tile_System.yy",
+    "name": "Scripts",
+    "path": "folders/Tile_System/PatsFolder/Scripts.yy",
   },
   "resourceVersion": "1.0",
   "name": "init_level",

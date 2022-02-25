@@ -103,7 +103,7 @@ text_y = y;
 display_text_H_align = fa_left;
 
 //font
-text_font = fnt_text_small;
+text_font = fnt_text;
 
 //deubug talker sprite
 //talker_sprite = spr_DEBUG;
