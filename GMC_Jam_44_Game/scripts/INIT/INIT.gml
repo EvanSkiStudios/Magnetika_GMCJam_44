@@ -18,6 +18,10 @@
 #macro color_purple $fddebf
 #macro color_ltpurple $B55689
 
+
+#macro Level_1 rm_level_1
+#macro Level_2 rm_level_2
+
 //LEVELS
 //methodz
 lvl_select = function(rm_id, img_id=0, title="ERROR!!", _locked=true) constructor{
@@ -29,8 +33,8 @@ lvl_select = function(rm_id, img_id=0, title="ERROR!!", _locked=true) constructo
 
 //create structs
 var i = 0;
-lvl_array[i] = new lvl_select(rm_test, 1, "Welcome to the Gauss Magnetics Corporation", false);
-lvl_array[++i] = new lvl_select(rm_Level2, 2, "Now with buttons", true);
+lvl_array[i] = new lvl_select(Level_1, 1, "Welcome to the Gauss Magnetics Corporation", false);
+lvl_array[++i] = new lvl_select(Level_2, 2, "Now with buttons", true);
 
 global.lvl_list_array = lvl_array;
 

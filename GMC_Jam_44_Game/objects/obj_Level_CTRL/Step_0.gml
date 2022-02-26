@@ -2,8 +2,8 @@
 switch(room){
 	default: case rm_levelselect: global.Level_current = -1; break;
 	
-	case rm_Level1:{
-		 goto_room = rm_Level2;
+	case Level_1:{
+		 goto_room = Level_2;
 		if (!did_once) && (global.level_intro_done){
 			pop_lock();
 			
@@ -14,7 +14,7 @@ switch(room){
 		}
 	}break;
 	
-	case rm_Level2:{
+	case Level_2:{
 		 	goto_room = rm_levelselect;
 		if (!did_once) && (global.level_intro_done){
 			pop_lock();
@@ -33,8 +33,8 @@ switch(room){
 switch(room){
 	default: case rm_levelselect: break;
 	
-	case rm_Level1:
-	case rm_Level2:{
+	case Level_1:
+	case Level_2:{
 		if (!room_end_did_once) &&(global.level_end_reached){
 			if !instance_exists(obj_ctrl_create_typewriter){
 				//global.text_wrap = 700;
