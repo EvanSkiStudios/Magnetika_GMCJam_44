@@ -1,6 +1,6 @@
 {
   "conversionMode": 0,
-  "compression": 3,
+  "compression": 1,
   "volume": 1.0,
   "preload": false,
   "bitRate": 128,
@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "AudioGroup_Music",
+    "path": "audiogroups/AudioGroup_Music",
   },
   "soundFile": "snd_mus_levels.ogg",
   "duration": 127.304352,

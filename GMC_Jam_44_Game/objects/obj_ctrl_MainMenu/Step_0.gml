@@ -36,7 +36,7 @@ if (inputting){
 		case menu_element_type.slider:{
 			switch(menu_option[page]){
 				case 0: /*if(!audio_is_playing(snd_sfx_wep_punch)) audio_play_sound(snd_sfx_wep_punch,1,false);*/  break;
-				case 1: /*if(!audio_is_playing(snd_sfx_switch)) audio_play_sound(snd_sfx_switch,1,false);*/ break;
+				case 1: if(!audio_is_playing(snd_marte_const_01)) audio_play_sound(snd_marte_const_01,1,false); break;
 				case 2: break;
 			}
 			

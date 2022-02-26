@@ -50,10 +50,9 @@ global.Level_current = -1; //controlls unlocking of levels
 
 global.control_scheme = 0;
 
-global.Audio_master_volume = 1;
-global.Audio_sfx_volume = 1;
-global.Audio_music_volume = 1;
-
+global.Audio_master_volume = 1.0;
+global.Audio_sfx_volume = 1.0;
+global.Audio_music_volume = 1.0;
 
 global.bloom_surface = -1; //debug to prevent crash with scaffolds
 global.Bloom_Shader_enabled = true;

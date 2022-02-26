@@ -1,1 +1,2 @@
-room_goto_next();
+audio_group_load(AudioGroup_SFX);
+audio_group_load(AudioGroup_Music);

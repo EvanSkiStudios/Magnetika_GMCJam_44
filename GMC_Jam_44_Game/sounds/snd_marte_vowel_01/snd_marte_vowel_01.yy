@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "AudioGroup_SFX",
+    "path": "audiogroups/AudioGroup_SFX",
   },
   "soundFile": "snd_marte_vowel_01.ogg",
   "duration": 0.5061,
