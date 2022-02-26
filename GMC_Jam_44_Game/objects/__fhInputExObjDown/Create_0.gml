@@ -1,1 +1,0 @@
-canshoot = 0;

@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_levels",
-    "path": "sprites/spr_levels/spr_levels.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
@@ -22,18 +19,16 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":10,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":73,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Level_selector",
-    "path": "folders/Rooms/Level_selector.yy",
+    "name": "Tile_System",
+    "path": "folders/Tile_System.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_level_selector",
+  "name": "obj_bloom_drawer",
   "tags": [],
   "resourceType": "GMObject",
 }

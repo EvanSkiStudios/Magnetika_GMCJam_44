@@ -23,25 +23,37 @@ function create_menu_page(){
 
 }
 
+function change_bloom(){
+	global.Bloom_Shader_enabled = !global.Bloom_Shader_enabled;
+}
+
+function change_bloom_intense(){
+	global.Bloom_intensity = argument0;
+}
+
 function controls_scheme(){
 	switch(argument0){
 		default:
 		case 0:{
 			//WASD
-			fhInputActionMapSetDefault(0);	
+			fhInputActionMapSetDefault(0);
+			global.control_scheme = 0;
 		}break;
 		
 		case 1:{
 			//Arrow keys
 			fhInputActionMapSetDefault(3);
+			global.control_scheme = 3;
 		}break;
 		
 		case 2:{
 			//Gamepad-joystick
 			if (global.GAMEPAD_ISCONNECTED){
 				fhInputActionMapSetDefault(1);
+				global.control_scheme = 1;
 			}else{
 				fhInputActionMapSetDefault(0);
+				global.control_scheme = 0;
 				do_event_message("NO GAMEPAD CONNECTED!!");	
 			}
 		}break;
@@ -50,8 +62,10 @@ function controls_scheme(){
 			//Gamepad-dpad
 			if (global.GAMEPAD_ISCONNECTED){
 				fhInputActionMapSetDefault(2);
+				global.control_scheme = 2;
 			}else{
 				fhInputActionMapSetDefault(0);
+				global.control_scheme = 0;
 				do_event_message("NO GAMEPAD CONNECTED!!");	
 			}
 		}break;
@@ -74,8 +88,8 @@ function change_volume(){
 	var type = menu_option[page];
 	
 	switch(type){
-		case 0: audio_master_gain(argument0); break;
-		case 1: audio_group_set_gain(AudioGroup_SFX, argument0, 0); break;
-		case 2: audio_group_set_gain(AudioGroup_Music, argument0, 0); break;
+		case 0: audio_master_gain(argument0);							global.Audio_master_volume = argument0; break;
+		case 1: audio_group_set_gain(AudioGroup_SFX, argument0, 0);		global.Audio_sfx_volume = argument0;	break;
+		case 2: audio_group_set_gain(AudioGroup_Music, argument0, 0);	global.Audio_music_volume = argument0;	break;
 	}
 }

@@ -17,4 +17,3 @@ enum LEVEL_STATES {
 
 init_level();
 
-

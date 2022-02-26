@@ -2,10 +2,19 @@
 var level = lvl_array[selected_level];
 selected_level_pic = level._pic;
 selected_level_title = level._name;
+selected_level_locked = level._lock;
 
 
 //draw pic
-draw_self();
+if (selected_level_locked){
+	shader_set(shd_greyscale);
+	draw_self();
+	shader_reset();
+	selected_level_title = "Level Locked";
+	
+}else{
+	draw_self();
+}
 
 //if we have a sub image for it
 if (selected_level_pic > (image_number-1)) selected_level_pic = 0;

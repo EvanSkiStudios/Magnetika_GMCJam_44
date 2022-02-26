@@ -21,6 +21,9 @@ enum TILE_DATA {
 
 function init_level(){
 	
+	var layer_id = layer_get_id("Event_Layer"), bloom_layer_depth = layer_get_depth(layer_id);
+	if !(instance_exists(obj_bloom_drawer)) instance_create_depth(0,0,bloom_layer_depth+100,obj_bloom_drawer);
+	
 	global.floor_objects = [];
 	global.moveable_objects = [];
 	

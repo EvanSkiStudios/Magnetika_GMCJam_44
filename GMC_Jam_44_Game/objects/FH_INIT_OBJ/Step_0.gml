@@ -1,15 +1,15 @@
 //do_event_message("GAMEPAD UNPLUGGED");
 
 var win_focus = window_has_focus();
-var FHI_active = fhInputIsInitialized();
 
-if (!win_focus) && (FHI_active) {
-	//instance_deactivate_object(__fhInputObjController);
+if (!win_focus){
+	if (window_is_focused){
+		fhInputPlayerSetManual(0);
+		window_is_focused = false;
+	}
 }else{
-	if (win_focus){
-		if !(FHI_active){
-			//instance_activate_object(__fhInputObjController);	
-			//fhi_activate();
-		}
+	if !(window_is_focused){
+		fhInputPlayerSetAuto(0);
+		window_is_focused = true;
 	}
 }

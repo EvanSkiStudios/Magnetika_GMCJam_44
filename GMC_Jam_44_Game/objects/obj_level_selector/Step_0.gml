@@ -10,11 +10,14 @@ if fhInputActionCheckPressed(FHINPUTACTION_Left) {
 
 if fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) || fhInputActionCheckPressed(FHINPUTACTION_ActivateMenuAlt) {
 	//collect data
-	var level = lvl_array[selected_level];
-	selected_level_room = level._room;
-	if !room_exists(selected_level_room) selected_level_room = rm_levelselect;
-	fadetoroom(selected_level_room,15,$fddebf);
-	selector_enabled = false;
+	if !(selected_level_locked){
+		var level = lvl_array[selected_level];
+		selected_level_room = level._room;
+		if !room_exists(selected_level_room) selected_level_room = rm_levelselect;
+		global.Level_current = selected_level;
+		fadetoroom(selected_level_room,15,$fddebf);
+		selector_enabled = false;
+	}
 }
 
 if keyboard_check_pressed(vk_escape) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) {

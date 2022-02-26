@@ -45,7 +45,7 @@ marte_string = "MART-E";
 draw_set_font(fnt_text);
 
 //background box draw loc
-var cam_w = camera_get_view_width(0);
+var cam_w = display_get_gui_width();
 var background_x_start = (_x - cam_w); var background_x_end = (_x + cam_w);
 var background_y_end = (full_y - 3);
 var background_y_start = (full_y - 100);

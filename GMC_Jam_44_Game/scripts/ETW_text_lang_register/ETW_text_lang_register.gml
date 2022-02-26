@@ -21,7 +21,10 @@ struct_ref_game_uses_to_get_strings = {
 
 			ETW_Text_lang = {
 				level_1_intro: "Hello, Welcome to the Gauss Magnetics Corporation, [SUBJECT_NAME_HERE]. Your goal is simple, make it from point A to point B.",
-				level_1_outro: "Very well done! The G.M.C would like to congratulate"+"\n"+"you on completing such a hard task."
+				level_1_outro: "Very well done! The G.M.C would like to congratulate"+"\n"+"you on completing such a hard task.",
+				
+				level_2_intro: "Other tests will require more effort from you to solve them.",
+				level_2_outro: "To no one's surprise you were heavy enough to weigh down the button."+"\n"+"Congratulations,......fatty." 
 			};
 		}break;
 	}

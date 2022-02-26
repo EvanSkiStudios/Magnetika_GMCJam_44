@@ -1,6 +1,6 @@
 //input
 fhInputInitialize();
-fhInputActionMapSetDefault(0);
+fhInputActionMapSetDefault(global.control_scheme);
 
 //audio
 fhAudioInitialize();
@@ -23,3 +23,5 @@ mymethod = function(a, gp_id, disc){
 }
 
 fhInputSetGamepadEventCallback(mymethod);
+
+window_is_focused = true;

@@ -1,15 +1,15 @@
-input_up_p = fhInputActionCheckPressed(FHINPUTACTION_Up) || keyboard_check_released(vk_up);
-input_down_p = fhInputActionCheckPressed(FHINPUTACTION_Down) || keyboard_check_released(vk_down);
+input_up_p = fhInputActionCheckReleased(FHINPUTACTION_Up) || keyboard_check_released(vk_up);
+input_down_p = fhInputActionCheckReleased(FHINPUTACTION_Down) || keyboard_check_released(vk_down);
 input_enter_p =(
-	fhInputActionCheckPressed(FHINPUTACTION_Activate) || 
-	fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || 
-	fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) || 
-	fhInputActionCheckPressed(FHINPUTACTION_ActivateMenuAlt) ||
+	fhInputActionCheckReleased(FHINPUTACTION_Activate) || 
+	fhInputActionCheckReleased(FHINPUTACTION_ActivateAlt) || 
+	fhInputActionCheckReleased(FHINPUTACTION_ActivateAltLH) || 
+	fhInputActionCheckReleased(FHINPUTACTION_ActivateMenuAlt) ||
 	keyboard_check_released(vk_enter)
 );
 
-input_left = fhInputActionCheckPressed(FHINPUTACTION_Left) || keyboard_check_released(vk_left);
-input_right = fhInputActionCheckPressed(FHINPUTACTION_Right) || keyboard_check_released(vk_right);
+input_left = fhInputActionCheckReleased(FHINPUTACTION_Left) || keyboard_check_released(vk_left);
+input_right = fhInputActionCheckReleased(FHINPUTACTION_Right) || keyboard_check_released(vk_right);
 
 input_left_down = fhInputActionCheckDown(FHINPUTACTION_Left) || keyboard_check(vk_left);
 input_right_down = fhInputActionCheckDown(FHINPUTACTION_Right) || keyboard_check(vk_right);
