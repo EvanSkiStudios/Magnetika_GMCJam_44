@@ -174,10 +174,10 @@ if(false)
 	temp = FHINPUTACTION_Down;
 	temp = FHINPUTACTION_Left;
 	temp = FHINPUTACTION_Right;
-	temp = FHINPUTACTION_Action1;
-	temp = FHINPUTACTION_Action2;
-	temp = FHINPUTACTION_Action3;
-	temp = FHINPUTACTION_Action4;
+	temp = FHINPUTACTION_Activate;
+	temp = FHINPUTACTION_ActivateAlt;
+	temp = FHINPUTACTION_ActivateAltLH;
+	temp = FHINPUTACTION_ActivateMenuAlt;
 	temp = FHINPUTDEVICE_None;
 	temp = FHINPUTDEVICE_Keyboard;
 	temp = FHINPUTDEVICE_Mouse;

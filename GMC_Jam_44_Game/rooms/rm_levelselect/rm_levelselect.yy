@@ -49,7 +49,7 @@
   },
   "parent": {
     "name": "Level_selector",
-    "path": "folders/Rooms/Level_selector.yy",
+    "path": "folders/Level_selector.yy",
   },
   "resourceVersion": "1.0",
   "name": "rm_levelselect",

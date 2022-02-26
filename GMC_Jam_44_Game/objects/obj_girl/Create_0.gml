@@ -1,14 +1,22 @@
+left_pressed = false;
+right_pressed = false;
+up_pressed = false;
+down_pressed = false;
+fire_pressed = false;
+
 left = false;
 right = false;
 up = false;
 down = false;
+fire = false;
 
 dip_current = 0;
 
-intro_height = 1000;
 delay = 0;
 current_tile_pos = [0,0];
 potential_tile = -1;
+
+facing_dir = TILE_DIRECTIONS.DOWN;
 
 current_moveable_piece = -1;
 
@@ -17,6 +25,9 @@ _y = 0;
 
 y_run_speed = 1;
 x_run_speed = 2;
+
+gun_control_x_speed = .5;
+gun_control_y_speed = .25;
 
 timer = 0;
 
@@ -76,19 +87,97 @@ shoot_gun = function (dir) {
 			//check for moveable piece
 			var movable_piece = get_moveable_at(check_position[0], check_position[1]);
 			if (movable_piece != -1) {
-				//FOUND VALID PIECE
-				//SET GUN TO ACTIVATED
-				show_debug_message("FOUND PIECE. GUN ACTIVATED")
+				state = GIRL_STATES.activated_gun;
+				show_debug_message("FOUND PIECE. GUN ACTIVATED");
 				current_moveable_piece = movable_piece;
 				return;
 			}
 			//set check position further
-			check_position[0] += offset[0];
-			check_position[1] += offset[1];
+			check_position[@ 0] += offset[@ 0];
+			check_position[@ 1] += offset[@ 1];
 		} else {
-			blocked = false;	
+			blocked = true;	
 		}
 	}
+	show_debug_message("GUN COULD NOT FIND MOVEABLE PIECE.");
+}
+
+control_moveable_piece = function () {
+	
+	current_moveable_piece.hover_dist = 3;
+	
+	var can_move_x = false;
+	var can_move_y = false;
+	
+	var test_tile_x = current_moveable_piece.current_tile_pos[0];
+	var test_tile_y = current_moveable_piece.current_tile_pos[1];
+	
+	var girl_tile_x = obj_girl.current_tile_pos[0];
+	var girl_tile_y = obj_girl.current_tile_pos[1];
+	
+	switch (facing_dir) {
+		case TILE_DIRECTIONS.LEFT:
+		can_move_x = true;
+		break;
+		case TILE_DIRECTIONS.RIGHT:
+		can_move_x = true;
+		break;
+		case TILE_DIRECTIONS.UP:
+		can_move_y = true;
+		break;
+		case TILE_DIRECTIONS.DOWN:
+		can_move_y = true;
+		break;
+	}
+	
+	if (can_move_x) {
+		if (left_pressed) {
+			test_tile_x -= 1;
+			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
+				if (data == 1) {
+						current_moveable_piece._x -= global.tile_width;
+				}
+			}
+			
+		} else if (right_pressed) {
+			test_tile_x += 1;
+			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
+				if (data == 1) {
+						current_moveable_piece._x += global.tile_width;
+				}
+				
+			}
+		}
+	} else if (can_move_y) {
+		if (up_pressed) {
+			test_tile_y -= 1;
+			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
+				if (data == 1) {
+						current_moveable_piece._y -= global.tile_height;
+				}
+			}
+		} else if (down_pressed) {
+			test_tile_y += 1;
+			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+				
+				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
+				if (data == 1) {
+						current_moveable_piece._y += global.tile_height;
+				}
+			}
+		}
+	}
+	current_moveable_piece.update_tile_position();
+}
+
+deactivate_gun = function () {
+	show_debug_message("GUN DEACTIVATED");
+	current_moveable_piece.hover_dist = 0;
+	current_moveable_piece = -1;
+	state = GIRL_STATES.idle;
 }
 
 run = function (dir) {
@@ -96,6 +185,7 @@ run = function (dir) {
 	switch (dir) {
 		
 		case TILE_DIRECTIONS.LEFT:
+			facing_dir = TILE_DIRECTIONS.LEFT;
 			sprite_index = spr_girl_run_side;
 			stand_sprite = spr_girl_side;
 			image_xscale = -1;
@@ -103,6 +193,7 @@ run = function (dir) {
 		break;
 		
 		case TILE_DIRECTIONS.RIGHT:
+			facing_dir = TILE_DIRECTIONS.RIGHT;
 			sprite_index = spr_girl_run_side;
 			stand_sprite = spr_girl_side;
 			image_xscale = 1;
@@ -110,6 +201,7 @@ run = function (dir) {
 		break;
 		
 		case TILE_DIRECTIONS.UP:
+			facing_dir = TILE_DIRECTIONS.UP;
 			sprite_index = spr_girl_run_up;
 			stand_sprite = spr_girl_back;
 			image_xscale = 1;
@@ -117,6 +209,7 @@ run = function (dir) {
 		break;
 		
 		case TILE_DIRECTIONS.DOWN:
+			facing_dir = TILE_DIRECTIONS.DOWN;
 			sprite_index = spr_girl_run_down;
 			stand_sprite = spr_girl_front;
 			image_xscale = 1;
@@ -157,8 +250,17 @@ get_input = function () {
 	down = false;
 	fire = false;
 	
-	if (keyboard_check_pressed(vk_space)) {
+	left_pressed = false;
+	right_pressed = false;
+	up_pressed = false;
+	down_pressed = false;
+	fire_pressed = false;
+	
+	if (keyboard_check(vk_space)) {
 		fire = true;	
+	}
+	if (keyboard_check_pressed(vk_space)) {
+		fire_pressed = true;
 	}
 	
 	if (keyboard_check(vk_left)) {
@@ -167,10 +269,21 @@ get_input = function () {
 		right = true;
 	}
 	
+	if (keyboard_check_pressed(vk_left)) {
+		left_pressed = true;	
+	} else if (keyboard_check_pressed(vk_right)) {
+		right_pressed = true;
+	}
+	
 	if (keyboard_check(vk_up)) {
 		up = true;	
 	} else if (keyboard_check(vk_down)) {
 		down = true;
+	}
+	if (keyboard_check_pressed(vk_up)) {
+		up_pressed = true;	
+	} else if (keyboard_check_pressed(vk_down)) {
+		down_pressed = true;
 	}
 }
 

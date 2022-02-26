@@ -26,8 +26,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Levels",
-    "path": "folders/Rooms/Levels.yy",
+    "name": "GMC_Jam_44_Game",
+    "path": "GMC_Jam_44_Game.yyp",
   },
   "resourceVersion": "1.0",
   "name": "obj_Level_CTRL",

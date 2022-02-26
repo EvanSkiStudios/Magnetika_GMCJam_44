@@ -21,6 +21,8 @@
 
 #macro Level_1 rm_level_1
 #macro Level_2 rm_level_2
+#macro Level_3 rm_level_3
+#macro Level_4 rm_levelselect
 
 //LEVELS
 //methodz
@@ -35,11 +37,15 @@ lvl_select = function(rm_id, img_id=0, title="ERROR!!", _locked=true) constructo
 var i = 0;
 lvl_array[i] = new lvl_select(Level_1, 1, "Welcome to the Gauss Magnetics Corporation", false);
 lvl_array[++i] = new lvl_select(Level_2, 2, "Now with buttons", true);
+lvl_array[++i] = new lvl_select(Level_3, 3, "Buttons 2 Electric Boogaloo", true);
 
 global.lvl_list_array = lvl_array;
 
 
 //Globals
+global.GAME_IS_PAUSED = false;
+global.PLAYER_HAS_CTRL = true;
+
 global.Level_current = -1; //controlls unlocking of levels
 
 global.control_scheme = 0;
@@ -48,6 +54,8 @@ global.Audio_master_volume = 1;
 global.Audio_sfx_volume = 1;
 global.Audio_music_volume = 1;
 
+
+global.bloom_surface = -1; //debug to prevent crash with scaffolds
 global.Bloom_Shader_enabled = true;
 global.bloom_draw_surface = global.Bloom_Shader_enabled;
 global.Bloom_intensity = 0.25;
@@ -104,7 +112,9 @@ function load_game(){
 
 
 //======================================================================= LOAD THE GAME =======================================================================
-load_game();
+if !(DEBUG_MODE){
+	load_game();
+}
 
 function do_event_message (str){
 	
@@ -126,8 +136,15 @@ function invaild_keys(){
 	input += keyboard_check_pressed(vk_alt);
 	input += keyboard_check_pressed(vk_f11);
 	input += keyboard_check_pressed(vk_f12);
+	input += keyboard_check_pressed(vk_f7);
+	input += keyboard_check_pressed(vk_f8);
 	
 	return( (input > 0) ? true : false );
+}
+
+function init_level_create_bloom(){
+	var layer_id = layer_get_id("Event_Layer"), bloom_layer_depth = layer_get_depth(layer_id);
+	if !(instance_exists(obj_bloom_drawer)) instance_create_depth(0,0,bloom_layer_depth+100,obj_bloom_drawer);	
 }
 
 function ScreenShot(){
@@ -136,7 +153,7 @@ function ScreenShot(){
 	var filename = (working_directory + "\\ScreenShots\\Screen_");
 	
 	//check to see if there is already a png
-	var num = ("__"+string(current_hour)+string(current_minute)+"_"+string(current_day)+string(current_month)+string(current_year) );
+	var num = ("__"+string(current_hour)+string(current_minute)+string(current_second)+"_"+string(current_day)+string(current_month)+string(current_year) );
 	var new_filename = (filename+string(num)+".png");
 	
 	//save the png

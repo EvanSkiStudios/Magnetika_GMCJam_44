@@ -75,12 +75,27 @@ function controls_scheme(){
 
 function resume_game(){
 	if (room == rm_mainmenu){
+		if instance_exists(obj_Level_CTRL) instance_destroy(obj_Level_CTRL);
 		fadetoroom(rm_levelselect,10,color_purple);
+	}else{
+		instance_destroy(id);	
 	}
+	
+	
 }
 
 function exit_game(){
-	fadetoroom(QuitGame,20,color_purple);
+	if (room == rm_mainmenu){
+		fadetoroom(QuitGame,20,color_purple);
+	}else{
+		fadetoroom(rm_levelselect,20,color_purple);	
+	}
+}
+
+function restart_level(){
+	fadetoroom(room,20,color_purple);
+	global.Level_current -= 1;
+	GAME_RESET();
 }
 
 

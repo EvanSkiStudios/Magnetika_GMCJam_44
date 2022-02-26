@@ -22,17 +22,21 @@ enum menu_element_type{
 }
 
 //CREATE MENU PAGES
-if (room == rm_mainmenu){
-	var play_game = "Start Game";	
+if (room == rm_mainmenu){	
+	ds_menu_main = create_menu_page(
+		["Start Game",		menu_element_type.script_runner,	resume_game],
+		["Settings",	menu_element_type.page_transfer,	menu_page.settings],
+		["Quit",		menu_element_type.script_runner,	exit_game]
+	);
+	
 }else{
-	var play_game = "Resume Game";	
+	ds_menu_main = create_menu_page(
+		["Resume Game",		menu_element_type.script_runner,	resume_game],
+		["Restart level",		menu_element_type.script_runner,	restart_level],
+		["Settings",	menu_element_type.page_transfer,	menu_page.settings],
+		["Quit",		menu_element_type.script_runner,	exit_game]
+	);
 }
-
-ds_menu_main = create_menu_page(
-	[play_game,		menu_element_type.script_runner,	resume_game],
-	["Settings",	menu_element_type.page_transfer,	menu_page.settings],
-	["Quit",		menu_element_type.script_runner,	exit_game]
-);
 
 ds_menu_settings = create_menu_page(
 	["AUDIO",		menu_element_type.page_transfer,	menu_page.audio],

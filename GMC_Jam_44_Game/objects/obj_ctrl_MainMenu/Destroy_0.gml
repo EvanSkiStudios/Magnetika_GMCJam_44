@@ -1,4 +1,2 @@
-
-global.game_pause = false;
-global.Player_can_move = true;
-global.Player_can_take_damage = true;
+if instance_exists(obj_pause_drawer) instance_destroy(obj_pause_drawer);
+global.GAME_IS_PAUSED = false;

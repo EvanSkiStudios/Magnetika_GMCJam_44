@@ -8,7 +8,8 @@ switch (state) {
 	
 	case FLOOR_STATES.idle:
 	
-		y = lerp(y, _y + dip_current, .1);
+		x = lerp(x, _x, .1);
+		y = lerp(y, _y - hover_dist + dip_current, .1);
 		
 		if (instance_exists(obj_girl)) {
 			if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {
@@ -28,10 +29,10 @@ switch (state) {
 		y = _y;
 		//show_debug_message("floor:" + string(id) + ",x:" + string(_x) + ", y:" + string(_y) + ", timer:" + string(timer) + ", delay:" + string(delay));
 		state = FLOOR_STATES.idle;
-		
+		tilemap_set(global.map_id, TILE_DATA.floor, current_tile_pos[0], current_tile_pos[1]);
 		var alldone = true;
 		with (obj_floor) {
-			if (state != FLOOR_STATES.idle) {
+			if (state != FLOOR_STATES.idle && state != FLOOR_STATES.deactivated) {
 				if (!in_waiting) {
 					alldone = false;
 				}
@@ -79,7 +80,7 @@ switch (state) {
 		
 			var alldone = true;
 			with (obj_floor) {
-				if (state != FLOOR_STATES.level_complete) {
+				if (state != FLOOR_STATES.level_complete && state != FLOOR_STATES.deactivated) {
 					alldone = false;	
 				}
 			}
@@ -95,12 +96,30 @@ switch (state) {
 	case FLOOR_STATES.init:
 		
 		x = _x;
-		y = _y + intro_height;
+		y = _y + room_height;
 		
 		timer ++;
 		if (timer >= delay) {
 			timer = 0;
 			state = FLOOR_STATES.intro;
+		}
+		
+	break;
+	
+	case FLOOR_STATES.deactivate_init:
+		timer ++;
+		if (timer >= delay) {
+			tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
+			timer = 0;
+			state = FLOOR_STATES.deactivated;
+		}
+	break;
+	
+	case FLOOR_STATES.deactivated:
+		x = _x;
+		if (y <= room_height) {
+			fall_speed += fall_accel;
+			y += fall_speed;
 		}
 		
 	break;

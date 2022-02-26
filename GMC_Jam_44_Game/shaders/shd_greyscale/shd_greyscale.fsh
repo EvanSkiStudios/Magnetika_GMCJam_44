@@ -18,6 +18,9 @@ uniform float u_colorFactor;
 void main()																
 {
 	vec4 sample =  texture2D(gm_BaseTexture, v_vTexcoord);
+	if (sample.a < 0.1) discard;
+	
 	float grey = 0.21 * sample.r + 0.71 * sample.g + 0.07 * sample.b;
+	
 	gl_FragColor = vec4(sample.r * u_colorFactor + grey * (1.0 - u_colorFactor), sample.g * u_colorFactor + grey * (1.0 - u_colorFactor), sample.b * u_colorFactor + grey * (1.0 - u_colorFactor), 1.0);
 }													

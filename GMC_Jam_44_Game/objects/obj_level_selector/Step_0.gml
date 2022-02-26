@@ -14,7 +14,9 @@ if fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPresse
 		var level = lvl_array[selected_level];
 		selected_level_room = level._room;
 		if !room_exists(selected_level_room) selected_level_room = rm_levelselect;
-		global.Level_current = selected_level;
+		
+		global.Level_current = selected_level+1;
+		
 		fadetoroom(selected_level_room,15,$fddebf);
 		selector_enabled = false;
 	}

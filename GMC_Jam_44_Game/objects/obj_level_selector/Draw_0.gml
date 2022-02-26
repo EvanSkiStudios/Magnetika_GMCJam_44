@@ -9,6 +9,7 @@ selected_level_locked = level._lock;
 if (selected_level_locked){
 	shader_set(shd_greyscale);
 	draw_self();
+	draw_sprite_ext(spr_level_lock,0,x,y,2,2,0,c_white,1);
 	shader_reset();
 	selected_level_title = "Level Locked";
 	

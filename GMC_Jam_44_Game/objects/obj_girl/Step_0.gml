@@ -1,13 +1,15 @@
 depth = -_y;
 
 //TEST ONLY
+/*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
-}
+*/
 
 switch (state) {
 	case GIRL_STATES.idle:
-	
+		
+		dip_current = 0;
 		get_input();
 		
 		with (obj_floor) {
@@ -35,6 +37,11 @@ switch (state) {
 			state = GIRL_STATES.running;
 			return;
 		}
+		
+		if (fire) {
+			shoot_gun(facing_dir);	
+		}
+		
 		sprite_index = stand_sprite;
 		
 	break;
@@ -64,6 +71,18 @@ switch (state) {
 		
 	break;
 	
+	case GIRL_STATES.activated_gun:
+	
+		get_input();
+	
+		control_moveable_piece();
+		
+		if (!fire) {
+			deactivate_gun();
+		}
+		
+	break;
+	
 	case GIRL_STATES.disabled:
 	
 	break;
@@ -71,7 +90,7 @@ switch (state) {
 	case GIRL_STATES.init:
 	
 		x = _x;
-		y = _y + intro_height;
+		y = _y + room_height;
 		
 		update_tile_position();
 		

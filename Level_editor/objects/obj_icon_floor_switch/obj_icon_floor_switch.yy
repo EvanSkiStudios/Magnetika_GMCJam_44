@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_icon_floor_switch",
-    "path": "sprites/spr_icon_floor_switch/spr_icon_floor_switch.yy",
+    "name": "spr_icon_floor_switch_1",
+    "path": "sprites/spr_icon_floor_switch_1/spr_icon_floor_switch_1.yy",
   },
   "solid": false,
   "visible": true,

@@ -1,0 +1,1 @@
+global.Pause_Surface = -4;

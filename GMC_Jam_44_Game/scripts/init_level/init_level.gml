@@ -21,8 +21,7 @@ enum TILE_DATA {
 
 function init_level(){
 	
-	var layer_id = layer_get_id("Event_Layer"), bloom_layer_depth = layer_get_depth(layer_id);
-	if !(instance_exists(obj_bloom_drawer)) instance_create_depth(0,0,bloom_layer_depth+100,obj_bloom_drawer);
+	init_level_create_bloom();
 	
 	global.floor_objects = [];
 	global.moveable_objects = [];
@@ -61,12 +60,15 @@ function init_level(){
 				
 				if (start_in_floor) {
 					floor_switch = instance_create_layer(x, y, "Event_Layer", obj_floor_switch);
+					floor_switch.is_toggle = is_toggle;
 					tilemap_set(global.map_id, TILE_DATA.floor_switch, sw_tile_x, sw_tile_y);
-					array_push(global.moveable_objects, floor_switch);
+					//array_push(global.moveable_objects, floor_switch);
+					array_push(global.floor_objects, floor_switch);
 				} else {
 					//set entry delay later when we parse the floors
 					floor_switch = instance_create_layer(x, y, "Event_Layer", obj_moveable);
 					array_push(global.moveable_objects, floor_switch);
+					array_push(global.floor_objects, floor_switch);
 				}
 				
 				
@@ -87,13 +89,23 @@ function init_level(){
 	
 	if (instance_exists(obj_icon_hidden_floor)) {
 		with (obj_icon_hidden_floor) {
+			
+			var sw_tile_x = x / global.tile_width;
+			var sw_tile_y = y / global.tile_height;
+			
+			if (activated) {
+				//set the tile here
+				tilemap_set(global.map_id, TILE_DATA.floor, sw_tile_x, sw_tile_y);
+			} else {
 			//hide these, but leave them in the level so we can look up id strings
 			global.this_floor = instance_create_layer(0, 4000, "Event_Layer", obj_floor);
 			array_push(global.floor_objects, global.this_floor);
 			global.this_floor._x = x;
 			global.this_floor._y = y;
 			global.this_floor.update_tile_position();
-			visible = false;	
+			global.this_floor.deactivate(0);
+			}
+			visible = false;
 		}
 	}
 	
@@ -280,6 +292,7 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 	
 }
 
+/*
 /// @function spawn_floor_list(floor_list, _delay);
 function spawn_floor_list (floor_list, _delay) {
 	
@@ -303,13 +316,15 @@ function spawn_floor_list (floor_list, _delay) {
 			
 			if (a_floor_icon.floor_id == floor_num) {
 
-				show_debug_message("FLOOR ID:" + string(a_floor_icon.floor_id) + string("tile_x:" + string(a_floor_icon.x / global.tile_width) + "tile_y:" + string(a_floor_icon.y / global.tile_height)));
+				//show_debug_message("FLOOR ID:" + string(a_floor_icon.floor_id) + string("tile_x:" + string(a_floor_icon.x / global.tile_width) + "tile_y:" + string(a_floor_icon.y / global.tile_height)));
 				global.this_floor = get_floor_at(a_floor_icon.x / global.tile_width, a_floor_icon.y / global.tile_height);
 				if (global.this_floor != -1) {
-					global.this_floor.do_intro(this_delay);
+					if (global.this_floor.state == FLOOR_STATES.idle) {
+						global.this_floor.deactivate(this_delay);
+					} else {
+						global.this_floor.do_intro(this_delay);
+					}
 				}
-				
-				tilemap_set(global.map_id, TILE_DATA.floor, (a_floor_icon.x / global.tile_width), (a_floor_icon.y / global.tile_height));
 				
 				this_delay += _delay;
 				//show_debug_message("SPAWNING NEW FLOORS:" + string(this_delay));
@@ -318,10 +333,4 @@ function spawn_floor_list (floor_list, _delay) {
 		}
 	 }
 }
-
-
-
-
-function spring_to(target_x, target_y) {
-	
-}
+*/

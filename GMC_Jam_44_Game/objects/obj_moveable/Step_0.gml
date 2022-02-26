@@ -1,2 +1,2 @@
 event_inherited();
-depth = -y - 1;
+depth = -(y + hover_dist) - 16;

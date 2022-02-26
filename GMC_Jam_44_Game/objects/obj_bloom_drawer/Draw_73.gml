@@ -5,7 +5,6 @@ if !surface_exists(global.bloom_surface){
 }
 
 
-
 if (global.Bloom_Shader_enabled) && (global.Bloom_intensity > 0.0) && (global.bloom_draw_surface){
 	
 	//depth = (obj_floor.depth) + 100;
@@ -16,28 +15,3 @@ if (global.Bloom_Shader_enabled) && (global.Bloom_intensity > 0.0) && (global.bl
 	draw_surface(global.bloom_surface,0,0);
 	shader_reset();
 }
-
-//SCAFFOLDING DRAW CODE
-/*
-
-/// @function set_on(on);
-set_on = function (on) {
-	if (on) {
-		sprite_index = sprite_on;
-		global.bloom_draw_surface = true;
-	} else {
-		sprite_index = sprite_off;
-		global.bloom_draw_surface = false;
-	}
-}
-
-
-if (global.bloom_draw_surface && (global.Bloom_Shader_enabled) && (surface_exists(global.bloom_surface)) && (sprite_index == sprite_on) ){
-	surface_set_target(global.bloom_surface);
-	draw_self();
-	surface_reset_target();
-}else{
-	draw_self();	
-}
-
-*/

@@ -1,10 +1,11 @@
 dip_height = 2;
 dip_current = 0;
-
-intro_height = 1000;
+hover_dist = 0;
 timer = 0;
 delay = 1 * room_speed;
-delay_set = false;
+
+fall_speed = 0;
+fall_accel = 0.25;
 
 outro_drop_speed = 0;
 outro_drop_accel = 0.1;
@@ -31,6 +32,8 @@ enum FLOOR_STATES {
 	outro,
 	init,
 	level_complete,
+	deactivate_init,
+	deactivated,
 	standby,
 }
 
@@ -44,12 +47,9 @@ update_tile_position = function () {
 /// @function set_delay(_delay);
 set_delay = function (_delay) {
 	//show_debug_message ("set_delay:" + string(_delay));
-	if (!delay_set) {
 	delay = _delay * room_speed;	
-	delay_set = true;
 	if (current_tile_pos[0] == 8 && current_tile_pos[1] == 10) {
-		show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
-	}
+		//show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
 	}
 }
 
@@ -78,6 +78,15 @@ do_outro = function (_delay) {
 		set_delay(_delay);
 		state = FLOOR_STATES.outro_init;
 	}
+}
+
+///@function deactivate();
+deactivate = function (_delay) {
+	fall_speed = 0;
+	did_intro = false;
+	set_delay(_delay);
+	//tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
+	state = FLOOR_STATES.deactivate_init;
 }
 
 //show_debug_message("A floor is created.");

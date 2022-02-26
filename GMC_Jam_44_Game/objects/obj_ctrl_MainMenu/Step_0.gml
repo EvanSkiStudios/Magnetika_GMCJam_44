@@ -17,6 +17,10 @@ input_right_down = fhInputActionCheckDown(FHINPUTACTION_Right) || keyboard_check
 var ds_grid = menu_pages[page]; 
 var ds_height = ds_grid_height(ds_grid);
 
+if (room != rm_mainmenu){
+	if keyboard_check_pressed(vk_escape) instance_destroy();
+}
+
 if (inputting){
 	switch(ds_grid[# 1, menu_option[page]]){
 		case menu_element_type.shift:{
