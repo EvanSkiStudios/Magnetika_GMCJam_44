@@ -17,4 +17,4 @@ enum LEVEL_STATES {
 
 init_level();
 
-
+init_level_create_bloom();

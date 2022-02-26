@@ -21,8 +21,6 @@ enum TILE_DATA {
 
 function init_level(){
 	
-	init_level_create_bloom();
-	
 	global.floor_objects = [];
 	global.moveable_objects = [];
 	
