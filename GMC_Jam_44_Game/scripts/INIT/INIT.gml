@@ -1,5 +1,7 @@
 //Init Values and settings for game that get set on startup
 
+#macro DEBUG_MODE true
+
 #region default things
 //GAME RES SETTINGS
 #macro WINDOW_WIDTH 1280
@@ -8,17 +10,10 @@
 #macro GAME_RES_WIDTH 640
 #macro GAME_RES_HEIGHT 360
 
-//Direction macros
-#macro DIR_RIGHT 0
-#macro DIR_UP 90
-#macro DIR_LEFT 180
-#macro DIR_DOWN 270
-
 #macro GAMESPEED game_get_speed(gamespeed_fps)
 
 #endregion
 
-#macro USER_NAME string(environment_get_variable("USERNAME"))
 
 #macro color_purple $fddebf
 #macro color_ltpurple $B55689
@@ -34,7 +29,7 @@ lvl_select = function(rm_id, img_id=0, title="ERROR!!", _locked=true) constructo
 
 //create structs
 var i = 0;
-lvl_array[i] = new lvl_select(rm_Level1, 1, "Welcome to the Gauss Magnetics Corporation", false);
+lvl_array[i] = new lvl_select(rm_test, 1, "Welcome to the Gauss Magnetics Corporation", false);
 lvl_array[++i] = new lvl_select(rm_Level2, 2, "Now with buttons", true);
 
 global.lvl_list_array = lvl_array;
@@ -103,6 +98,8 @@ function load_game(){
 	show_debug_message("==== GAME LOADED ====");
 }
 
+
+//======================================================================= LOAD THE GAME =======================================================================
 load_game();
 
 function do_event_message (str){
@@ -114,5 +111,41 @@ function do_event_message (str){
 		
 	} else {
 			obj_event_messager.do_message(str);
+	}
+}
+
+//Useful functions for gameplay
+
+function invaild_keys(){
+	var input = false;
+	input += keyboard_check_pressed(vk_enter);
+	input += keyboard_check_pressed(vk_alt);
+	input += keyboard_check_pressed(vk_f11);
+	input += keyboard_check_pressed(vk_f12);
+	
+	return( (input > 0) ? true : false );
+}
+
+function ScreenShot(){
+	static num = 0;
+	
+	var filename = (working_directory + "\\ScreenShots\\Screen_");
+	
+	//check to see if there is already a png
+	var num = ("__"+string(current_hour)+string(current_minute)+"_"+string(current_day)+string(current_month)+string(current_year) );
+	var new_filename = (filename+string(num)+".png");
+	
+	//save the png
+	screen_save(new_filename);
+	//add to the number for a future png
+	show_debug_message("Screen shot "+string(num)+" saved");
+}
+
+function fadetoroom(gotoroom, dur, _color){
+	var inst = instance_create_depth(0,0,0,obj_gui_fadeout);
+	with (inst){
+		targetroom = gotoroom;
+		duration = dur;
+		color = _color;
 	}
 }

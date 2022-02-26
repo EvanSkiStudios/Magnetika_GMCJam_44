@@ -16,3 +16,16 @@ if (global.Bloom_Shader_enabled) && (global.Bloom_intensity > 0.0) && (global.bl
 	draw_surface(global.bloom_surface,0,0);
 	shader_reset();
 }
+
+//SCAFFOLDING DRAW CODE
+/*
+
+if ( (global.Bloom_Shader_enabled) && (surface_exists(global.bloom_surface)) && (sprite_index == sprite_on) ){
+	surface_set_target(global.bloom_surface);
+	draw_self();
+	surface_reset_target();
+}else{
+	draw_self();	
+}
+
+*/
