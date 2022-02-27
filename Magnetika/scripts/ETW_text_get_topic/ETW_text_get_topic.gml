@@ -16,7 +16,8 @@ enum Typewriter_text_ref{
 	level_4_intro,
 	level_4_outro,
 	level_5_intro,
-	level_5_outro
+	level_5_outro,
+	level_6_intro,
 }
 
 //wrapper function that auto fills info
@@ -93,6 +94,14 @@ function ETW_texttopic(){
 		
 		case Typewriter_text_ref.level_5_outro:{			
 			text[i][TContent] = ETW_Text_lang.level_5_outro;
+			ETW_Topic(i,,,,1,,);
+		}break;
+		
+		case Typewriter_text_ref.level_6_intro:{			
+			text[i][TContent] = ETW_Text_lang.level_6_intro;
+			ETW_Topic(i,,,,1,,);
+			
+			text[++i][TContent] = ETW_Text_lang.level_6_intro_2;
 			ETW_Topic(i,,,,1,,);
 		}break;
 	}

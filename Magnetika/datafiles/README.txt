@@ -32,7 +32,7 @@
 ================= PLOT  =========================================
 =================================================================
  You are a test subject at the Gauss Magnetics Corporation, set in the year [ERROR CODE GMC-74-47]
- Solve puzzles using buttons, platforms, lasors! Using the patent pending GMC Magnet Field Manipulator Gun.
+ Solve puzzles using buttons, platforms, lasors! Using the patent pending GMC Magnetic Field Manipulator Gun.
  Can you outwit the A.I MART-E? 
 
 

@@ -25,6 +25,7 @@ global.Load_save = true;
 #macro Level_3 rm_level_3
 #macro Level_4 rm_level_4
 #macro Level_5 rm_level_5
+#macro Level_6 rm_level_6
 
 //LEVELS
 //methodz
@@ -42,6 +43,7 @@ lvl_array[++i] = new lvl_select(Level_2, 2, "Now with buttons", true);
 lvl_array[++i] = new lvl_select(Level_3, 3, "Buttons 2 Electric Boogaloo", true);
 lvl_array[++i] = new lvl_select(Level_4, 4, "Retrace your steps", true);
 lvl_array[++i] = new lvl_select(Level_5, 5, "The Floor is Falling", true);
+lvl_array[++i] = new lvl_select(Level_6, 6, "The Mother F- wait we can't use that name?", true);
 
 global.lvl_list_array = lvl_array;
 
@@ -164,7 +166,7 @@ function ScreenShot(){
 	var filename = (working_directory + "\\ScreenShots\\Screen_");
 	
 	//check to see if there is already a png
-	var num = ("__"+string(current_hour)+string(current_minute)+string(current_second)+"_"+string(current_day)+string(current_month)+string(current_year) );
+	var num = ("_"+string(current_time)+"_"+string(current_day)+string(current_month)+string(current_year) );
 	var new_filename = (filename+string(num)+".png");
 	
 	//save the png
