@@ -17,8 +17,8 @@
   "width": 1024,
   "height": 768,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "DO_NOT_EXPORT",
+    "path": "texturegroups/DO_NOT_EXPORT",
   },
   "swatchColours": null,
   "gridX": 0,

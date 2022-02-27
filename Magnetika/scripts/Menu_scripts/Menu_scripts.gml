@@ -23,6 +23,11 @@ function create_menu_page(){
 
 }
 
+function change_fullscreen(){
+	window_set_fullscreen( !(window_get_fullscreen()) );
+}
+
+
 function change_bloom(){
 	global.Bloom_Shader_enabled = !global.Bloom_Shader_enabled;
 }

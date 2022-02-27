@@ -16,6 +16,10 @@ if !(global.level_end_reached){
 		case Level_4:{
 			Text_convo_ref = Typewriter_text_ref.level_4_intro;
 		} break;
+		
+		case Level_5:{
+			Text_convo_ref = Typewriter_text_ref.level_5_intro;
+		} break;
 	
 	}
 	
@@ -31,6 +35,14 @@ if !(global.level_end_reached){
 		
 		case Level_2:{
 			Text_convo_ref = Typewriter_text_ref.level_2_outro;
+		} break;
+		
+		case Level_4:{
+			Text_convo_ref = Typewriter_text_ref.level_4_outro;
+		} break;
+		
+		case Level_5:{
+			Text_convo_ref = Typewriter_text_ref.level_5_outro;
 		} break;
 	
 	}

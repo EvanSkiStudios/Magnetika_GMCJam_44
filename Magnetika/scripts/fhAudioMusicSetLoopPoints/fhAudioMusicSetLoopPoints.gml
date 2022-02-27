@@ -13,7 +13,7 @@ function fhAudioMusicSetLoopPoints(musicTrack, beginningTime, endingTime)
 		if(endingTime < 0)
 			__fhAudioThrowError("Called fhAudioMusicSetLoopPoints() with a negative ending time.");
 	}
-	__fhAudioObjController.musicLoopPoints[$ string(musicTrack)] = new __fhAudioMusicLoopPoints(beginningTime, endingTime)
+	__fhAudioObjController.musicLoopPoints[$ string(musicTrack)] = new __fhAudioMusicLoopPoints(beginningTime*0.001, endingTime*0.001);
 	return true;
 }
 

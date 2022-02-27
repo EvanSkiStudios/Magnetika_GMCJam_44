@@ -49,6 +49,11 @@ fhAudioMusicSetLoopPoints(snd_mus_levels,16695,125217);
 fhAudioMusicRoomChangeSet(rm_mainmenu,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_levelselect,snd_mus_menu);
 
-fhAudioMusicRoomChangeSet(rm_level_1,snd_mus_levels);
-fhAudioMusicRoomChangeSet(rm_level_2,snd_mus_levels);
-fhAudioMusicRoomChangeSet(rm_level_3,snd_mus_levels);
+
+var _array_length = (array_length(global.lvl_list_array));
+	
+for (var i = 0; i < _array_length; ++i){
+	var _array_room = global.lvl_list_array[i]._room;
+	
+	fhAudioMusicRoomChangeSet(_array_room,snd_mus_levels);
+}

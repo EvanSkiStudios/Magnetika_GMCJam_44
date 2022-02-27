@@ -28,7 +28,11 @@ struct_ref_game_uses_to_get_strings = {
 				
 				level_4_intro: "After the year [ERROR CODE GMC-74-47] The G.M.C is legally required by law"+"\n"+"to inform you of the potential health risks involved in these tests.",
 				level_4_intro_2: "Risk of falling, vaporization, lead poisoning, neodymium inhalation poisoning,"+"\n"+"Flash blindness, Monologophobia, Risk of falling.",
-				level_4_intro_3: "If you feel that at any point you suffer from any of the health risks"+"\n"+"stated above, you understand that the G.M.C is not liable for cause of injury."
+				level_4_intro_3: "If you feel that at any point you suffer from any of the health risks"+"\n"+"stated above, you understand that the G.M.C is not liable for cause of injury.",
+				level_4_outro: "Shame, I wanted to see what would happen when a human reaches"+"\n"+"terminal velocity, then splats 20km downwards, maybe next time.",
+				
+				level_5_intro: "For this next test I'm going to require you to solve it as fast as possible.",
+				level_5_outro: "We specifically said 'as fast as possible!'"
 			};
 		}break;
 	}

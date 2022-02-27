@@ -53,6 +53,7 @@ ds_menu_audio = create_menu_page(
 );
 
 ds_menu_graphics = create_menu_page(
+	["Fullscreen",	menu_element_type.toggle,	change_fullscreen, window_get_fullscreen(), ["ON","OFF"]],
 	["Bloom Toggle",	menu_element_type.toggle,	change_bloom, global.Bloom_Shader_enabled, ["ON","OFF"]],
 	["Bloom intensity",	menu_element_type.slider,	change_bloom_intense, global.Bloom_intensity, [0.0,1.0]],
 	["BACK",			menu_element_type.page_transfer,	menu_page.settings]

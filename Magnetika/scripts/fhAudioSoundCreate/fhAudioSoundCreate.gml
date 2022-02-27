@@ -1,6 +1,6 @@
 function fhAudioSoundCreate(name, _category = 0, _tracks = undefined, _pitchVariance = 0, _volumeVariance = 0, _behavior = FHAUDIO_CHOOSE_RANDOM)
 {
-	/// @param KEN IS STUPID=0
+	/// @param name
 	/// @param _category=0
 	/// @param _tracks=undefined
 	/// @param _pitchVariance=0

@@ -24,6 +24,7 @@ global.Load_save = true;
 #macro Level_2 rm_level_2
 #macro Level_3 rm_level_3
 #macro Level_4 rm_level_4
+#macro Level_5 rm_level_5
 
 //LEVELS
 //methodz
@@ -40,6 +41,7 @@ lvl_array[i] = new lvl_select(Level_1, 1, "Welcome to the Gauss Magnetics Corpor
 lvl_array[++i] = new lvl_select(Level_2, 2, "Now with buttons", true);
 lvl_array[++i] = new lvl_select(Level_3, 3, "Buttons 2 Electric Boogaloo", true);
 lvl_array[++i] = new lvl_select(Level_4, 4, "Retrace your steps", true);
+lvl_array[++i] = new lvl_select(Level_5, 5, "The Floor is Falling", true);
 
 global.lvl_list_array = lvl_array;
 
@@ -48,25 +50,26 @@ global.lvl_list_array = lvl_array;
 global.GAME_IS_PAUSED = false;
 global.GAMEPAD_ISCONNECTED = false;
 
-global.control_scheme = 0;
+global.bloom_surface = -1; //debug to prevent crash with scaffolds
 
+global.control_scheme = 0;
 global.Audio_master_volume = 1.0;
 global.Audio_sfx_volume = 1.0;
 global.Audio_music_volume = 1.0;
-
-global.bloom_surface = -1; //debug to prevent crash with scaffolds
 global.Bloom_Shader_enabled = true;
 global.bloom_draw_surface = global.Bloom_Shader_enabled;
 global.Bloom_intensity = 0.25;
 
 
 function save_game(){
+	if (file_exists("SAVE.phrs")) file_delete("SAVE.phrs");
 	
 	var save_strut = {
 		Control_scheme : global.control_scheme,
 		Audio_master : global.Audio_master_volume,
 		Audio_sfx : global.Audio_sfx_volume,
 		Audio_mus : global.Audio_music_volume,
+		Fullscreen : window_get_fullscreen(),
 		Bloom_enabled : global.Bloom_Shader_enabled,
 		Bloom_intensity : global.Bloom_intensity,
 		
@@ -92,21 +95,25 @@ function load_game(){
 	json_string = base64_decode(json_string);
 	var game_struct = json_parse(json_string);
 
-	global.control_scheme = game_struct.Control_scheme;
-	global.Audio_master_volume = game_struct.Audio_master;
-	global.Audio_sfx_volume = game_struct.Audio_sfx;
-	global.Audio_music_volume = game_struct.Audio_mus;
-	global.Bloom_Shader_enabled = game_struct.Bloom_enabled;
-	global.Bloom_intensity = game_struct.Bloom_intensity;
+	if variable_struct_exists(game_struct, "Control_scheme"){	global.control_scheme = game_struct.Control_scheme; };
+	if variable_struct_exists(game_struct, "Audio_master"){		global.Audio_master_volume = game_struct.Audio_master; };
+	if variable_struct_exists(game_struct, "Audio_sfx"){		global.Audio_sfx_volume = game_struct.Audio_sfx;  };
+	if variable_struct_exists(game_struct, "Audio_mus"){		global.Audio_music_volume = game_struct.Audio_mus; };
+	if variable_struct_exists(game_struct, "Fullscreen"){		global.control_scheme = game_struct.Fullscreen; };
+	if variable_struct_exists(game_struct, "Bloom_enabled"){	global.Bloom_Shader_enabled = game_struct.Bloom_enabled; };
+	if variable_struct_exists(game_struct, "Bloom_intensity"){	global.Bloom_intensity = game_struct.Bloom_intensity; };
 
-	var new_lvl_list_array = game_struct.Level_list;
+	if variable_struct_exists(game_struct, "Level_list"){
+		
+		var new_lvl_list_array = game_struct.Level_list;
 	
-	//updates level locks
-	var _array_length = array_length(new_lvl_list_array);
-	for (var i = 0; i < _array_length; ++i){
-		global.lvl_list_array[i]._lock = new_lvl_list_array[i]._lock; 
-	}	
+		//updates level locks
+		var _array_length = array_length(new_lvl_list_array);
+		for (var i = 0; i < _array_length; ++i){
+			global.lvl_list_array[i]._lock = new_lvl_list_array[i]._lock; 
+		}	
 	
+	}
 	
 	with(obj_level_selector) event_user(0);
 	

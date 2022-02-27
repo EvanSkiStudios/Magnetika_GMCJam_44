@@ -5,7 +5,7 @@ Directory the project(.yyp file specifically) is in.
 I need this set correctly so that the configuration program can find the datafiles directory and change them.
 This is hopefully temporary, as I suggested to YoyoGames that they add a constant for this purpose.
 */
-#macro FHINPUT_SETTING_ProjectDirectory "G:\\GameMaking\\GameMakerStudio2 Projects\\Projects\\_jams\\GMC JAM\\GMC 44 Jam\\GMC_Jam_44_Game"
+#macro FHINPUT_SETTING_ProjectDirectory "G:\\GameMaking\\GameMakerStudio2 Projects\\Projects\\_jams\\GMC JAM\\GMC 44 Jam\\Magnetika"
 
 /*
 How many players to allocate, there is very little overhead if you allocate more than what you need at any time.
