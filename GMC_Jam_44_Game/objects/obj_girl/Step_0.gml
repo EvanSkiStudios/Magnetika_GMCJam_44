@@ -1,11 +1,9 @@
 depth = -_y;
 
 //TEST ONLY
-/*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
 }
-*/
 
 switch (state) {
 	case GIRL_STATES.idle:

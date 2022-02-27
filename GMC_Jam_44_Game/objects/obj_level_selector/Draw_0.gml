@@ -35,3 +35,54 @@ draw_text(
 	x, (y - 50 - spr_h),
 	"Level: "+string(selected_level+1)
 );
+
+
+switch(global.control_scheme){
+	default: case 0:{
+		//WASD
+		level_select_instrct = (
+		"Use A to cycle to the previous level"+"\n"+
+		"Use D to cycle to the next level"+"\n"+
+		"Use Space to select the Level"+"\n"+
+		"Use Esc to return to the main menu!"
+		);
+	}break;
+	
+	case 1:{
+		//JOY STICK
+		level_select_instrct = (
+		"Push the Left stick to the Left to cycle to the previous level"+"\n"+
+		"Push the Left stick to the Right to cycle to the next level"+"\n"+
+		"Use (xbox)(A) or Start to select the Level"+"\n"+
+		"Use Esc to return to the main menu!"
+		);
+		
+	}break;
+	
+	case 2:{
+		//D-Pad
+		level_select_instrct = (
+		"Use D-pad Left to the Left to cycle to the previous level"+"\n"+
+		"Use D-pad Right stick to the Right to cycle to the next level"+"\n"+
+		"Use (xbox)(A) or Start to select the Level"+"\n"+
+		"Use Esc to return to the main menu!"
+		);
+	}break;
+	
+	case 3:{
+		//Arrows
+		level_select_instrct = (
+		"Use Arrow Left to cycle to the previous level"+"\n"+
+		"Use Arrow Right to cycle to the next level"+"\n"+
+		"Use Space to select the Level"+"\n"+
+		"Use Esc to return to the main menu!"
+		);
+	}break;
+	
+}
+
+
+draw_text(
+	x, (y + 200 + spr_h),
+	level_select_instrct
+);

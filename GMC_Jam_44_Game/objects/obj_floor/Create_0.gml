@@ -14,8 +14,9 @@ outro_drop_accel = 0.1;
 outro_platform_rise_speed = 0;
 outro_platform_rise_accel = 0.02;
 
-
 current_tile_pos = [0,0];
+
+did_outro = false;
 
 movement_complete = false;
 
@@ -49,7 +50,7 @@ set_delay = function (_delay) {
 	//show_debug_message ("set_delay:" + string(_delay));
 	delay = _delay * room_speed;	
 	if (current_tile_pos[0] == 8 && current_tile_pos[1] == 10) {
-		//show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
+		show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
 	}
 }
 
@@ -70,9 +71,12 @@ do_intro = function (_delay) {
 
 /// @function do_outro(_delay);
 do_outro = function (_delay) {
-	movement_complete = false;
-	set_delay(_delay);
-	state = FLOOR_STATES.outro_init;
+	if (!did_outro) {
+		did_outro = true;
+		movement_complete = false;
+		set_delay(_delay);
+		state = FLOOR_STATES.outro_init;
+	}
 
 }
 

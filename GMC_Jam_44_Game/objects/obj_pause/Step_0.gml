@@ -15,8 +15,7 @@ if !instance_exists(obj_ctrl_MainMenu){
 		
 		//Game needs paused
 		if !(global.GAME_IS_PAUSED){
-			
-			global.PLAYER_HAS_CTRL = false;
+
 			instance_create_depth(x,y,-1000,obj_pause_drawer);
 			
 			global.GAME_IS_PAUSED = true;

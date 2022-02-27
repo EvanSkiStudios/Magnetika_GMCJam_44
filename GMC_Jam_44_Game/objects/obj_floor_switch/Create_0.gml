@@ -31,23 +31,25 @@ girl_standing = function () {
 /// @function pressed_by_moveable();
 pressed_by_moveable = function () {
 	var pressed = false;
-	if (obj_moveable.current_tile_pos[0] == current_tile_pos[0] && obj_moveable.current_tile_pos[1] == current_tile_pos[1]){
+	
+	if (instance_exists(obj_moveable)){
+		if (obj_moveable.current_tile_pos[0] == current_tile_pos[0] && obj_moveable.current_tile_pos[1] == current_tile_pos[1]){
 		
-		if (obj_girl.current_moveable_piece != -1) {
+			if (obj_girl.current_moveable_piece != -1) {
 			
-			var p = obj_girl.current_moveable_piece;
+				var p = obj_girl.current_moveable_piece;
 			
-			if (p.floating) {
+				if (p.floating) {
 				
+				} else {
+					pressed = true;	
+				}
+		
 			} else {
 				pressed = true;	
 			}
 		
-		} else {
-			pressed = true;	
-		}
-		
-		
+		}	
 	}
 	
 	return pressed;
@@ -64,7 +66,7 @@ floors_ready = function() {
 		}
 	}
 	if (all_ready == true) {
-		show_debug_message("SWITCH ALL FLOORS READY!");	
+		//show_debug_message("SWITCH ALL FLOORS READY!");	
 	}
 	return all_ready;
 }
@@ -72,7 +74,7 @@ floors_ready = function() {
 /// @function activate_switch();
 activate_switch = function () {
 	if (!switch_activated) {
-		show_debug_message("SWITCH ACTIVATED!");
+		//show_debug_message("SWITCH ACTIVATED!");
 		image_index = 1;
 		switch_activated = true;
 		toggle_floors(floor_list, floor_entry_delay);

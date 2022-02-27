@@ -9,5 +9,4 @@ if !(global.Level_current > array_length(global.lvl_list_array)){
 room_end_did_once = false;
 do_fade = false;
 
-
 GAME_RESET();

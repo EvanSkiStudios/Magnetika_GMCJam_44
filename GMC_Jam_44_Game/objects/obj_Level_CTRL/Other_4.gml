@@ -1,2 +1,7 @@
 //global.text_wrap = 1000;
-did_once = false;
+room_start_did_once = false;
+
+if (room != rm_levelselect){
+	pop_lock();
+	save_game();
+}

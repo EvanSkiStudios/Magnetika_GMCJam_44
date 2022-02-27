@@ -294,8 +294,10 @@ get_input = function () {
 		} else if ( fhInputActionCheckPressed(FHINPUTACTION_Down)) {
 			down_pressed = true;
 		}
+	
 	}
 }
+
 
 /// @function check_for_no_floor();
 check_for_no_floor = function () {

@@ -1,6 +1,7 @@
 //Init Values and settings for game that get set on startup
 
 #macro DEBUG_MODE true
+global.Load_save = true;
 
 #region default things
 //GAME RES SETTINGS
@@ -44,9 +45,7 @@ global.lvl_list_array = lvl_array;
 
 //Globals
 global.GAME_IS_PAUSED = false;
-global.PLAYER_HAS_CTRL = true;
-
-global.Level_current = -1; //controlls unlocking of levels
+global.GAMEPAD_ISCONNECTED = false;
 
 global.control_scheme = 0;
 
@@ -58,8 +57,6 @@ global.bloom_surface = -1; //debug to prevent crash with scaffolds
 global.Bloom_Shader_enabled = true;
 global.bloom_draw_surface = global.Bloom_Shader_enabled;
 global.Bloom_intensity = 0.25;
-
-global.GAMEPAD_ISCONNECTED = false;
 
 
 function save_game(){
@@ -111,7 +108,7 @@ function load_game(){
 
 
 //======================================================================= LOAD THE GAME =======================================================================
-if !(DEBUG_MODE){
+if (global.Load_save){
 	load_game();
 }
 
