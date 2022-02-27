@@ -16,45 +16,33 @@ logo_hold_time = 3;
 max_time = logo_hold_time * room_speed;
 scroll = false;
 
+credit_logo = spr_credits_logo;
+
 credits = [
 "CODE, ART, AUDIO",
 "BY",
 "PIXELLATED HAMMERED RACCOON",
 " ",
 "CREATED WITH",
-"GAMEMAKER STUDIO 2.3 by YoYo Games",
+"GAMEMAKER STUDIO 2022.1 by YoYo Games",
 " ",
 " ",
-"HEAD OF PIXELLATED GRAPHICAL DESIGN:",
+"Project Lead:",
 "Pat \"PIXEL-TEAM\" Ferguson",
 " ",
-"HEAD OF HAMMERED AUDIO DESIGN:",
+"Audio Designer:",
 "Ken Burkhart \"FireHammer Games\"",
 " ",
-"HEAD OF RACCOON PROGRAMMING:",
+"Lead programmer/Level designer:",
 "Evanski",
 " ",
-" ",
-"SPECIAL THANKS:",
-"OUR FAMILES",
-"for not going crazy on us,",
-"for making a game for a week",
-" ",
-"Mark Overmars",
-"for creating Game Maker",
-" ",
-"Raccoons",
-"For being fuzzy and adorable",
-" ",
-"Pat Ferguson",
-"for letting Evanski write the end credits",
 " ",
 " ",
 " ",
 "THANKS FOR PLAYING"
 ];
 
-total_height = sprite_get_height(spr_credits_logo) * .5 + display_get_gui_height() * .5 + (display_get_gui_height() * .05) * array_length(credits);
+total_height = sprite_get_height(credit_logo) * .5 + display_get_gui_height() * .5 + (display_get_gui_height() * .05) * array_length(credits);
 
 
 

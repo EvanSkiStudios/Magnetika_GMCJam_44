@@ -79,7 +79,7 @@ if ( (!room_start_did_once) && (!global.level_intro_done) ){
 		}break;
 		
 		case Level_12:{	
-			goto_room = rm_levelselect;
+			goto_room = rm_credits;
 			room_start_did_once = true;
 		}break;
 	}

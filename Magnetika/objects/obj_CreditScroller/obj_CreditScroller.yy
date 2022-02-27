@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_credits_logo",
-    "path": "sprites/spr_credits_logo/spr_credits_logo.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

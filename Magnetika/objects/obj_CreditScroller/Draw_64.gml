@@ -9,7 +9,7 @@ line_position = 0;
 
 //draw_sprite(spr_credits_logo, 0, display_get_gui_width() * .5, scroll_position);
 
-draw_sprite_ext(spr_credits_logo, _image_index, display_get_gui_width() * .5, scroll_position, 1, 1, 0, c_white, 1);
+draw_sprite_ext(credit_logo, _image_index, display_get_gui_width() * .5, scroll_position, 1, 1, 0, c_white, 1);
 line_position += display_get_gui_height() * .5;
 
 for (var i = 0; i < array_length(credits); i++) {

@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 _image_index += .25;
-if (_image_index >= sprite_get_number(spr_credits_logo) -1) {
+if (_image_index >= sprite_get_number(credit_logo) -1) {
 	_image_index = 0;	
 }
 
