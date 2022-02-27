@@ -2,6 +2,7 @@ global.tile_width = 32;
 global.tile_height = 16;
 global.floor_objects = [];
 global.moveable_objects = [];
+global.laser_objects = [];
 global.spring = .25;
 global.map_id = -1;
 global.lay_id = -1;
@@ -11,6 +12,8 @@ global.tile_intro_delay_inc = 0.03;//0.01
 global.level_intro_done = false;
 global.level_completed = false;
 global.level_end_reached = false;
+global.box_lost = false;
+global.playing_laser_hum = false;
 
 enum TILE_DATA {
 	none = 0,
@@ -23,6 +26,8 @@ function init_level(){
 	
 	global.floor_objects = [];
 	global.moveable_objects = [];
+	global.laser_objects = [];
+	global.box_lost = false;
 	
 	global.lay_id = layer_get_id("Floor_Layer");
 	layer_set_visible(global.lay_id, false);//HIDE EDITOR TILES
@@ -61,7 +66,6 @@ function init_level(){
 					floor_switch.is_toggle = is_toggle;
 					floor_switch.is_pressure = is_pressure;
 					tilemap_set(global.map_id, TILE_DATA.floor_switch, sw_tile_x, sw_tile_y);
-					//array_push(global.moveable_objects, floor_switch);
 					array_push(global.floor_objects, floor_switch);
 				} else {
 					//set entry delay later when we parse the floors
@@ -124,6 +128,25 @@ function init_level(){
 	}
 	
 	//END OF BLOCKS
+	
+	//LASERS
+	
+	if (instance_exists(obj_icon_laser)) {
+		with (obj_icon_laser) {
+			var laser = instance_create_layer(0, 4000, "Event_Layer", obj_laser);
+			laser.aim_direction = variable_instance_get(id, "aim_direction");
+			//show_debug_message("LASER ICON AIM DIRECTION: " + string(variable_instance_get(id, "aim_direction")));
+			laser.time_on = variable_instance_get(id, "time_on") * room_speed;
+			laser.time_off = variable_instance_get(id, "time_off") * room_speed;
+			laser._x = x;
+			laser._y = y;
+			laser.update_tile_position();
+			array_push(global.laser_objects, laser);
+			visible = false;
+		}
+	}
+	
+	//END OF LASERS
 
 	//LEVEL_EXIT
 	if (instance_exists(obj_icon_end)) {
@@ -184,18 +207,22 @@ function init_level(){
 						global.this_floor.do_intro(intro_delay);
 					}
 					
+					if (instance_exists(obj_laser)) {
+							var a_laser = get_laser_at(i, j);
+							if (a_laser != -1) {
+								a_laser.do_intro(intro_delay);
+							}
+					}
+					
 					//set any moveables to enter here
-					if (instance_exists(obj_moveable)) {
-						
+					if (instance_exists(obj_block)) {
 						var a_moveable = get_moveable_at(i, j);
 							if (a_moveable != -1) {
 								a_moveable.do_intro(intro_delay);
 							}
 						
 					}
-					
-					
-					
+
 					//if player should spawn here, make the player rise up with this floor piece.
 					if (player.current_tile_pos[0] == global.this_floor.current_tile_pos[0] && player.current_tile_pos[1] == global.this_floor.current_tile_pos[1]) {
 						player.set_delay(intro_delay);
@@ -249,12 +276,22 @@ function notify_room_intro_complete() {
 	if (instance_exists(obj_girl)) {
 		obj_girl.state = GIRL_STATES.idle;
 	}	
+	for (var i = 0; i < array_length(global.laser_objects); i++) {
+		var laser = global.laser_objects[i];
+		laser.power_on();
+	}
 }
 
 /// @function notify_room_outro_complete();
 function notify_room_outro_complete() {
 	show_debug_message("ROOM OUTRO COMPLETE");
 	global.level_completed = true;
+}
+
+/// @function notify_box_lost();
+function notify_box_lost() {
+	show_debug_message("A BOX HAS BEEN LOST FOREVER");
+	global.box_lost = true;
 }
 
 function get_floor_at(_tile_x, _tile_y) {
@@ -279,6 +316,20 @@ function get_moveable_at(_tile_x, _tile_y) {
 			var a_floor = global.moveable_objects[i];
 			if (a_floor.current_tile_pos[0] == _tile_x && a_floor.current_tile_pos[1] == _tile_y) {
 			return a_floor;	
+		}	
+	}
+	
+	return -1;
+}
+
+function get_laser_at(_tile_x, _tile_y) {
+	
+	var len = array_length(global.laser_objects);
+	
+	for (var i = 0; i < len; i++) {
+			var a_laser = global.laser_objects[i];
+			if (a_laser.current_tile_pos[0] == _tile_x && a_laser.current_tile_pos[1] == _tile_y) {
+			return a_laser;	
 		}	
 	}
 	
@@ -315,6 +366,13 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 						if (a_moveable.current_tile_pos[0] == i && a_moveable.current_tile_pos[1] == j) {
 							array_push(this_group, a_moveable);
 						}
+						
+						var a_laser = get_laser_at(i, j);
+						if (a_laser.current_tile_pos[0] == i && a_laser.current_tile_pos[1] == j) {
+							array_push(this_group, a_laser);
+						}
+						
+						
 				}
 			}
 		}
@@ -331,46 +389,3 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 	return floor_groups;
 	
 }
-
-/*
-/// @function spawn_floor_list(floor_list, _delay);
-function spawn_floor_list (floor_list, _delay) {
-	
-	if (!instance_exists(obj_icon_hidden_floor)) return;
-	
-	var this_delay = 0;
-	
-	var hidden_floor_icons = [];
-		
-	for (var k = 0; k < instance_number(obj_icon_hidden_floor); k++){
-		hidden_floor_icons[k] = instance_find(obj_icon_hidden_floor,k);
-	}
-		
-	for (var i = 0; i < array_length(floor_list); i++) {
-		//show_debug_message("PROCESSING FLOOR ICON:" + string(i));
-		floor_num = floor_list[i];
-		
-		for (var j = 0; j < array_length(hidden_floor_icons); j++) {
-			
-			var a_floor_icon = hidden_floor_icons[j];
-			
-			if (a_floor_icon.floor_id == floor_num) {
-
-				//show_debug_message("FLOOR ID:" + string(a_floor_icon.floor_id) + string("tile_x:" + string(a_floor_icon.x / global.tile_width) + "tile_y:" + string(a_floor_icon.y / global.tile_height)));
-				global.this_floor = get_floor_at(a_floor_icon.x / global.tile_width, a_floor_icon.y / global.tile_height);
-				if (global.this_floor != -1) {
-					if (global.this_floor.state == FLOOR_STATES.idle) {
-						global.this_floor.deactivate(this_delay);
-					} else {
-						global.this_floor.do_intro(this_delay);
-					}
-				}
-				
-				this_delay += _delay;
-				//show_debug_message("SPAWNING NEW FLOORS:" + string(this_delay));
-				continue;
-			}
-		}
-	 }
-}
-*/

@@ -35,6 +35,8 @@ enum FLOOR_STATES {
 	level_complete,
 	deactivate_init,
 	deactivated,
+	falling,
+	gone,
 	standby,
 }
 

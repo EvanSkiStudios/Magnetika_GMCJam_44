@@ -26,14 +26,15 @@ _y = 0;
 y_run_speed = 1;
 x_run_speed = 2;
 
-gun_control_x_speed = .5;
-gun_control_y_speed = .25;
-
 timer = 0;
 death_time = 2 * room_speed;
 
 fall_speed = 0;
 fall_accel = 0.25;
+vaporized = false;
+
+test_tile_x = 0;
+test_tile_y = 0;
 
 
 state = GIRL_STATES.null;
@@ -49,6 +50,7 @@ enum GIRL_STATES {
 	room_intro,
 	room_outro,
 	falling,
+	vaporized,
 	dead,
 	null,
 }
@@ -108,6 +110,25 @@ shoot_gun = function (dir) {
 	show_debug_message("GUN COULD NOT FIND MOVEABLE PIECE.");
 }
 
+/// @function is_moveable_blocking();
+is_moveable_blocking = function () {
+	var len = array_length(global.moveable_objects);
+	for (var i = 0; i < len; i++) {
+		var a_box = global.moveable_objects[i];
+		if (a_box.current_tile_pos[0] == test_tile_x && a_box.current_tile_pos[1] == test_tile_y) {
+			return true;
+		}
+	}
+	var len2 = array_length(global.laser_objects);
+	for (var i = 0; i < len2; i++) {
+		var a_laser = global.laser_objects[i];
+		if (a_laser.current_tile_pos[0] == test_tile_x && a_laser.current_tile_pos[1] == test_tile_y) {
+			return true;
+		}
+	}
+	return false;
+}
+
 control_moveable_piece = function () {
 	
 	current_moveable_piece.hover_dist = 3;
@@ -116,8 +137,8 @@ control_moveable_piece = function () {
 	var can_move_x = false;
 	var can_move_y = false;
 	
-	var test_tile_x = current_moveable_piece.current_tile_pos[0];
-	var test_tile_y = current_moveable_piece.current_tile_pos[1];
+	test_tile_x = current_moveable_piece.current_tile_pos[0];
+	test_tile_y = current_moveable_piece.current_tile_pos[1];
 	
 	var girl_tile_x = obj_girl.current_tile_pos[0];
 	var girl_tile_y = obj_girl.current_tile_pos[1];
@@ -140,7 +161,8 @@ control_moveable_piece = function () {
 	if (can_move_x) {
 		if (left_pressed) {
 			test_tile_x -= 1;
-			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+			var blocking = is_moveable_blocking();
+			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._x -= global.tile_width;
@@ -149,7 +171,8 @@ control_moveable_piece = function () {
 			
 		} else if (right_pressed) {
 			test_tile_x += 1;
-			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+			var blocking = is_moveable_blocking();
+			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._x += global.tile_width;
@@ -160,7 +183,8 @@ control_moveable_piece = function () {
 	} else if (can_move_y) {
 		if (up_pressed) {
 			test_tile_y -= 1;
-			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
+			var blocking = is_moveable_blocking();
+			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._y -= global.tile_height;
@@ -168,8 +192,8 @@ control_moveable_piece = function () {
 			}
 		} else if (down_pressed) {
 			test_tile_y += 1;
-			if (girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) {
-				
+			var blocking = is_moveable_blocking();
+			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._y += global.tile_height;
@@ -364,7 +388,18 @@ check_tile = function (dir) {
 	
 }
 
-function set_delay (_delay) {
+set_delay = function (_delay) {
 	delay = _delay * room_speed;	
+}
+
+/// @function vaporize();
+vaporize = function () {
+	if (!vaporized){
+		vaporized = true;
+		sprite_index = spr_girl_vaporized;
+		image_index = 0;
+		state = GIRL_STATES.vaporized;
+	}
+	
 }
 

@@ -35,10 +35,28 @@ if ( (!room_start_did_once) && (!global.level_intro_done) ){
 		}break;
 		
 		case Level_5:{
-			goto_room = rm_levelselect;
+			goto_room = Level_6;
 			if !instance_exists(obj_ctrl_create_typewriter){
 				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
 			}
+			room_start_did_once = true;
+		}break;
+		
+		case Level_6:{
+			goto_room = Level_7;
+			if !instance_exists(obj_ctrl_create_typewriter){
+				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
+			}
+			room_start_did_once = true;
+		}break;
+		
+		case Level_7:{	
+			goto_room = Level_8;
+			room_start_did_once = true;
+		}break;
+		
+		case Level_8:{	
+			goto_room = rm_levelselect;
 			room_start_did_once = true;
 		}break;
 	}
@@ -87,6 +105,25 @@ if ( (room_start_did_once) && (!room_end_did_once) && (global.level_end_reached)
 				//global.text_wrap = 700;
 				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
 			}
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_6:{
+			if !instance_exists(obj_ctrl_create_typewriter){
+				//global.text_wrap = 700;
+				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
+			}
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_7:{
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_8:{
 			room_end_did_once = true;
 			do_fade = true;
 		}break;

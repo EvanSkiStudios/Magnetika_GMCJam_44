@@ -33,8 +33,6 @@ total text from the beginning to the current last character and then draw that, 
 */
 
 //draw text settings
-draw_set_halign(display_text_H_align);
-draw_set_valign(fa_top);
 
 var full_y = display_get_gui_height();
 var _x = x;
@@ -42,7 +40,10 @@ var _x = x;
 //marte draw settings
 var color = $1c1414;
 marte_string = "MART-E";
+
 draw_set_font(fnt_text);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 
 //background box draw loc
 var cam_w = display_get_gui_width();
@@ -98,8 +99,11 @@ draw_set_alpha(1);
 //gets custom font from array
 custom_text_font = text[text_current][TFont];
 if (custom_text_font != -1) text_font = custom_text_font;
+
 //if the above value is -1 it will use teh default from create event instead
 draw_set_font(text_font);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 
 
 //gets color of text from array

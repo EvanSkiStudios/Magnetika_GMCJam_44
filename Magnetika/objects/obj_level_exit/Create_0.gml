@@ -17,12 +17,15 @@ do_level_exit = function () {
 			with (a_floor) {
 				do_outro(other.drop_delay);
 			}
-			//a_floor.do_outro(drop_delay);
 		}
 		
 		drop_delay += .2;
 	}
 	
+	for (var i = 0; i < array_length(global.laser_objects); i++) {
+		var l = global.laser_objects[i];
+		l.laser_state = LASER_STATES.powered_off;
+	}
 	
 	with (obj_scaffolding) {
 		set_on(false);

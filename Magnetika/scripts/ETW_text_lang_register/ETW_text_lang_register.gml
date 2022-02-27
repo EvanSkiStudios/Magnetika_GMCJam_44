@@ -34,8 +34,9 @@ struct_ref_game_uses_to_get_strings = {
 				level_5_intro: "For this next test I'm going to require you to solve it as fast as possible.",
 				level_5_outro: "We specifically said 'as fast as possible!'",
 				
-				level_6_intro: "The tests from this point on shall make use of the G.M.C Magnetic Field Manipulator Gun."+"\n"+"We are no longer allowed to say it’s true name.",
-				level_6_intro_2:"The MFMG allows you to pick up and move ferromagnetic objects,"+"\n"+"such as the standard G.M.C heavy weight alnico alloy storage compression cubes."
+				level_6_intro: "The tests from this point on shall make use of the G.M.C Magnetic Field Manipulator Gun."+"\n"+"We are no longer allowed to say it's true name.",
+				level_6_intro_2:"The MFMG allows you to pick up and move ferromagnetic objects,"+"\n"+"such as the standard G.M.C"+"\n"+"Heavy Weight Alnico Alloy Storage Compression Cubes.",
+				level_6_outro: "The G.M.C would like to remind you that the compression cubes are just cubes,"+"\n"+"not some conscious object."
 			};
 		}break;
 	}

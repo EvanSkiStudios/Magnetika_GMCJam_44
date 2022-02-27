@@ -7,5 +7,6 @@ function GAME_RESET(){
 	
 	if instance_exists(obj_ctrl_MainMenu) instance_destroy(obj_ctrl_MainMenu);
 	if instance_exists(obj_pause_drawer) instance_destroy(obj_pause_drawer);
+	if instance_exists(obj_level_text_drawer) instance_destroy(obj_level_text_drawer);
 	global.GAME_IS_PAUSED = false;
 }

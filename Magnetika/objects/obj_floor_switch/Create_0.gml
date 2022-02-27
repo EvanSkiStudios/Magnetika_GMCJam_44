@@ -11,7 +11,6 @@ image_speed = 0;
 image_index = 0;
 
 switch_activated = false;
-switch_was_activated = false;
 
 floors = [];
 
@@ -31,27 +30,25 @@ girl_standing = function () {
 /// @function pressed_by_moveable();
 pressed_by_moveable = function () {
 	var pressed = false;
-	
-	if (instance_exists(obj_moveable)){
-		if (obj_moveable.current_tile_pos[0] == current_tile_pos[0] && obj_moveable.current_tile_pos[1] == current_tile_pos[1]){
+	var len = array_length(global.moveable_objects);
+	for (var i = 0; i < len; i++) {
+		var b = global.moveable_objects[i];
+		show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
+		show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
+		show_debug_message("MOVEABLE " + string(i) + " POSITION:" + string(b.current_tile_pos[0]) + "," + string(b.current_tile_pos[1]));
 		
-			if (obj_girl.current_moveable_piece != -1) {
-			
-				var p = obj_girl.current_moveable_piece;
-			
-				if (p.floating) {
-				
-				} else {
-					pressed = true;	
+		if (b.current_tile_pos[0] == current_tile_pos[0] && b.current_tile_pos[1] == current_tile_pos[1]) {
+			if (obj_girl.current_moveable_piece != -1 && obj_girl.current_moveable_piece.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_moveable_piece.current_tile_pos[1] == current_tile_pos[1]) {
+				if (!obj_girl.current_moveable_piece.floating) {
+					return true;	
 				}
-		
 			} else {
-				pressed = true;	
+				show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
+				show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
+				return true;
 			}
-		
-		}	
+		}
 	}
-	
 	return pressed;
 }
 
@@ -95,51 +92,6 @@ function toggle_floors (floor_list, _delay) {
 		this_delay += _delay;
 		}
 }
-
-
-
-/*
-function spawn_floor_list (floor_list, _delay) {
-	
-	if (!instance_exists(obj_icon_hidden_floor)) return;
-	
-	var this_delay = 0;
-	
-	var hidden_floor_icons = [];
-		
-	for (var k = 0; k < instance_number(obj_icon_hidden_floor); k++){
-		hidden_floor_icons[k] = instance_find(obj_icon_hidden_floor,k);
-	}
-		
-	for (var i = 0; i < array_length(floor_list); i++) {
-		//show_debug_message("PROCESSING FLOOR ICON:" + string(i));
-		floor_num = floor_list[i];
-		
-		for (var j = 0; j < array_length(hidden_floor_icons); j++) {
-			
-			var a_floor_icon = hidden_floor_icons[j];
-			
-			if (a_floor_icon.floor_id == floor_num) {
-
-				//show_debug_message("FLOOR ID:" + string(a_floor_icon.floor_id) + string("tile_x:" + string(a_floor_icon.x / global.tile_width) + "tile_y:" + string(a_floor_icon.y / global.tile_height)));
-				global.this_floor = get_floor_at(a_floor_icon.x / global.tile_width, a_floor_icon.y / global.tile_height);
-				if (global.this_floor != -1) {
-					if (global.this_floor.state == FLOOR_STATES.idle) {
-						global.this_floor.deactivate(this_delay);
-					} else {
-						global.this_floor.do_intro(this_delay);
-					}
-				}
-				
-				this_delay += _delay;
-				//show_debug_message("SPAWNING NEW FLOORS:" + string(this_delay));
-				continue;
-			}
-		}
-	 }
-}
-
-*/
 
 ///@function init_floors
 init_floors = function () {

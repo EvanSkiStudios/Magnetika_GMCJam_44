@@ -1,10 +1,11 @@
 depth = -_y;
 
 //TEST ONLY
+/*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
 }
-
+*/
 switch (state) {
 	case GIRL_STATES.idle:
 		
@@ -141,7 +142,17 @@ switch (state) {
 		fall_speed += fall_accel;
 		
 		if (y >= room_height) {
+			audio_play_sound(snd_girl_fall, 1, false);
 			timer = 0;
+			state = GIRL_STATES.dead;
+		}
+		
+	break;
+	
+	case GIRL_STATES.vaporized:
+		if (image_index >= sprite_get_number(sprite_index) -1) {
+			image_speed = 0;
+			image_index = sprite_get_number(sprite_index) -1;
 			state = GIRL_STATES.dead;
 		}
 		
@@ -151,7 +162,12 @@ switch (state) {
 		timer ++;
 		if (timer >= death_time) {
 			//FADE OUT
-			room_restart();
+			if (global.playing_laser_hum) {
+				audio_stop_sound(snd_laser_loop);
+				global.playing_laser_hum = false;
+			}
+			//GAME_RESET();
+			girl_death_reset();
 		}
 	break;
 }

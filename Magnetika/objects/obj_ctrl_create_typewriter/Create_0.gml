@@ -1,4 +1,4 @@
-text_wrap = 650;
+text_wrap = global.text_wrap;
 
 if !(global.level_end_reached){
 	//START ROOM TEXT
@@ -47,6 +47,10 @@ if !(global.level_end_reached){
 		
 		case Level_5:{
 			Text_convo_ref = Typewriter_text_ref.level_5_outro;
+		} break;
+		
+		case Level_6:{
+			Text_convo_ref = Typewriter_text_ref.level_6_outro;
 		} break;
 	
 	}

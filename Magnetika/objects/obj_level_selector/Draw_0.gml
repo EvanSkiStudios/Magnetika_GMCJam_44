@@ -86,3 +86,5 @@ draw_text(
 	x, (y + 200 + spr_h),
 	level_select_instrct
 );
+
+draw_set_halign(fa_left);

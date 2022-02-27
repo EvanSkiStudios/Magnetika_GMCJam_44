@@ -93,7 +93,7 @@ alarm[0] = eol_tri_blink_speed;
 
 //SETTINGS
 //when to wrap text
-text_width = global.text_wrap; 
+text_width = 1000; 
 
 //where text draws
 text_x = x;
