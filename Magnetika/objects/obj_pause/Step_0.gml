@@ -9,7 +9,7 @@ if (instance_exists(obj_ETW_Dialog_Typewriter)) exit;
 if (instance_exists(obj_ctrl_create_typewriter)) exit;
 
 if !instance_exists(obj_ctrl_MainMenu){
-	if (can_pause && keyboard_check_released(vk_escape)){
+	if (can_pause && ( keyboard_check_released(vk_escape) || fhInputSystemActionsInputMissing() || fhi_action_check_pressed(FHINPUTACTION_ActivateMenuAlt)) ){
 		//reset pause flags
 		alarm[0] = GAMESPEED;
 		

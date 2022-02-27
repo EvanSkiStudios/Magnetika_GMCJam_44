@@ -9,6 +9,7 @@ mymethod = function(a, gp_id, disc){
 		string(disc)
 	);
 	
+	//fhInputSystemActionsInputMissing(); bool
 	
 	if (a == 0){
 		global.GAMEPAD_ISCONNECTED = true;

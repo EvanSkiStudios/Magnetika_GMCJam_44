@@ -54,7 +54,7 @@ switch(global.control_scheme){
 		"Push the Left stick to the Left to cycle to the previous level"+"\n"+
 		"Push the Left stick to the Right to cycle to the next level"+"\n"+
 		"Use (xbox)(A) or Start to select the Level"+"\n"+
-		"Use Esc to return to the main menu!"
+		"Use (xbox)(B) to return to the main menu!"
 		);
 		
 	}break;
@@ -65,7 +65,7 @@ switch(global.control_scheme){
 		"Use D-pad Left to the Left to cycle to the previous level"+"\n"+
 		"Use D-pad Right stick to the Right to cycle to the next level"+"\n"+
 		"Use (xbox)(A) or Start to select the Level"+"\n"+
-		"Use Esc to return to the main menu!"
+		"Use (xbox)(B) to return to the main menu!"
 		);
 	}break;
 	

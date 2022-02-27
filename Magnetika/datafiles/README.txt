@@ -57,13 +57,13 @@
  Movement: Left Joystick
  Magnet Gun: (Xbox) (A), (B)
  Pause: Start
- Back: Select
+ Back: (xbox) (B)
 
   ( Gamepad D-pad )
  Movement: D-pad
  Magnet Gun: (Xbox) (A), (B)
  Pause: Start
- Back: Select
+ Back: (xbox) (B)
 
 =================================================================
 ============== PC System Requirements ===========================
