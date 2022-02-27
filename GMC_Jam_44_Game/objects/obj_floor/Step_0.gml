@@ -26,22 +26,12 @@ switch (state) {
 	y = lerp(y, _y, .1);
 	
 	if (y <= _y + 1) {
+		movement_complete = true;
 		y = _y;
 		//show_debug_message("floor:" + string(id) + ",x:" + string(_x) + ", y:" + string(_y) + ", timer:" + string(timer) + ", delay:" + string(delay));
 		state = FLOOR_STATES.idle;
 		tilemap_set(global.map_id, TILE_DATA.floor, current_tile_pos[0], current_tile_pos[1]);
-		var alldone = true;
-		with (obj_floor) {
-			if (state != FLOOR_STATES.idle && state != FLOOR_STATES.deactivated) {
-				if (!in_waiting) {
-					alldone = false;
-				}
-			}
-		}
-		if (alldone) {
-			notify_room_intro_complete();	
-		}
-		
+	
 	}
 	
 	break;
@@ -52,6 +42,7 @@ switch (state) {
 		outro_platform_rise_speed += outro_platform_rise_accel;
 		
 		if (y <= -50) {
+			movement_complete = true;
 			state = FLOOR_STATES.level_complete;
 		}
 		
@@ -74,23 +65,11 @@ switch (state) {
 		outro_drop_speed += outro_drop_accel;
 	
 		if (y > room_height) {
+			movement_complete = true;
 			y = room_height + sprite_height;
-			
 			state = FLOOR_STATES.level_complete;
-		
-			var alldone = true;
-			with (obj_floor) {
-				if (state != FLOOR_STATES.level_complete && state != FLOOR_STATES.deactivated) {
-					alldone = false;	
-				}
-			}
-			if (alldone) {
-				notify_room_outro_complete();	
-			}
-		
 		}
-
-	
+		
 	break;
 	
 	case FLOOR_STATES.init:
@@ -111,6 +90,7 @@ switch (state) {
 		if (timer >= delay) {
 			tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
 			timer = 0;
+			movement_complete = true;
 			state = FLOOR_STATES.deactivated;
 		}
 	break;

@@ -1,14 +1,21 @@
 depth = -_y;
 
 //TEST ONLY
+/*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
 }
+*/
 
 switch (state) {
 	case GIRL_STATES.idle:
 		
 		dip_current = 0;
+		
+		if (check_for_no_floor()) {
+			return;	
+		}
+		
 		get_input();
 		
 		with (obj_floor) {
@@ -46,7 +53,11 @@ switch (state) {
 	break;
 	
 	case GIRL_STATES.running:
-	
+		
+		if (check_for_no_floor()) {
+			return;	
+		}
+		
 		get_input();
 		
 		update_tile_position();
@@ -71,13 +82,23 @@ switch (state) {
 	break;
 	
 	case GIRL_STATES.activated_gun:
-	
+		
+		if (check_for_no_floor()) {
+			
+			if (current_moveable_piece != -1) {
+				deactivate_gun();
+			}
+			
+			return;	
+		}
+		
 		get_input();
 	
 		control_moveable_piece();
 		
 		if (!fire) {
 			deactivate_gun();
+			state = GIRL_STATES.idle;
 		}
 		
 	break;
@@ -115,5 +136,24 @@ switch (state) {
 		x = obj_level_exit.x + obj_level_exit.sprite_width * .5;
 		y = obj_level_exit.y + obj_level_exit.sprite_height * .25;
 		
+	break;
+	
+	case GIRL_STATES.falling:
+		y += fall_speed;
+		fall_speed += fall_accel;
+		
+		if (y >= room_height) {
+			timer = 0;
+			state = GIRL_STATES.dead;
+		}
+		
+	break;
+	
+	case GIRL_STATES.dead:
+		timer ++;
+		if (timer >= death_time) {
+			//FADE OUT
+			room_restart();
+		}
 	break;
 }

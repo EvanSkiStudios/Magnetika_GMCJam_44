@@ -21,6 +21,18 @@ switch (state) {
 	break;
 	
 	case LEVEL_STATES.floor_pieces_enter:
+		
+		var alldone = true;
+		with (obj_floor) {
+			if (!movement_complete) {
+				alldone = false;
+			}
+		}
+		if (alldone) {
+			notify_room_intro_complete();
+			state = LEVEL_STATES.playing;
+		}
+		
 	
 	break;
 	
@@ -29,6 +41,18 @@ switch (state) {
 	break;
 	
 	case LEVEL_STATES.outro:
+	
+	var alldone = true;
+		with (obj_floor) {
+			if (!movement_complete) {
+				alldone = false;
+			}
+		}
+		if (alldone) {
+			notify_room_outro_complete();
+			state = LEVEL_STATES.standby;
+		}
+	
 	
 	break;
 }

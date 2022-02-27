@@ -13,9 +13,19 @@ mymethod = function(a, gp_id, disc){
 	if (a == 0){
 		global.GAMEPAD_ISCONNECTED = true;
 		do_event_message(string(disc) + " CONNECTED.");
+		
+		if ( (global.control_scheme != 1) && (global.control_scheme != 2) ){
+			fhInputActionMapSetDefault(1);
+			global.control_scheme = 1;
+		}
 	}else{
 		global.GAMEPAD_ISCONNECTED = false;
 		do_event_message(string(disc) + " DISCONNECTED.");
+		
+		if ( (global.control_scheme != 0) && (global.control_scheme != 3) ){
+			fhInputActionMapSetDefault(0);
+			global.control_scheme = 0;
+		}
 	}
 }
 

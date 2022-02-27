@@ -5,7 +5,7 @@ var gwidth = menu_width, gheight = menu_height;
 var ds_grid = menu_pages[page];
 var ds_height = ds_grid_height(ds_grid);
 var y_buffer = 32, x_buffer = 16;
-var start_y = (gheight/2) - ((((ds_height) /2) * y_buffer)) + 80;
+var start_y = (gheight/2) - ((((ds_height) /2) * y_buffer)) + 30;
 var start_x = (gwidth/2);
 
 

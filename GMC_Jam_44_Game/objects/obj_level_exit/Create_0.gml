@@ -27,6 +27,10 @@ do_level_exit = function () {
 		set_on(false);
 	} 
 	
+	with (obj_level_main) {
+		state = LEVEL_STATES.outro;	
+	}
+	
 	state = FLOOR_STATES.exit_platform_outro;
 	
 }

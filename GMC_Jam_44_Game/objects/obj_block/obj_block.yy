@@ -1,15 +1,15 @@
 {
   "spriteId": {
-    "name": "spr_floor_switch_floating",
-    "path": "sprites/spr_floor_switch_floating/spr_floor_switch_floating.yy",
+    "name": "spr_block_moveable",
+    "path": "sprites/spr_block_moveable/spr_block_moveable.yy",
   },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_floor",
-    "path": "objects/obj_floor/obj_floor.yy",
+    "name": "obj_moveable",
+    "path": "objects/obj_moveable/obj_moveable.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -23,10 +23,7 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-  ],
+  "eventList": [],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
@@ -34,7 +31,7 @@
     "path": "folders/Tile_System/PatsFolder/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_moveable",
+  "name": "obj_block",
   "tags": [],
   "resourceType": "GMObject",
 }

@@ -59,6 +59,7 @@ function init_level(){
 				if (start_in_floor) {
 					floor_switch = instance_create_layer(x, y, "Event_Layer", obj_floor_switch);
 					floor_switch.is_toggle = is_toggle;
+					floor_switch.is_pressure = is_pressure;
 					tilemap_set(global.map_id, TILE_DATA.floor_switch, sw_tile_x, sw_tile_y);
 					//array_push(global.moveable_objects, floor_switch);
 					array_push(global.floor_objects, floor_switch);
@@ -108,6 +109,21 @@ function init_level(){
 	}
 	
 	//END OF HIDDEN FLOORS
+	
+	//BLOCKS
+	
+	if (instance_exists(obj_icon_block)) {
+		with (obj_icon_block) {
+			var block = instance_create_layer(0, 4000, "Event_Layer", obj_block);
+			block._x = x;
+			block._y = y;
+			block.update_tile_position();
+			array_push(global.moveable_objects, block);
+			visible = false;
+		}
+	}
+	
+	//END OF BLOCKS
 
 	//LEVEL_EXIT
 	if (instance_exists(obj_icon_end)) {
@@ -202,6 +218,26 @@ function init_level(){
 	
 	//END OF FLOOR GENERATION
 	
+	//ASSIGN FLOORS TO SWITCHES
+	
+	if (instance_exists(obj_icon_hidden_floor)) {
+		with (obj_icon_hidden_floor) {
+			var a_floor = get_floor_at(x / global.tile_width, y / global.tile_height);
+			
+			if (a_floor != -1) {
+				a_floor.floor_id = floor_id;
+			}
+		}
+	}
+	
+	if (instance_exists(obj_floor_switch)) {
+		with (obj_floor_switch) {
+			init_floors();	
+		}
+	}
+	
+	//END OF ASSIGN FLOORS TO SWITCHES
+	
 	show_debug_message("LEVEL CREATED!")
 	
 }
@@ -265,14 +301,20 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 		for (var i = current_x_min; i <= current_x_max; i++) {
 			
 			for (var j = current_y_min; j <= current_y_max; j++) {
-
+				
+				//FIND A FLOOR
 				var a_floor = get_floor_at(i, j);
 							
 					if (i >= 0 && i <= room_width / global.tile_width && j >= 0 && j <= room_height / global.tile_height) {
 		
-					if (a_floor.current_tile_pos[0] == i && a_floor.current_tile_pos[1] == j) {
-						array_push(this_group, a_floor);
-					}
+						if (a_floor.current_tile_pos[0] == i && a_floor.current_tile_pos[1] == j) {
+							array_push(this_group, a_floor);
+						}
+						
+						var a_moveable = get_moveable_at(i, j);
+						if (a_moveable.current_tile_pos[0] == i && a_moveable.current_tile_pos[1] == j) {
+							array_push(this_group, a_moveable);
+						}
 				}
 			}
 		}

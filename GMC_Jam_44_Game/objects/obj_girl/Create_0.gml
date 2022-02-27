@@ -30,6 +30,10 @@ gun_control_x_speed = .5;
 gun_control_y_speed = .25;
 
 timer = 0;
+death_time = 2 * room_speed;
+
+fall_speed = 0;
+fall_accel = 0.25;
 
 
 state = GIRL_STATES.null;
@@ -44,6 +48,8 @@ enum GIRL_STATES {
 	init,
 	room_intro,
 	room_outro,
+	falling,
+	dead,
 	null,
 }
 
@@ -105,6 +111,7 @@ shoot_gun = function (dir) {
 control_moveable_piece = function () {
 	
 	current_moveable_piece.hover_dist = 3;
+	current_moveable_piece.floating = true;
 	
 	var can_move_x = false;
 	var can_move_y = false;
@@ -173,11 +180,12 @@ control_moveable_piece = function () {
 	current_moveable_piece.update_tile_position();
 }
 
+/// @function deactivate_gun();
 deactivate_gun = function () {
 	show_debug_message("GUN DEACTIVATED");
+	current_moveable_piece.floating = false;
 	current_moveable_piece.hover_dist = 0;
 	current_moveable_piece = -1;
-	state = GIRL_STATES.idle;
 }
 
 run = function (dir) {
@@ -240,7 +248,6 @@ run = function (dir) {
 	
 }
 
-
 /// @function get_input();
 get_input = function () {
 	
@@ -256,35 +263,48 @@ get_input = function () {
 	down_pressed = false;
 	fire_pressed = false;
 	
-	if (keyboard_check(vk_space)) {
-		fire = true;	
-	}
-	if (keyboard_check_pressed(vk_space)) {
-		fire_pressed = true;
-	}
+	if ( !(global.GAME_IS_PAUSED) && !(instance_exists(obj_ETW_Dialog_Typewriter)) ){
 	
-	if (keyboard_check(vk_left)) {
-		left = true;	
-	} else if (keyboard_check(vk_right)) {
-		right = true;
-	}
+		if ( fhInputActionCheckDown(FHINPUTACTION_Activate) || fhInputActionCheckDown(FHINPUTACTION_ActivateAlt) || fhInputActionCheckDown(FHINPUTACTION_ActivateAltLH) ) {
+			fire = true;	
+		}
+		if ( fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) )  {
+			fire_pressed = true;
+		}
 	
-	if (keyboard_check_pressed(vk_left)) {
-		left_pressed = true;	
-	} else if (keyboard_check_pressed(vk_right)) {
-		right_pressed = true;
-	}
+		if ( fhInputActionCheckDown(FHINPUTACTION_Left)) {
+			left = true;	
+		} else if ( fhInputActionCheckDown(FHINPUTACTION_Right)) {
+			right = true;
+		}
 	
-	if (keyboard_check(vk_up)) {
-		up = true;	
-	} else if (keyboard_check(vk_down)) {
-		down = true;
+		if ( fhInputActionCheckPressed(FHINPUTACTION_Left)) {
+			left_pressed = true;	
+		} else if ( fhInputActionCheckPressed(FHINPUTACTION_Right)) {
+			right_pressed = true;
+		}
+	
+		if ( fhInputActionCheckDown(FHINPUTACTION_Up)) {
+			up = true;	
+		} else if ( fhInputActionCheckDown(FHINPUTACTION_Down)) {
+			down = true;
+		}
+		if ( fhInputActionCheckPressed(FHINPUTACTION_Up)) {
+			up_pressed = true;	
+		} else if ( fhInputActionCheckPressed(FHINPUTACTION_Down)) {
+			down_pressed = true;
+		}
 	}
-	if (keyboard_check_pressed(vk_up)) {
-		up_pressed = true;	
-	} else if (keyboard_check_pressed(vk_down)) {
-		down_pressed = true;
+}
+
+/// @function check_for_no_floor();
+check_for_no_floor = function () {
+	var data = tilemap_get(global.map_id, current_tile_pos[0], current_tile_pos[1]);
+	if (data == 0) {
+		state = GIRL_STATES.falling;
+		return true;
 	}
+	return false;
 }
 
 update_tile_position = function () {
@@ -345,3 +365,4 @@ check_tile = function (dir) {
 function set_delay (_delay) {
 	delay = _delay * room_speed;	
 }
+

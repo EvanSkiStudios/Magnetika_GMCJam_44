@@ -1,3 +1,4 @@
+floor_id = -1;
 dip_height = 2;
 dip_current = 0;
 hover_dist = 0;
@@ -13,11 +14,10 @@ outro_drop_accel = 0.1;
 outro_platform_rise_speed = 0;
 outro_platform_rise_accel = 0.02;
 
-did_outro = false;
-did_intro = false;
-in_waiting = true;
 
 current_tile_pos = [0,0];
+
+movement_complete = false;
 
 _x = 0;
 _y = 0;
@@ -63,27 +63,22 @@ get_floor_at = function (_tile_x, _tile_y) {
 
 /// @function do_intro(_delay);
 do_intro = function (_delay) {
-	if (!did_intro) {
-		did_intro = true;
-		in_waiting = false;
-		set_delay(_delay);
-		state = FLOOR_STATES.init;
-	}
+	movement_complete = false;
+	set_delay(_delay);
+	state = FLOOR_STATES.init;
 }
 
 /// @function do_outro(_delay);
 do_outro = function (_delay) {
-	if (!did_outro) {
-		did_outro = true;
-		set_delay(_delay);
-		state = FLOOR_STATES.outro_init;
-	}
+	movement_complete = false;
+	set_delay(_delay);
+	state = FLOOR_STATES.outro_init;
+
 }
 
 ///@function deactivate();
 deactivate = function (_delay) {
 	fall_speed = 0;
-	did_intro = false;
 	set_delay(_delay);
 	//tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
 	state = FLOOR_STATES.deactivate_init;
