@@ -25,6 +25,14 @@ if ( (!room_start_did_once) && (!global.level_intro_done) ){
 			goto_room = Level_4;
 			room_start_did_once = true;
 		}break;
+		
+		case Level_4:{
+			goto_room = rm_levelselect;
+			if !instance_exists(obj_ctrl_create_typewriter){
+				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
+			}
+			room_start_did_once = true;
+		}break;
 	}
 	
 }
@@ -53,6 +61,11 @@ if ( (room_start_did_once) && (!room_end_did_once) && (global.level_end_reached)
 		}break;
 		
 		case Level_3:{
+				room_end_did_once = true;
+				do_fade = true;
+		}break;
+		
+		case Level_4:{
 				room_end_did_once = true;
 				do_fade = true;
 		}break;

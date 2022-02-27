@@ -23,7 +23,7 @@ global.Load_save = true;
 #macro Level_1 rm_level_1
 #macro Level_2 rm_level_2
 #macro Level_3 rm_level_3
-#macro Level_4 rm_levelselect
+#macro Level_4 rm_level_4
 
 //LEVELS
 //methodz
@@ -39,6 +39,7 @@ var i = 0;
 lvl_array[i] = new lvl_select(Level_1, 1, "Welcome to the Gauss Magnetics Corporation", false);
 lvl_array[++i] = new lvl_select(Level_2, 2, "Now with buttons", true);
 lvl_array[++i] = new lvl_select(Level_3, 3, "Buttons 2 Electric Boogaloo", true);
+lvl_array[++i] = new lvl_select(Level_4, 4, "Retrace your steps", true);
 
 global.lvl_list_array = lvl_array;
 
@@ -98,7 +99,14 @@ function load_game(){
 	global.Bloom_Shader_enabled = game_struct.Bloom_enabled;
 	global.Bloom_intensity = game_struct.Bloom_intensity;
 
-	global.lvl_list_array = game_struct.Level_list;
+	var new_lvl_list_array = game_struct.Level_list;
+	
+	//updates level locks
+	var _array_length = array_length(new_lvl_list_array);
+	for (var i = 0; i < _array_length; ++i){
+		global.lvl_list_array[i]._lock = new_lvl_list_array[i]._lock; 
+	}	
+	
 	
 	with(obj_level_selector) event_user(0);
 	
