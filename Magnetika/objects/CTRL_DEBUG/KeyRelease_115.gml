@@ -1,0 +1,1 @@
+fadetoroom(rm_credits,20,color_purple);

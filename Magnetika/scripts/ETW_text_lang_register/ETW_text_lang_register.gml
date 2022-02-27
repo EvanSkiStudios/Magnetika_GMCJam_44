@@ -42,7 +42,10 @@ struct_ref_game_uses_to_get_strings = {
 				level_9_intro:"These tests will involve G.M.C"+"\n"+"light amplification by the stimulated emission of radiation emitters.",
 				level_9_intro_2:"These laser emitters have proven to be completely safe.",
 				level_9_intro_3:"The lasers themselves have not.",
-				level_9_intro_4:"Do not look directly into the emitter output socket."+"\n"+"Do not stick any body part into the emitter output socket."+"\n"+"Most importantly do not [ERROR]"
+				level_9_intro_4:"Do not look directly into the emitter output socket."+"\n"+"Do not stick any body part into the emitter output socket."+"\n"+"Most importantly do not [ERROR]",
+				
+				level_11_outro:"What?! How did you not die?!!! I-",
+				level_11_outro_2:"We at the G.M.C would like to congratulate you, the next test shall be your last.",
 			};
 		}break;
 	}

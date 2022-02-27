@@ -31,6 +31,7 @@ global.Load_save = true;
 #macro Level_9 rm_level_9
 #macro Level_10 rm_level_10
 #macro Level_11 rm_level_11
+#macro Level_12 rm_level_12
 
 //LEVELS
 //methodz
@@ -54,6 +55,7 @@ lvl_array[++i] = new lvl_select(Level_8, 8, "Remote Manipulation", true);
 lvl_array[++i] = new lvl_select(Level_9, 9, "Phototricholysis", true);
 lvl_array[++i] = new lvl_select(Level_10, 10, "Companion cube", true);
 lvl_array[++i] = new lvl_select(Level_11, 11, "Pew Pew Pew", true);
+lvl_array[++i] = new lvl_select(Level_12, 12, "Closing in", true);
 
 global.lvl_list_array = lvl_array;
 
