@@ -3,9 +3,18 @@ event_inherited();
 switch (laser_state) {
 	
 	case LASER_STATES.on:
-		get_laser_points();
+		//get_laser_points();
+		laser_calc_timer++;
+		if (laser_calc_timer >= laser_calc_time) {
+			laser_calc_timer = 0;
+			get_laser_points();	
+		}
 		laser_on = true;
 		set_beams_on(true);
+		
+		
+		
+		
 		timer++;
 		if (timer >= time_on) {
 			timer = 0;
@@ -20,8 +29,8 @@ switch (laser_state) {
 					audio_stop_sound(snd_laser_loop);	
 				}
 				audio_play_sound(snd_laser_off, 1, false);
-				show_debug_message("LASER_POINTS LENGTH:" + string(laser_length));
-				show_debug_message("LASER OFF");
+				//show_debug_message("LASER_POINTS LENGTH:" + string(laser_length));
+				//show_debug_message("LASER OFF");
 				laser_state = LASER_STATES.off;
 			}
 		}
@@ -34,7 +43,7 @@ switch (laser_state) {
 		if (timer >= time_off) {
 			timer = 0;
 			if (time_on > 0) {
-				show_debug_message("LASER ON");
+				//show_debug_message("LASER ON");
 				if (!global.playing_laser_hum) {
 					audio_play_sound(snd_laser_loop, 1, true);	
 					global.playing_laser_hum = true;

@@ -32,7 +32,7 @@ if (next_line)
 	    }
 	    else
 	    {
-			text_width = 1000;
+			text_width = 700;
 		    text[text_current][TContent] = string_wrap(text[text_current][TContent], text_width);
 		    char_current = 0;
 	    }

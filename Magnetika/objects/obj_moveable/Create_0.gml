@@ -13,6 +13,7 @@ lost_floor = function () {
 			if (a_moveable.id == id) {
 				//remove this moveable object from the game.
 				array_delete(global.moveable_objects, i, 1);
+				return true;
 			}
 		}
 		

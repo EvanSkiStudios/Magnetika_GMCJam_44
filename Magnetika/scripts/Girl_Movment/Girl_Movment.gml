@@ -1,5 +1,8 @@
 /// @function get_input();
 /*
+
+fhAudioSoundPlay(SND_GIRL_FOOTSTEP);
+
 get_input = function () {
 	
 	left = false;

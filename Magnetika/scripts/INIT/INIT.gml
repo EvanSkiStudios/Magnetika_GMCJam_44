@@ -28,6 +28,9 @@ global.Load_save = true;
 #macro Level_6 rm_level_6
 #macro Level_7 rm_level_7
 #macro Level_8 rm_level_8
+#macro Level_9 rm_level_9
+#macro Level_10 rm_level_10
+#macro Level_11 rm_level_11
 
 //LEVELS
 //methodz
@@ -48,6 +51,9 @@ lvl_array[++i] = new lvl_select(Level_5, 5, "The Floor is Falling", true);
 lvl_array[++i] = new lvl_select(Level_6, 6, "The Mother F- wait we can't use that name?", true);
 lvl_array[++i] = new lvl_select(Level_7, 7, "Buttons Cubed", true);
 lvl_array[++i] = new lvl_select(Level_8, 8, "Remote Manipulation", true);
+lvl_array[++i] = new lvl_select(Level_9, 9, "Phototricholysis", true);
+lvl_array[++i] = new lvl_select(Level_10, 10, "Companion cube", true);
+lvl_array[++i] = new lvl_select(Level_11, 11, "Pew Pew Pew", true);
 
 global.lvl_list_array = lvl_array;
 
@@ -60,7 +66,8 @@ global.bloom_surface = -1; //debug to prevent crash with scaffolds
 
 global.control_scheme = 0;
 global.Audio_master_volume = 1.0;
-global.Audio_sfx_volume = 0.25;
+global.Audio_sfx_volume = 1.0;
+global.Audio_marte_volume = 0.25;
 global.Audio_music_volume = 1.0;
 global.Bloom_Shader_enabled = true;
 global.bloom_draw_surface = global.Bloom_Shader_enabled;
@@ -74,6 +81,7 @@ function save_game(){
 		Control_scheme : global.control_scheme,
 		Audio_master : global.Audio_master_volume,
 		Audio_sfx : global.Audio_sfx_volume,
+		Audio_marte : global.Audio_marte_volume,
 		Audio_mus : global.Audio_music_volume,
 		Fullscreen : window_get_fullscreen(),
 		Bloom_enabled : global.Bloom_Shader_enabled,
@@ -104,6 +112,7 @@ function load_game(){
 	if variable_struct_exists(game_struct, "Control_scheme"){	global.control_scheme = game_struct.Control_scheme; };
 	if variable_struct_exists(game_struct, "Audio_master"){		global.Audio_master_volume = game_struct.Audio_master; };
 	if variable_struct_exists(game_struct, "Audio_sfx"){		global.Audio_sfx_volume = game_struct.Audio_sfx;  };
+	if variable_struct_exists(game_struct, "Audio_marte"){		global.Audio_marte_volume = game_struct.Audio_marte;  };
 	if variable_struct_exists(game_struct, "Audio_mus"){		global.Audio_music_volume = game_struct.Audio_mus; };
 	if variable_struct_exists(game_struct, "Fullscreen"){		window_set_fullscreen(game_struct.Fullscreen); };
 	if variable_struct_exists(game_struct, "Bloom_enabled"){	global.Bloom_Shader_enabled = game_struct.Bloom_enabled; };

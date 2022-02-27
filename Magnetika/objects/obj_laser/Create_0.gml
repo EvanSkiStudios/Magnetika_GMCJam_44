@@ -6,6 +6,9 @@ time_on = .5 * room_speed;
 time_off = .5 * room_speed;
 timer = 0;
 
+laser_calc_timer = 0;
+laser_calc_time = .05 * room_speed;
+
 aim_direction = LASER_DIRECTIONS.RIGHT;
 powered_on = true;
 laser_on = false;
@@ -20,14 +23,20 @@ max_beam_count = room_width / global.tile_width;
 laser_offset = [];
 laser_offset_right = [0,-12];
 laser_offset_down = [15,0];
-laser_offset_left = [32,-12];
+laser_offset_left = [0,-12];
 laser_offset_up = [15,-6];
 
 laser_offset_end = [];
-laser_offset_right_end = [16,-12];
-laser_offset_down_end = [15,-16];
-laser_offset_left_end = [18,-12];
-laser_offset_up_end = [15,-6];
+
+laser_offset_right_end = [-12,-28];
+laser_offset_down_end = [-1,-32];
+laser_offset_left_end = [11,-28];
+laser_offset_up_end = [-1,-10];
+
+//laser_offset_right_end = [16,-12];
+//laser_offset_down_end = [15,-16];
+//laser_offset_left_end = [18,-12];
+//laser_offset_up_end = [15,-6];
 
 beam_list = [];
 
@@ -106,10 +115,12 @@ get_laser_points = function () {
 						if (a_moveable.current_tile_pos[0] == test_position[0] && a_moveable.current_tile_pos[1] == test_position[1]) {
 							//test_position[0] += offset[0] * .25;
 							//test_position[1] += offset[1] * .25;
-							array_push(laser_points, [a_moveable.x, a_moveable.y]);
+							beam_list[laser_length].x2 = a_moveable.x + 16;
+							beam_list[laser_length].y2 = a_moveable.true_y + 16;
+							//array_push(laser_points, [a_moveable.x + 16, a_moveable.y + 16]);
 							laser_length++;
 							blocked = true;
-							show_debug_message("LASER BLOCKED");
+							//show_debug_message("LASER BLOCKED");
 							return;
 						}
 					}
@@ -156,5 +167,5 @@ set_beams_color = function (_color) {
 
 /// @function power_on();
 power_on = function () {
-	laser_state = LASER_STATES.powered_on;	
+	laser_state = LASER_STATES.powered_on;
 }

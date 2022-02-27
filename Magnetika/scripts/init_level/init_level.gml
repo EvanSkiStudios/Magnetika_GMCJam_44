@@ -121,6 +121,7 @@ function init_level(){
 			var block = instance_create_layer(0, 4000, "Event_Layer", obj_block);
 			block._x = x;
 			block._y = y;
+			block.true_y = block._y;
 			block.update_tile_position();
 			array_push(global.moveable_objects, block);
 			visible = false;
@@ -358,6 +359,11 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 							
 					if (i >= 0 && i <= room_width / global.tile_width && j >= 0 && j <= room_height / global.tile_height) {
 		
+						var a_laser = get_laser_at(i, j);
+						if (a_laser.current_tile_pos[0] == i && a_laser.current_tile_pos[1] == j) {
+							array_push(this_group, a_laser);
+						}
+		
 						if (a_floor.current_tile_pos[0] == i && a_floor.current_tile_pos[1] == j) {
 							array_push(this_group, a_floor);
 						}
@@ -367,10 +373,7 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 							array_push(this_group, a_moveable);
 						}
 						
-						var a_laser = get_laser_at(i, j);
-						if (a_laser.current_tile_pos[0] == i && a_laser.current_tile_pos[1] == j) {
-							array_push(this_group, a_laser);
-						}
+						
 						
 						
 				}

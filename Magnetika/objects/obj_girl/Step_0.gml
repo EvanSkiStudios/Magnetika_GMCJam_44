@@ -4,8 +4,8 @@ depth = -_y;
 /*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
-}
 */
+
 switch (state) {
 	case GIRL_STATES.idle:
 		
@@ -14,6 +14,8 @@ switch (state) {
 		if (check_for_no_floor()) {
 			return;	
 		}
+		
+		get_potential_piece(facing_dir);
 		
 		get_input();
 		
@@ -43,7 +45,7 @@ switch (state) {
 			return;
 		}
 		
-		if (fire) {
+		if (fire_pressed) {
 			shoot_gun(facing_dir);	
 		}
 		
@@ -56,6 +58,8 @@ switch (state) {
 		if (check_for_no_floor()) {
 			return;	
 		}
+		
+		get_potential_piece(facing_dir);
 		
 		get_input();
 		
@@ -95,7 +99,7 @@ switch (state) {
 	
 		control_moveable_piece();
 		
-		if (!fire) {
+		if (fire_pressed) {
 			deactivate_gun();
 			state = GIRL_STATES.idle;
 		}
@@ -166,7 +170,6 @@ switch (state) {
 				audio_stop_sound(snd_laser_loop);
 				global.playing_laser_hum = false;
 			}
-			//GAME_RESET();
 			girl_death_reset();
 		}
 	break;

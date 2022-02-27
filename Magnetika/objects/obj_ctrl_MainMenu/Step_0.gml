@@ -36,8 +36,9 @@ if (inputting){
 		case menu_element_type.slider:{
 			switch(menu_option[page]){
 				case 0: /*if(!audio_is_playing(snd_sfx_wep_punch)) audio_play_sound(snd_sfx_wep_punch,1,false);*/  break;
-				case 1: if(!audio_is_playing(snd_marte_const_01)) audio_play_sound(snd_marte_const_01,1,false); break;
-				case 2: break;
+				case 1: if(!audio_is_playing(snd_girl_footstep)) audio_play_sound(snd_girl_footstep,1,false); break;
+				case 2: if(!audio_is_playing(snd_marte_const_01)) audio_play_sound(snd_marte_const_01,1,false); break;
+				case 3: break;
 			}
 			
 			
@@ -93,7 +94,14 @@ if (inputting){
 if (input_enter_p){
 	switch(ds_grid[# 1, menu_option[page]]){
 		case menu_element_type.script_runner: script_execute(ds_grid[# 2, menu_option[page]]) break;
-		case menu_element_type.page_transfer: page = ds_grid[# 2, menu_option[page]]; break;
+		case menu_element_type.page_transfer:{
+			page = ds_grid[# 2, menu_option[page]];
+			
+			if (page = 0){
+				save_game();	
+			}
+			
+		}break;
 		
 		case menu_element_type.shift:
 		case menu_element_type.slider:

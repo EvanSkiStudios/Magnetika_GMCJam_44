@@ -33,9 +33,9 @@ pressed_by_moveable = function () {
 	var len = array_length(global.moveable_objects);
 	for (var i = 0; i < len; i++) {
 		var b = global.moveable_objects[i];
-		show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
-		show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
-		show_debug_message("MOVEABLE " + string(i) + " POSITION:" + string(b.current_tile_pos[0]) + "," + string(b.current_tile_pos[1]));
+		//show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
+		//show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
+		//show_debug_message("MOVEABLE " + string(i) + " POSITION:" + string(b.current_tile_pos[0]) + "," + string(b.current_tile_pos[1]));
 		
 		if (b.current_tile_pos[0] == current_tile_pos[0] && b.current_tile_pos[1] == current_tile_pos[1]) {
 			if (obj_girl.current_moveable_piece != -1 && obj_girl.current_moveable_piece.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_moveable_piece.current_tile_pos[1] == current_tile_pos[1]) {
@@ -43,8 +43,8 @@ pressed_by_moveable = function () {
 					return true;	
 				}
 			} else {
-				show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
-				show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
+				//show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
+				//show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
 				return true;
 			}
 		}

@@ -2,6 +2,7 @@ floor_id = -1;
 dip_height = 2;
 dip_current = 0;
 hover_dist = 0;
+true_y = y;
 timer = 0;
 delay = 1 * room_speed;
 

@@ -29,7 +29,7 @@ This #macro decides how long to do music crossfading when you use the automatic 
 It defaults at 1000 milliseconds(1 second).
 This does not affect anything when you manually crossfade or swapfade music.
 */
-#macro FHAUDIO_ROOM_MUSIC_CHANGE_FADE_TIME 2000
+#macro FHAUDIO_ROOM_MUSIC_CHANGE_FADE_TIME 1000
 
 /*
 This #macro decides if music should start from the beginning or from where it was at when it last stopped.

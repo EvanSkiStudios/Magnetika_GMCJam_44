@@ -7,9 +7,11 @@ switch (state) {
 	break;
 	
 	case FLOOR_STATES.idle:
-	
+		
 		x = lerp(x, _x, .1);
+		true_y = lerp(true_y, _y, .1);
 		y = lerp(y, _y - hover_dist + dip_current, .1);
+		
 		
 		if (instance_exists(obj_girl)) {
 			if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {

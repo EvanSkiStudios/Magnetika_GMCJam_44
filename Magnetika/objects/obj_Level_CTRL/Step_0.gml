@@ -56,6 +56,24 @@ if ( (!room_start_did_once) && (!global.level_intro_done) ){
 		}break;
 		
 		case Level_8:{	
+			goto_room = Level_9;
+			room_start_did_once = true;
+		}break;
+		
+		case Level_9:{
+			goto_room = Level_10;
+			if !instance_exists(obj_ctrl_create_typewriter){
+				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
+			}
+			room_start_did_once = true;
+		}break;
+		
+		case Level_10:{	
+			goto_room = rm_levelselect;
+			room_start_did_once = true;
+		}break;
+		
+		case Level_11:{	
 			goto_room = rm_levelselect;
 			room_start_did_once = true;
 		}break;
@@ -124,6 +142,21 @@ if ( (room_start_did_once) && (!room_end_did_once) && (global.level_end_reached)
 		}break;
 		
 		case Level_8:{
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_9:{
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_10:{
+			room_end_did_once = true;
+			do_fade = true;
+		}break;
+		
+		case Level_11:{
 			room_end_did_once = true;
 			do_fade = true;
 		}break;

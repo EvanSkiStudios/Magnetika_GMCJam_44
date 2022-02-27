@@ -46,9 +46,10 @@ ds_menu_settings = create_menu_page(
 );
 
 ds_menu_audio = create_menu_page(
-	["MASTER",			menu_element_type.slider,	change_volume, 1, [0,1]],
-	["SOUND EFFECTS",	menu_element_type.slider,	change_volume, 1, [0,1]],
-	["MUSIC",			menu_element_type.slider,	change_volume, 1, [0,1]],
+	["MASTER",			menu_element_type.slider,	change_volume, global.Audio_master_volume, [0,1]],
+	["SOUND EFFECTS",	menu_element_type.slider,	change_volume, global.Audio_sfx_volume, [0,1]],
+	["MART-E VOICE",	menu_element_type.slider,	change_volume, global.Audio_marte_volume, [0,1]],
+	["MUSIC",			menu_element_type.slider,	change_volume, global.Audio_music_volume, [0,1]],
 	["BACK",			menu_element_type.page_transfer,	menu_page.settings]
 );
 

@@ -110,6 +110,7 @@ function change_volume(){
 	switch(type){
 		case 0: audio_master_gain(argument0);							global.Audio_master_volume = argument0; break;
 		case 1: audio_group_set_gain(AudioGroup_SFX, argument0, 0);		global.Audio_sfx_volume = argument0;	break;
-		case 2: audio_group_set_gain(AudioGroup_Music, argument0, 0);	global.Audio_music_volume = argument0;	break;
+		case 2: audio_group_set_gain(AudioGroup_marte, argument0, 0);		global.Audio_marte_volume = argument0;	break;
+		case 3: audio_group_set_gain(AudioGroup_Music, argument0, 0);	global.Audio_music_volume = argument0;	break;
 	}
 }

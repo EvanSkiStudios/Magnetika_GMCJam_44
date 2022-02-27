@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "AudioGroup_SFX",
-    "path": "audiogroups/AudioGroup_SFX",
+    "name": "AudioGroup_marte",
+    "path": "audiogroups/AudioGroup_marte",
   },
   "soundFile": "snd_marte_const_02.ogg",
   "duration": 0.230181,
