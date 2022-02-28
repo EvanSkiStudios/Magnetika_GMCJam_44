@@ -65,6 +65,7 @@ function init_level(){
 					floor_switch = instance_create_layer(x, y, "Event_Layer", obj_floor_switch);
 					floor_switch.is_toggle = is_toggle;
 					floor_switch.is_pressure = is_pressure;
+					floor_switch.switch_color = switch_color;
 					tilemap_set(global.map_id, TILE_DATA.floor_switch, sw_tile_x, sw_tile_y);
 					array_push(global.floor_objects, floor_switch);
 				} else {

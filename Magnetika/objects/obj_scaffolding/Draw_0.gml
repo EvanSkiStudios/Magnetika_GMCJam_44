@@ -1,6 +1,5 @@
 ///@desc SCAFFOLDING DRAW CODE
 
-
 if (sprite_index == sprite_on){
 	global.bloom_draw_surface = true;
 } else {

@@ -4,9 +4,14 @@ depth = -_y;
 /*
 if (keyboard_check_pressed( ord("R"))) {
 	room_restart();	
+}
 */
 
+obj_gun.sprite_index = gun_sprite;
+obj_gun.image_xscale = image_xscale;
+
 switch (state) {
+	
 	case GIRL_STATES.idle:
 		
 		dip_current = 0;
@@ -46,6 +51,7 @@ switch (state) {
 		}
 		
 		if (fire_pressed) {
+			gun_sprite = gun_neutral_sprite;
 			shoot_gun(facing_dir);	
 		}
 		

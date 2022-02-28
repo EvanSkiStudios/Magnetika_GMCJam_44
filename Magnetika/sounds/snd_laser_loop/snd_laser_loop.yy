@@ -1,6 +1,6 @@
 {
   "conversionMode": 0,
-  "compression": 3,
+  "compression": 1,
   "volume": 0.2,
   "preload": false,
   "bitRate": 128,

@@ -12,6 +12,7 @@ fire = false;
 
 instance_create_layer(40, 40, "Event_Layer", obj_arrow);
 instance_create_layer(40, 40, "Event_Layer", obj_energy_field);
+gun = instance_create_layer(40, 40, "Event_Layer", obj_gun);
 potential_moveable_piece = -1;
 
 dip_current = 0;
@@ -45,6 +46,20 @@ state = GIRL_STATES.null;
 
 stand_sprite = spr_girl_front;
 
+gun_anim_speed = 1;
+gun_sprite = spr_gun_neutral_front;
+
+gun_neutral_front = spr_gun_neutral_front;
+gun_neutral_side = spr_gun_neutral_side;
+gun_neutral_back = spr_gun_neutral_back;
+
+gun_force_front = spr_gun_energy_front;
+gun_force_side = spr_gun_energy_side;
+gun_force_back = spr_gun_energy_back;
+
+gun_neutral_sprite = gun_neutral_front;
+gun_energy_sprite = gun_force_front;
+
 enum GIRL_STATES {
 	idle,
 	running,
@@ -74,15 +89,32 @@ get_potential_piece = function (dir) {
 	switch (dir) {
 		case TILE_DIRECTIONS.LEFT:
 			offset = [-1, 0];
+			gun_energy_sprite = gun_force_side;
+			gun_neutral_sprite = gun_neutral_side;
+			gun_anim_speed = 1;
 		break;
 		case TILE_DIRECTIONS.RIGHT:
 			offset = [1, 0];
+			gun_energy_sprite = gun_force_side;
+			gun_neutral_sprite = gun_neutral_side;
+			gun_anim_speed = 1;
+						
 		break;
 		case TILE_DIRECTIONS.UP:
 			offset = [0, -1];
+			if (facing_dir == TILE_DIRECTIONS.UP) {
+				gun_energy_sprite = gun_force_back;
+				gun_neutral_sprite = gun_neutral_back;
+				gun_anim_speed = 1;
+			}
 		break;
 		case TILE_DIRECTIONS.DOWN:
 			offset = [0, 1];
+			if (facing_dir == TILE_DIRECTIONS.DOWN) {
+				gun_energy_sprite = gun_force_front;
+				gun_neutral_sprite = gun_neutral_front;
+				gun_anim_speed = 1;
+			}
 		break;
 	}
 	
@@ -115,6 +147,8 @@ get_potential_piece = function (dir) {
 
 /// @function shoot_gun(dir);
 shoot_gun = function (dir) {
+	gun_sprite = gun_neutral_sprite;
+	//obj_gun.sprite_index = gun_sprite;
 	current_moveable_piece = -1;
 	var blocked = false;
 	var offset = [0,0];
@@ -149,6 +183,7 @@ shoot_gun = function (dir) {
 				state = GIRL_STATES.activated_gun;
 				show_debug_message("FOUND PIECE. GUN ACTIVATED");
 				current_moveable_piece = movable_piece;
+				audio_play_sound(snd_gun_on, 1, 0);
 				return;
 			}
 			//set check position further
@@ -158,6 +193,7 @@ shoot_gun = function (dir) {
 			blocked = true;	
 		}
 	}
+	audio_play_sound(snd_gun_fail, 1, 0);
 	//show_debug_message("GUN COULD NOT FIND MOVEABLE PIECE.");
 }
 
@@ -181,7 +217,7 @@ is_moveable_blocking = function () {
 }
 
 control_moveable_piece = function () {
-	
+	obj_gun.visible = false;
 	current_moveable_piece.hover_dist = 3;
 	current_moveable_piece.floating = true;
 	
@@ -216,8 +252,14 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-						current_moveable_piece._x -= global.tile_width;
+					current_moveable_piece._x -= global.tile_width;
+					if (facing_dir == TILE_DIRECTIONS.LEFT) {
+						gun_anim_speed = 1;	
+					} else if (facing_dir == TILE_DIRECTIONS.RIGHT) {
+						gun_anim_speed = -1;	
+					}
 				}
+				
 			}
 			
 		} else if (right_pressed) {
@@ -227,7 +269,13 @@ control_moveable_piece = function () {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._x += global.tile_width;
+						if (facing_dir == TILE_DIRECTIONS.RIGHT) {
+							gun_anim_speed = 1;	
+						} else if (facing_dir == TILE_DIRECTIONS.LEFT) {
+							gun_anim_speed = -1;	
+						}
 				}
+				
 				
 			}
 		}
@@ -239,6 +287,11 @@ control_moveable_piece = function () {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
 						current_moveable_piece._y -= global.tile_height;
+						if (facing_dir == TILE_DIRECTIONS.UP) {
+						gun_anim_speed = 1;	
+					} else if (facing_dir == TILE_DIRECTIONS.DOWN) {
+						gun_anim_speed = -1;	
+					}
 				}
 			}
 		} else if (down_pressed) {
@@ -247,17 +300,33 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-						current_moveable_piece._y += global.tile_height;
+					current_moveable_piece._y += global.tile_height;
+					if (facing_dir == TILE_DIRECTIONS.DOWN) {
+						gun_anim_speed = 1;	
+					} else if (facing_dir == TILE_DIRECTIONS.UP) {
+						gun_anim_speed = -1;	
+					}
+						
 				}
 			}
 		}
 	}
 	current_moveable_piece.update_tile_position();
+	//y, _y - hover_dist + dip_current
+	if (!current_moveable_piece.travel_complete) {
+		gun_sprite = gun_energy_sprite;
+	} else {
+		gun_sprite = gun_neutral_sprite;
+	}
+	obj_gun.sprite_index = gun_sprite;
+	obj_gun.image_speed =gun_anim_speed;
 }
 
 /// @function deactivate_gun();
 deactivate_gun = function () {
 	show_debug_message("GUN DEACTIVATED");
+	audio_stop_sound(snd_gun_on);
+	audio_play_sound(snd_gun_off, 1, 0);
 	current_moveable_piece.floating = false;
 	current_moveable_piece.hover_dist = 0;
 	current_moveable_piece = -1;
@@ -271,6 +340,8 @@ run = function (dir) {
 			facing_dir = TILE_DIRECTIONS.LEFT;
 			sprite_index = spr_girl_run_side;
 			stand_sprite = spr_girl_side;
+			gun_force_sprite = gun_force_side;
+			gun_neutral_sprite = gun_neutral_side;
 			image_xscale = -1;
 			x += -x_run_speed;
 		break;
@@ -279,6 +350,8 @@ run = function (dir) {
 			facing_dir = TILE_DIRECTIONS.RIGHT;
 			sprite_index = spr_girl_run_side;
 			stand_sprite = spr_girl_side;
+			gun_force_sprite = gun_force_side;
+			gun_neutral_sprite = gun_neutral_side;
 			image_xscale = 1;
 			x += x_run_speed;
 		break;
@@ -287,6 +360,8 @@ run = function (dir) {
 			facing_dir = TILE_DIRECTIONS.UP;
 			sprite_index = spr_girl_run_up;
 			stand_sprite = spr_girl_back;
+			gun_force_sprite = gun_force_back;
+			gun_neutral_sprite = gun_neutral_back;
 			image_xscale = 1;
 			y -= y_run_speed;
 		break;
@@ -295,10 +370,14 @@ run = function (dir) {
 			facing_dir = TILE_DIRECTIONS.DOWN;
 			sprite_index = spr_girl_run_down;
 			stand_sprite = spr_girl_front;
+			gun_force_sprite = gun_force_front;
+			gun_neutral_sprite = gun_neutral_front;
 			image_xscale = 1;
 			y += y_run_speed;
 		break;
 	}
+	
+	gun_sprite = gun_neutral_sprite;
 	
 	with (obj_floor_switch) {
 		if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {
@@ -450,5 +529,4 @@ vaporize = function () {
 		image_index = 0;
 		state = GIRL_STATES.vaporized;
 	}
-	
 }

@@ -12,6 +12,14 @@ switch (state) {
 		true_y = lerp(true_y, _y, .1);
 		y = lerp(y, _y - hover_dist + dip_current, .1);
 		
+		//for gun energy
+		var x_dif = abs(x - _x);
+		var y_dif = abs(y - (_y - hover_dist + dip_current));
+		if (x_dif <= 4 && y_dif <= 4) {
+			travel_complete = true;
+		} else {
+			travel_complete = false;	
+		}
 		
 		if (instance_exists(obj_girl)) {
 			if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {

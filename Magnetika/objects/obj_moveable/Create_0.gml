@@ -11,6 +11,7 @@ lost_floor = function () {
 			var a_moveable = global.moveable_objects[i];
 			//show_debug_message("YOU LOST THE FLOOR! SELF: " + string(id));	
 			if (a_moveable.id == id) {
+				a_moveable.current_tile_pos = [0,0];
 				//remove this moveable object from the game.
 				array_delete(global.moveable_objects, i, 1);
 				return true;

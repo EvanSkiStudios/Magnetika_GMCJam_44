@@ -120,7 +120,7 @@ get_laser_points = function () {
 							//array_push(laser_points, [a_moveable.x + 16, a_moveable.y + 16]);
 							laser_length++;
 							blocked = true;
-							//show_debug_message("LASER BLOCKED");
+							show_debug_message("LASER BLOCKED");
 							return;
 						}
 					}

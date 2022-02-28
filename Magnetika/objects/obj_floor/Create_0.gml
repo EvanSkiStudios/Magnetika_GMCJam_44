@@ -20,11 +20,12 @@ current_tile_pos = [0,0];
 did_outro = false;
 
 movement_complete = false;
+travel_complete = false;
 
 _x = 0;
 _y = 0;
 
-image_speed = 0;
+//image_speed = 0;
 
 enum FLOOR_STATES {
 	idle,

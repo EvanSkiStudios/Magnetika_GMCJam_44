@@ -1,5 +1,5 @@
 event_inherited();
-depth = -(_y + hover_dist) - 14;//15
+depth = -(y + hover_dist) - 14;//15
 
 switch (state) {
 	

@@ -13,6 +13,7 @@ image_index = 0;
 switch_activated = false;
 
 floors = [];
+switch_color = c_green;
 
 /// @function get_switch_at(_tile_x, _tile_y);
 get_switch_at = function (_tile_x, _tile_y) {
