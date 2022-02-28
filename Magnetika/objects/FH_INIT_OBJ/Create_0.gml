@@ -46,13 +46,14 @@ fhAudioSoundCreate(SND_MUS_MENU,FHAUDIO_CATEGORY_GAME,snd_mus_menu,0.0,0.0,);
 #macro SND_GIRL_FOOTSTEP "snd_girl_footstep" 
 fhAudioSoundCreate(SND_GIRL_FOOTSTEP,FHAUDIO_CATEGORY_GAME,snd_girl_footstep,0.1,0.1,);
 
-
+//music
 fhAudioMusicSetLoopPoints(snd_mus_menu,18823,65882);
 fhAudioMusicSetLoopPoints(snd_mus_levels,16695,125217);
 
 
 fhAudioMusicRoomChangeSet(rm_mainmenu,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_levelselect,snd_mus_menu);
+fhAudioMusicRoomChangeSet(rm_credits,snd_mus_victory);
 
 
 var _array_length = (array_length(global.lvl_list_array));

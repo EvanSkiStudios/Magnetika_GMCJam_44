@@ -217,6 +217,7 @@
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},"order":2,},
     {"id":{"name":"rm_level_2","path":"rooms/rm_level_2/rm_level_2.yy",},"order":2,},
     {"id":{"name":"init_level","path":"scripts/init_level/init_level.yy",},"order":0,},
+    {"id":{"name":"snd_mus_victory","path":"sounds/snd_mus_victory/snd_mus_victory.yy",},"order":2,},
     {"id":{"name":"spr_icon_laser","path":"sprites/spr_icon_laser/spr_icon_laser.yy",},"order":4,},
     {"id":{"name":"__fhAudioMusicStuff","path":"scripts/__fhAudioMusicStuff/__fhAudioMusicStuff.yy",},"order":2,},
     {"id":{"name":"__fhInputConfigObjButtonGoToExclusions","path":"objects/__fhInputConfigObjButtonGoToExclusions/__fhInputConfigObjButtonGoToExclusions.yy",},"order":1,},
