@@ -61,7 +61,6 @@ fhAudioMusicSetLoopPoints(snd_mus_boss,11636,58181);
 fhAudioMusicRoomChangeSet(rm_mainmenu,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_levelselect,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_credits,snd_mus_victory);
-fhAudioMusicRoomChangeSet(rm_level_12,snd_mus_boss);
 
 
 var _array_length = (array_length(global.lvl_list_array));
@@ -71,3 +70,5 @@ for (var i = 0; i < _array_length; ++i){
 	
 	fhAudioMusicRoomChangeSet(_array_room,snd_mus_levels);
 }
+
+fhAudioMusicRoomChangeSet(rm_level_12,snd_mus_boss);
