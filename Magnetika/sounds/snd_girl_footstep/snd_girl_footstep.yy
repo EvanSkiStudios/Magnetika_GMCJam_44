@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "AudioGroup_SFX",
-    "path": "audiogroups/AudioGroup_SFX",
+    "name": "audiogroup_default",
+    "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_girl_footstep.wav",
   "duration": 1.135034,

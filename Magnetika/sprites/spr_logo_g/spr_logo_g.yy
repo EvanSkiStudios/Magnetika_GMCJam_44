@@ -70,7 +70,7 @@
   "nineSlice": null,
   "parent": {
     "name": "Sequences",
-    "path": "folders/Sequences.yy",
+    "path": "folders/Sequences/Sequences.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_logo_g",

@@ -42,6 +42,7 @@ switch (state) {
 	break;
 	
 	case LEVEL_STATES.outro:
+	
 	var alldone = true;
 		with (obj_floor) {
 			if (!movement_complete) {
