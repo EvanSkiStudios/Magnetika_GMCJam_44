@@ -291,6 +291,7 @@
     {"id":{"name":"__fhAudioAsserts","path":"scripts/__fhAudioAsserts/__fhAudioAsserts.yy",},"order":0,},
     {"id":{"name":"fhInputSystemActionsNotSet","path":"scripts/fhInputSystemActionsNotSet/fhInputSystemActionsNotSet.yy",},"order":9,},
     {"id":{"name":"fhInputPlayerActionsNotSet","path":"scripts/fhInputPlayerActionsNotSet/fhInputPlayerActionsNotSet.yy",},"order":7,},
+    {"id":{"name":"snd_mus_boss","path":"sounds/snd_mus_boss/snd_mus_boss.yy",},"order":3,},
     {"id":{"name":"rm_level_5","path":"rooms/rm_level_5/rm_level_5.yy",},"order":5,},
     {"id":{"name":"obj_ETW_Dialog_Typewriter","path":"objects/obj_ETW_Dialog_Typewriter/obj_ETW_Dialog_Typewriter.yy",},"order":0,},
     {"id":{"name":"fhAudioVolumeMasterGet","path":"scripts/fhAudioVolumeMasterGet/fhAudioVolumeMasterGet.yy",},"order":2,},

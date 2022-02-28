@@ -55,11 +55,13 @@ fhAudioSoundCreate(SND_LEVEL_OUT,FHAUDIO_CATEGORY_GAME,snd_sfx_level_out,);
 //music
 fhAudioMusicSetLoopPoints(snd_mus_menu,18823,65882);
 fhAudioMusicSetLoopPoints(snd_mus_levels,16695,125217);
+fhAudioMusicSetLoopPoints(snd_mus_boss,11636,58181);
 
 
 fhAudioMusicRoomChangeSet(rm_mainmenu,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_levelselect,snd_mus_menu);
 fhAudioMusicRoomChangeSet(rm_credits,snd_mus_victory);
+fhAudioMusicRoomChangeSet(rm_level_12,snd_mus_boss);
 
 
 var _array_length = (array_length(global.lvl_list_array));
