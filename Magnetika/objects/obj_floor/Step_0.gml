@@ -33,7 +33,7 @@ switch (state) {
 	
 	case FLOOR_STATES.intro:
 	x = _x;
-	y = lerp(y, _y, .1);
+	y = lerp(y, _y, .2);
 	
 	if (y <= _y + 1) {
 		movement_complete = true;
@@ -96,11 +96,11 @@ switch (state) {
 	break;
 	
 	case FLOOR_STATES.deactivate_init:
+		movement_complete = false;
 		timer ++;
 		if (timer >= delay) {
 			tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
 			timer = 0;
-			movement_complete = true;
 			state = FLOOR_STATES.deactivated;
 		}
 	break;
@@ -110,6 +110,9 @@ switch (state) {
 		if (y <= room_height) {
 			fall_speed += fall_accel;
 			y += fall_speed;
+		} else {
+			movement_complete = true;
+			state = FLOOR_STATES.standby;	
 		}
 		
 	break;

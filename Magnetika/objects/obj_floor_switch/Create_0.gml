@@ -64,7 +64,7 @@ floors_ready = function() {
 		}
 	}
 	if (all_ready == true) {
-		//show_debug_message("SWITCH ALL FLOORS READY!");	
+		show_debug_message("SWITCH ALL FLOORS READY!");	
 	}
 	return all_ready;
 }
@@ -73,9 +73,22 @@ floors_ready = function() {
 activate_switch = function () {
 	if (!switch_activated) {
 		//show_debug_message("SWITCH ACTIVATED!");
-		image_index = 1;
-		switch_activated = true;
-		toggle_floors(floor_list, floor_entry_delay);
+		if (floors_ready()) {
+			image_index = 1;
+			switch_activated = true;
+			toggle_floors(floor_list, floor_entry_delay);
+		}
+	}
+}
+/// @function deactivate_switch();
+deactivate_switch = function() {
+	if (switch_activated) {
+		//show_debug_message("SWITCH DEACTIVATED!");
+		if (floors_ready()) {
+			image_index = 0;
+			switch_activated = false;
+			toggle_floors(floor_list, floor_entry_delay);
+		}
 	}
 }
 
@@ -85,13 +98,14 @@ function toggle_floors (floor_list, _delay) {
 		var this_delay = 0;
 		for (var i = 0; i < array_length(floors); i++) {
 			var a_floor = floors[i];
+			a_floor.movement_complete = false;
 			if (a_floor.state == FLOOR_STATES.idle) {
 				a_floor.deactivate(this_delay);
-			} else {
+			} else if (a_floor.state == FLOOR_STATES.standby) {
 				a_floor.do_intro(this_delay);
 			}
 		this_delay += _delay;
-		}
+	}
 }
 
 ///@function init_floors

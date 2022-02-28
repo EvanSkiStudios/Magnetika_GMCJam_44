@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_floor_switch_floating",
-    "path": "sprites/spr_floor_switch_floating/spr_floor_switch_floating.yy",
+    "name": "spr_logo_lit",
+    "path": "sprites/spr_logo_lit/spr_logo_lit.yy",
   },
   "solid": false,
   "visible": true,
@@ -21,17 +21,17 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Tile_System/PatsFolder/Objects.yy",
+    "name": "mainmenu",
+    "path": "folders/Rooms/mainmenu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_moveable",
+  "name": "obj_draw_title",
   "tags": [],
   "resourceType": "GMObject",
 }

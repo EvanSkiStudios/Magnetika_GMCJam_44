@@ -87,7 +87,9 @@ do_outro = function (_delay) {
 ///@function deactivate();
 deactivate = function (_delay) {
 	fall_speed = 0;
+	movement_complete = false;
 	set_delay(_delay);
+	timer = 0;
 	//tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
 	state = FLOOR_STATES.deactivate_init;
 }
