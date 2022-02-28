@@ -19,7 +19,7 @@ logo_hold_time = 3;
 max_time = logo_hold_time * room_speed;
 scroll = false;
 
-credit_logo = spr_credits_logo;
+credit_logo = spr_logo_credits;
 
 credits = [
 "CODE, ART, AUDIO",

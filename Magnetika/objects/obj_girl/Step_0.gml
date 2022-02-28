@@ -135,7 +135,7 @@ switch (state) {
 	case GIRL_STATES.room_intro:
 	
 		x = _x;
-		y = lerp(y, _y, .1);
+		y = lerp(y, _y, .25);
 	
 	break;
 	

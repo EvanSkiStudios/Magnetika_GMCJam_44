@@ -33,7 +33,7 @@ switch (state) {
 	
 	case FLOOR_STATES.intro:
 	x = _x;
-	y = lerp(y, _y, .2);
+	y = lerp(y, _y, .25);
 	
 	if (y <= _y + 1) {
 		movement_complete = true;

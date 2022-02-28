@@ -1,6 +1,6 @@
 //Init Values and settings for game that get set on startup
 
-#macro DEBUG_MODE true
+#macro DEBUG_MODE false
 global.Load_save = true;
 
 #region default things
