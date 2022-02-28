@@ -13,7 +13,7 @@ This can be set to false once you have your game working properly, which will ha
 This #macro turns on/off the Volume auto-saving feature.  Turned on, it will save a file with the volume settings, and load it in next time you run.
 If you prefer to save your own file with these settings, turn this off, and use the various *get functions to get the volume settings.
 */
-#macro FHAUDIO_AUTOSAVE_SETTINGS true
+#macro FHAUDIO_AUTOSAVE_SETTINGS false
 
 /*
 This #macro is a fix for when you are swapfading or crossfading music and set the volume in the middle of one of these transitions.
