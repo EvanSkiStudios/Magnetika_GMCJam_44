@@ -288,7 +288,7 @@ function notify_room_intro_complete() {
 function notify_room_outro_complete() {
 	show_debug_message("ROOM OUTRO COMPLETE");
 	global.level_completed = true;
-	room_goto_next();//TEST ONLY
+	//room_goto_next();//TEST ONLY
 }
 
 /// @function notify_box_lost();

@@ -5,10 +5,10 @@ if ( (!room_start_did_once) && (!global.level_intro_done) ){
 		default: case rm_levelselect: break;
 		
 		case Level_1:{
+			goto_room = Level_2;
 			if !instance_exists(obj_ctrl_create_typewriter){
 				instance_create_depth(32,288,0,obj_ctrl_create_typewriter);
 			}
-			goto_room = Level_2;
 			room_start_did_once = true;
 		}break;
 		
