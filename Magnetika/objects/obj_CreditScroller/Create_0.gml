@@ -1,5 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+start_gui_w = display_get_gui_width();
+start_gui_h =display_get_gui_height();
+
 display_set_gui_size(480, 270);
 scroll_position = display_get_gui_height() * .5;
 scroll_position_snapped = scroll_position;
@@ -30,10 +33,10 @@ credits = [
 "Project Lead:",
 "Pat \"PIXEL-TEAM\" Ferguson",
 " ",
-"Audio Designer:",
+"Audio / Gameplay Designer:",
 "Ken Burkhart \"FireHammer Games\"",
 " ",
-"Lead programmer/Level designer:",
+"Lead Programmer / Level Designer:",
 "Evanski",
 " ",
 " ",

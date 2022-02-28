@@ -7,7 +7,7 @@ if (_image_index >= sprite_get_number(credit_logo) -1) {
 }
 
 if (keyboard_check(vk_anykey)) {
-	fadetoroom(rm_mainmenu,60,c_white);
+	fadetoroom(rm_mainmenu,30,color_purple);
 }
 
 if (timer >= max_time) {

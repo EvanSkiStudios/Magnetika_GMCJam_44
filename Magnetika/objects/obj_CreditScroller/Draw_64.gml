@@ -3,7 +3,7 @@
 
 draw_set_font(C64ProMono);
 draw_set_halign(fa_center);
-draw_set_color(text_color);
+draw_set_color(c_white);
 
 line_position = 0;
 
@@ -15,7 +15,7 @@ line_position += display_get_gui_height() * .5;
 for (var i = 0; i < array_length(credits); i++) {
 	var line = credits[i];
 	
-	draw_text_color(display_get_gui_width() / 2, scroll_position + line_position, line, c_white, c_white, c_purple, c_purple,1);
+	draw_text_color(display_get_gui_width() / 2, scroll_position + line_position, line, c_white, c_white, color_purple, color_purple,1);
 	line_position += line_spacing;
 };
 
@@ -26,5 +26,8 @@ if (scroll) {
 //End of credits reached
 if (scroll_position <= 0 - total_height) {
 	//scroll_position = display_get_gui_height();//start over, or...
-	fadetoroom(rm_mainmenu,60,c_purple);
+	fadetoroom(rm_mainmenu,30,color_purple);
 }
+
+draw_set_font(-1);
+draw_set_halign(fa_left);
