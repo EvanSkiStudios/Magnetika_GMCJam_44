@@ -15,6 +15,7 @@ switch (state) {
 			}
 		}
 		
+		fhAudioSoundPlay(SND_LEVEL_IN);
 		state = LEVEL_STATES.floor_pieces_enter;
 	}
 	
@@ -41,7 +42,6 @@ switch (state) {
 	break;
 	
 	case LEVEL_STATES.outro:
-	
 	var alldone = true;
 		with (obj_floor) {
 			if (!movement_complete) {

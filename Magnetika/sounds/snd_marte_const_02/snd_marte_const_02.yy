@@ -14,8 +14,8 @@
   "soundFile": "snd_marte_const_02.ogg",
   "duration": 0.230181,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "marte",
+    "path": "folders/Sounds/SFX/marte.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_marte_const_02",

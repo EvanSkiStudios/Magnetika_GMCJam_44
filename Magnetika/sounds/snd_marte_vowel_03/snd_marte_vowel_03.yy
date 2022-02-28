@@ -15,7 +15,7 @@
   "duration": 0.214263,
   "parent": {
     "name": "unused",
-    "path": "folders/Sounds/SFX/unused.yy",
+    "path": "folders/Sounds/SFX/marte/unused.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_marte_vowel_03",

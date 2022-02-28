@@ -14,8 +14,8 @@
   "soundFile": "snd_marte_vowel_02.ogg",
   "duration": 0.212857,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "marte",
+    "path": "folders/Sounds/SFX/marte.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_marte_vowel_02",

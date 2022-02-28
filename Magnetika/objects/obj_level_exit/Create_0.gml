@@ -32,6 +32,7 @@ do_level_exit = function () {
 	} 
 	
 	with (obj_level_main) {
+		fhAudioSoundPlay(SND_LEVEL_OUT);
 		state = LEVEL_STATES.outro;	
 	}
 	
