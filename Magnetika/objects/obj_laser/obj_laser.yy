@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_immovable",
-    "path": "objects/obj_immovable/obj_immovable.yy",
+    "name": "obj_moveable",
+    "path": "objects/obj_moveable/obj_moveable.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -31,7 +31,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Objects",
-    "path": "folders/Tile_System/PatsFolder/Objects.yy",
+    "path": "folders/PatsFolder/Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_laser",

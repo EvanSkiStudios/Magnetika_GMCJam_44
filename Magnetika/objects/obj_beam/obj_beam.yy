@@ -29,7 +29,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Objects",
-    "path": "folders/Tile_System/PatsFolder/Objects.yy",
+    "path": "folders/PatsFolder/Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_beam",

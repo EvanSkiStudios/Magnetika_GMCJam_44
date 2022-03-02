@@ -21,7 +21,7 @@ laser_length = 0;
 max_beam_count = room_width / global.tile_width;
 
 laser_offset = [];
-laser_offset_right = [0,-12];
+laser_offset_right = [32,-12];
 laser_offset_down = [15,0];
 laser_offset_left = [0,-12];
 laser_offset_up = [15,-6];
@@ -71,6 +71,8 @@ get_laser_points = function () {
 	var test_position = current_tile_pos;
 	var offset = [0, 0];
 	
+	var horizontal = true;
+	
 	switch (aim_direction) {
 		
 		case LASER_DIRECTIONS.RIGHT:
@@ -82,7 +84,7 @@ get_laser_points = function () {
 			offset[1] = 1;
 			laser_offset = laser_offset_down;
 			laser_offset_end = laser_offset_down_end;
-			
+			horizontal = false;
 		break;
 		case LASER_DIRECTIONS.LEFT:
 			offset[0] = -1;
@@ -93,6 +95,7 @@ get_laser_points = function () {
 			offset[1] = -1;
 			laser_offset = laser_offset_up;
 			laser_offset_end = laser_offset_up_end;
+			horizontal = false;
 		break;
 	}
 	
@@ -105,8 +108,8 @@ get_laser_points = function () {
 		test_position[0] += offset[0];
 		test_position[1] += offset[1];
 		
-		beam_list[laser_length].x2 = test_position[0] * global.tile_width;
-		beam_list[laser_length].y2 = test_position[1] * global.tile_height;
+		beam_list[laser_length].x2 = (test_position[0] * global.tile_width);
+		beam_list[laser_length].y2 = (test_position[1] * global.tile_height);
 		
 		if (test_position[0] >= 0 && test_position[0] < room_width / global.tile_width && test_position[1] >= 0 && test_position[1] < room_height / global.tile_height) {
 				for (var i = 0; i < len; i++) {
@@ -114,9 +117,15 @@ get_laser_points = function () {
 					if (a_moveable != -1) {
 						if (a_moveable.current_tile_pos[0] == test_position[0] && a_moveable.current_tile_pos[1] == test_position[1]) {
 							//test_position[0] += offset[0] * .25;
-							//test_position[1] += offset[1] * .25;
-							beam_list[laser_length].x2 = a_moveable.x + 16;
-							beam_list[laser_length].y2 = a_moveable.true_y + 16;
+						
+							if (horizontal) {
+								beam_list[laser_length].x2 = a_moveable.x + 16; 
+								beam_list[laser_length].y2 += 16;
+							} else {
+								beam_list[laser_length].y2 = a_moveable.true_y + 16;
+								beam_list[laser_length].x2 += 16;
+							}
+						
 							//array_push(laser_points, [a_moveable.x + 16, a_moveable.y + 16]);
 							laser_length++;
 							blocked = true;
@@ -126,7 +135,7 @@ get_laser_points = function () {
 					}
 				}
 				//show_debug_message("LASER ADD POS:" + string(test_position[0]) + "," + string(test_position[1]));
-				array_push(laser_points, [test_position[0], test_position[1]]);
+				//array_push(laser_points, [test_position[0], test_position[1]]);
 				laser_length++;
 				
 			//TEST IF HIT GIRL

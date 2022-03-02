@@ -1,3 +1,5 @@
+gml_pragma("forceinline");
+
 global.tile_width = 32;
 global.tile_height = 16;
 global.floor_objects = [];
@@ -23,7 +25,7 @@ enum TILE_DATA {
 }
 
 function init_level(){
-	
+	gml_pragma("forceinline");
 	global.floor_objects = [];
 	global.moveable_objects = [];
 	global.laser_objects = [];
@@ -173,9 +175,11 @@ function init_level(){
 
 	
 	//FLOOR GENERATION
-		for (var j = 0; j < room_height / global.tile_height; j++) {
+	var _v = (room_height / global.tile_height);
+	var _u = (room_width / global.tile_width);
+		for (var j = 0; j < _v; ++j) {
 			
-			for (var i = 0; i < room_width / global.tile_width; i++) {
+			for (var i = 0; i < _u; ++i) {
 			
 			var data = tilemap_get(global.map_id, i, j);
 			
@@ -277,8 +281,9 @@ function notify_room_intro_complete() {
 	global.level_intro_done = true;
 	if (instance_exists(obj_girl)) {
 		obj_girl.state = GIRL_STATES.idle;
-	}	
-	for (var i = 0; i < array_length(global.laser_objects); i++) {
+	}
+	var array_len_laser = array_length(global.laser_objects);
+	for (var i = 0; i < array_len_laser; i++) {
 		var laser = global.laser_objects[i];
 		laser.power_on();
 	}
@@ -298,10 +303,10 @@ function notify_box_lost() {
 }
 
 function get_floor_at(_tile_x, _tile_y) {
-	
+	gml_pragma("forceinline");
 	var len = array_length(global.floor_objects);
 	
-	for (var i = 0; i < len; i++) {
+	for (var i = 0; i < len; ++i) {
 			var a_floor = global.floor_objects[i];
 			if (a_floor.current_tile_pos[0] == _tile_x && a_floor.current_tile_pos[1] == _tile_y) {
 			return a_floor;	
@@ -312,10 +317,10 @@ function get_floor_at(_tile_x, _tile_y) {
 }
 
 function get_moveable_at(_tile_x, _tile_y) {
-	
+	gml_pragma("forceinline");
 	var len = array_length(global.moveable_objects);
 	
-	for (var i = 0; i < len; i++) {
+	for (var i = 0; i < len; ++i) {
 			var a_floor = global.moveable_objects[i];
 			if (a_floor.current_tile_pos[0] == _tile_x && a_floor.current_tile_pos[1] == _tile_y) {
 			return a_floor;	
@@ -326,10 +331,10 @@ function get_moveable_at(_tile_x, _tile_y) {
 }
 
 function get_laser_at(_tile_x, _tile_y) {
-	
+	gml_pragma("forceinline");
 	var len = array_length(global.laser_objects);
 	
-	for (var i = 0; i < len; i++) {
+	for (var i = 0; i < len; ++i) {
 			var a_laser = global.laser_objects[i];
 			if (a_laser.current_tile_pos[0] == _tile_x && a_laser.current_tile_pos[1] == _tile_y) {
 			return a_laser;	
@@ -340,7 +345,7 @@ function get_laser_at(_tile_x, _tile_y) {
 }
 
 function get_floor_circular_arrays(_tile_x, _tile_y) {
-	
+	gml_pragma("forceinline");
 	current_x_min = _tile_x - 1;
 	current_x_max = _tile_x + 1;
 	current_y_min = _tile_y - 1;
@@ -352,14 +357,14 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 		
 		var this_group = [];
 		
-		for (var i = current_x_min; i <= current_x_max; i++) {
+		for (var i = current_x_min; i <= current_x_max; ++i) {
 			
-			for (var j = current_y_min; j <= current_y_max; j++) {
+			for (var j = current_y_min; j <= current_y_max; ++j) {
 				
 				//FIND A FLOOR
 				var a_floor = get_floor_at(i, j);
 							
-					if (i >= 0 && i <= room_width / global.tile_width && j >= 0 && j <= room_height / global.tile_height) {
+					if ( (i >= 0) && (i <= room_width / global.tile_width) && (j >= 0) && (j <= room_height / global.tile_height) ) {
 		
 						var a_laser = get_laser_at(i, j);
 						if (a_laser.current_tile_pos[0] == i && a_laser.current_tile_pos[1] == j) {
@@ -374,10 +379,6 @@ function get_floor_circular_arrays(_tile_x, _tile_y) {
 						if (a_moveable.current_tile_pos[0] == i && a_moveable.current_tile_pos[1] == j) {
 							array_push(this_group, a_moveable);
 						}
-						
-						
-						
-						
 				}
 			}
 		}
