@@ -1,6 +1,9 @@
 {
   "resources": [
     {"id":{"name":"test_save_load","path":"scripts/test_save_load/test_save_load.yy",},"order":0,},
+    {"id":{"name":"Script2","path":"scripts/Script2/Script2.yy",},"order":1,},
+    {"id":{"name":"obj_inst_name_to_get_here_yeah","path":"objects/obj_inst_name_to_get_here_yeah/obj_inst_name_to_get_here_yeah.yy",},"order":1,},
+    {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
@@ -48,9 +51,9 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.1.1.610",
+    "IDEVersion": "2022.2.0.614",
   },
-  "resourceVersion": "1.4",
+  "resourceVersion": "1.5",
   "name": "Magnetika_testing",
   "tags": [],
   "resourceType": "GMProject",
