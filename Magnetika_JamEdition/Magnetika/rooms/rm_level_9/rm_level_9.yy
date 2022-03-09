@@ -23,7 +23,7 @@
         {"properties":[
             {"propertyId":{"name":"time_off","path":"objects/obj_icon_laser/obj_icon_laser.yy",},"objectId":{"name":"obj_icon_laser","path":"objects/obj_icon_laser/obj_icon_laser.yy",},"value":"0","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_icon_laser","path":"objects/obj_icon_laser/obj_icon_laser.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":160.0,"y":192.0,"resourceVersion":"1.0","name":"inst_607F6FFC","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_icon_block","path":"objects/obj_icon_block/obj_icon_block.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":224.0,"y":144.0,"resourceVersion":"1.0","name":"inst_4309F106","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_icon_block","path":"objects/obj_icon_block/obj_icon_block.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":224.0,"y":128.0,"resourceVersion":"1.0","name":"inst_4309F106","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_icon_block","path":"objects/obj_icon_block/obj_icon_block.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":256.0,"y":208.0,"resourceVersion":"1.0","name":"inst_34B60BD6","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":16,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Event_Layer","tags":[],"resourceType":"GMRInstanceLayer",},
     {"tilesetId":{"name":"ts_editor","path":"tilesets/ts_editor/ts_editor.yy",},"x":0,"y":0,"tiles":{"SerialiseWidth":25,"SerialiseHeight":25,"TileSerialiseData":[
@@ -35,7 +35,7 @@
 2147483648,2,5,8,2147483648,2147483648,2147483648,2147483648,0,0,0,0,0,0,0,2147483648,9,7,4,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
-2147483648,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
+2147483648,3,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,2147483648,0,0,0,0,1,0,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
@@ -43,7 +43,7 @@
 2147483648,3,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,2147483648,0,0,0,1,1,1,0,0,0,0,2147483648,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,3,0,0,2147483648,0,0,0,1,1,1,0,0,0,2147483648,2147483648,0,0,3,0,0,2147483648,2147483648,2147483648,2147483648,
-2147483648,7,4,0,2147483648,2147483648,2147483648,2147483648,1,1,1,0,0,0,2147483648,2147483648,0,2,5,0,0,2147483648,2147483648,2147483648,2147483648,
+2147483648,7,4,0,2147483648,2147483648,2147483648,0,1,1,1,0,0,0,2147483648,2147483648,0,2,5,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,9,7,4,0,0,0,0,0,0,0,0,0,0,0,0,2,5,8,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,0,9,7,3,3,3,3,3,3,3,3,3,3,3,3,5,8,0,0,0,2147483648,2147483648,2147483648,2147483648,
 2147483648,2147483648,2147483648,9,6,6,6,6,6,6,6,6,6,6,6,6,8,0,0,0,0,2147483648,2147483648,2147483648,2147483648,

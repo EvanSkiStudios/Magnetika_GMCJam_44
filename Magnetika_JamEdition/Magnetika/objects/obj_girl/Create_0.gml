@@ -12,7 +12,7 @@ fire = false;
 
 instance_create_layer(40, 40, "Event_Layer", obj_arrow);
 instance_create_layer(40, 40, "Event_Layer", obj_energy_field);
-gun = instance_create_layer(40, 40, "Event_Layer", obj_gun);
+instance_create_layer(40, 40, "Event_Layer", obj_gun);
 potential_moveable_piece = -1;
 
 dip_current = 0;
@@ -128,6 +128,11 @@ get_potential_piece = function (dir) {
 		//check movable pieces
 		if (check_position[0] >= 0 && check_position[0] <= room_width / global.tile_width && check_position[1] >= 0 && check_position[1] <= room_height / global.tile_height) {
 			
+			var laser = get_laser_at(check_position[0], check_position[1]);
+			if (laser != -1) {
+				blocked = true;
+			}
+			
 			//check for moveable piece
 			var movable_piece = get_moveable_at(check_position[0], check_position[1]);
 			if (movable_piece != -1) {
@@ -177,12 +182,19 @@ shoot_gun = function (dir) {
 		//check movable pieces
 		if (check_position[0] >= 0 && check_position[0] <= room_width / global.tile_width && check_position[1] >= 0 && check_position[1] <= room_height / global.tile_height) {
 			
+			var laser = get_laser_at(check_position[0], check_position[1]);
+			if (laser != -1) {
+				blocked = true;
+				continue;
+			}
+			
 			//check for moveable piece
 			var movable_piece = get_moveable_at(check_position[0], check_position[1]);
 			if (movable_piece != -1) {
 				state = GIRL_STATES.activated_gun;
-				show_debug_message("FOUND PIECE. GUN ACTIVATED");
+				//show_debug_message("FOUND PIECE. GUN ACTIVATED");
 				current_moveable_piece = movable_piece;
+				current_moveable_piece.notify_picked_up();
 				audio_play_sound(snd_gun_on, 1, 0);
 				return;
 			}
@@ -199,19 +211,21 @@ shoot_gun = function (dir) {
 
 /// @function is_moveable_blocking();
 is_moveable_blocking = function () {
-	var len = array_length(global.moveable_objects);
-	for (var i = 0; i < len; i++) {
-		var a_box = global.moveable_objects[i];
-		if (a_box.current_tile_pos[0] == test_tile_x && a_box.current_tile_pos[1] == test_tile_y) {
-			return true;
-		}
+	//CHECK MOVEABLES
+	var block = global.moveable_objects[test_tile_x][test_tile_y];
+	if (block != -1) {
+		return true;
 	}
-	var len2 = array_length(global.laser_objects);
-	for (var i = 0; i < len2; i++) {
-		var a_laser = global.laser_objects[i];
-		if (a_laser.current_tile_pos[0] == test_tile_x && a_laser.current_tile_pos[1] == test_tile_y) {
-			return true;
-		}
+	//CHECK LASER OBJECTS
+	var laser = global.laser_objects[test_tile_x][test_tile_y];
+	if (laser != -1) {
+		return true;
+	}
+	
+	//CHECK LASER SWITCH OBJECTS
+	var laser_switch = global.laser_switch_objects[test_tile_x][test_tile_y];
+	if (laser_switch != -1) {
+		return true;
 	}
 	return false;
 }
@@ -252,7 +266,9 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y) && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-					current_moveable_piece._x -= global.tile_width;
+					//current_moveable_piece._x -= global.tile_width;
+					//global.moveable_objects[current_moveable_piece.current_tile_pos[0]][current_moveable_piece.current_tile_pos[1]] = -1;
+					current_moveable_piece.move(TILE_DIRECTIONS.LEFT);
 					if (facing_dir == TILE_DIRECTIONS.LEFT) {
 						gun_anim_speed = 1;	
 					} else if (facing_dir == TILE_DIRECTIONS.RIGHT) {
@@ -268,7 +284,9 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-						current_moveable_piece._x += global.tile_width;
+						//current_moveable_piece._x += global.tile_width;
+						//global.moveable_objects[current_moveable_piece.current_tile_pos[0]][current_moveable_piece.current_tile_pos[1]] = -1;
+						current_moveable_piece.move(TILE_DIRECTIONS.RIGHT);
 						if (facing_dir == TILE_DIRECTIONS.RIGHT) {
 							gun_anim_speed = 1;	
 						} else if (facing_dir == TILE_DIRECTIONS.LEFT) {
@@ -286,7 +304,9 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-						current_moveable_piece._y -= global.tile_height;
+						current_moveable_piece.move(TILE_DIRECTIONS.UP);
+						//current_moveable_piece._y -= global.tile_height;
+						//global.moveable_objects[current_moveable_piece.current_tile_pos[0]][current_moveable_piece.current_tile_pos[1]] = -1;
 						if (facing_dir == TILE_DIRECTIONS.UP) {
 						gun_anim_speed = 1;	
 					} else if (facing_dir == TILE_DIRECTIONS.DOWN) {
@@ -300,7 +320,9 @@ control_moveable_piece = function () {
 			if ((girl_tile_x != test_tile_x || girl_tile_y != test_tile_y)  && !blocking) {
 				var data = tilemap_get(global.map_id, test_tile_x, test_tile_y);
 				if (data == 1) {
-					current_moveable_piece._y += global.tile_height;
+					//current_moveable_piece._y += global.tile_height;
+					//global.moveable_objects[current_moveable_piece.current_tile_pos[0]][current_moveable_piece.current_tile_pos[1]] = -1;
+					current_moveable_piece.move(TILE_DIRECTIONS.DOWN);
 					if (facing_dir == TILE_DIRECTIONS.DOWN) {
 						gun_anim_speed = 1;	
 					} else if (facing_dir == TILE_DIRECTIONS.UP) {
@@ -311,7 +333,7 @@ control_moveable_piece = function () {
 			}
 		}
 	}
-	current_moveable_piece.update_tile_position();
+	//current_moveable_piece.update_tile_position();
 	//y, _y - hover_dist + dip_current
 	if (!current_moveable_piece.travel_complete) {
 		gun_sprite = gun_energy_sprite;
@@ -324,7 +346,7 @@ control_moveable_piece = function () {
 
 /// @function deactivate_gun();
 deactivate_gun = function () {
-	show_debug_message("GUN DEACTIVATED");
+	//show_debug_message("GUN DEACTIVATED");
 	audio_stop_sound(snd_gun_on);
 	audio_play_sound(snd_gun_off, 1, 0);
 	current_moveable_piece.floating = false;
@@ -379,11 +401,13 @@ run = function (dir) {
 	
 	gun_sprite = gun_neutral_sprite;
 	
+	/*
 	with (obj_floor_switch) {
 		if (obj_girl.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_tile_pos[1] == current_tile_pos[1]) {
 			activate_switch();
 		}
 	}
+	*/
 	
 	with (obj_level_exit) {
 		
@@ -417,38 +441,34 @@ get_input = function () {
 	down_pressed = false;
 	fire_pressed = false;
 	
-	if ( !(global.GAME_IS_PAUSED) && !(instance_exists(obj_ETW_Dialog_Typewriter)) ){
+	if (keyboard_check(vk_space)) {
+		fire = true;	
+	}
+	if (keyboard_check_pressed(vk_space)) {
+		fire_pressed = true;
+	}
 	
-		if ( fhInputActionCheckDown(FHINPUTACTION_Activate) || fhInputActionCheckDown(FHINPUTACTION_ActivateAlt) || fhInputActionCheckDown(FHINPUTACTION_ActivateAltLH) ) {
-			fire = true;	
-		}
-		if ( fhInputActionCheckPressed(FHINPUTACTION_Activate) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAlt) || fhInputActionCheckPressed(FHINPUTACTION_ActivateAltLH) )  {
-			fire_pressed = true;
-		}
+	if (keyboard_check(vk_left)) {
+		left = true;	
+	} else if (keyboard_check(vk_right)) {
+		right = true;
+	}
 	
-		if ( fhInputActionCheckDown(FHINPUTACTION_Left)) {
-			left = true;	
-		} else if ( fhInputActionCheckDown(FHINPUTACTION_Right)) {
-			right = true;
-		}
+	if (keyboard_check_pressed(vk_left)) {
+		left_pressed = true;	
+	} else if (keyboard_check_pressed(vk_right)) {
+		right_pressed = true;
+	}
 	
-		if ( fhInputActionCheckPressed(FHINPUTACTION_Left)) {
-			left_pressed = true;	
-		} else if ( fhInputActionCheckPressed(FHINPUTACTION_Right)) {
-			right_pressed = true;
-		}
-	
-		if ( fhInputActionCheckDown(FHINPUTACTION_Up)) {
-			up = true;	
-		} else if ( fhInputActionCheckDown(FHINPUTACTION_Down)) {
-			down = true;
-		}
-		if ( fhInputActionCheckPressed(FHINPUTACTION_Up)) {
-			up_pressed = true;	
-		} else if ( fhInputActionCheckPressed(FHINPUTACTION_Down)) {
-			down_pressed = true;
-		}
-	
+	if (keyboard_check(vk_up)) {
+		up = true;	
+	} else if (keyboard_check(vk_down)) {
+		down = true;
+	}
+	if (keyboard_check_pressed(vk_up)) {
+		up_pressed = true;	
+	} else if (keyboard_check_pressed(vk_down)) {
+		down_pressed = true;
 	}
 }
 
@@ -491,18 +511,33 @@ check_tile = function (dir) {
 	}
 	
 	potential_tile = [floor (current_pos[0] / global.tile_width), floor(current_pos[1] / global.tile_height)];
+	var _x = potential_tile[0];
+	var _y = potential_tile[1];
 	
 	//CHECK FOR BLOCKING OBJECTS
+	/*
 	if (instance_exists(obj_moveable)) {
 		with (obj_moveable) {
 			if (current_tile_pos[0] == other.potential_tile[0] && current_tile_pos[1] == other.potential_tile[1]) {
 				return false;
 			}
 		}
+	}*/
+	
+	var moveable = get_moveable_at(_x, _y);
+	if (moveable != -1) {
+		return false;	
 	}
 	
-	var _x = potential_tile[0];
-	var _y = potential_tile[1];
+	var laser = get_laser_at(_x, _y);
+	if (laser != -1) {
+		return false;	
+	}
+	
+	var laser_switch = get_laser_switch_at(_x, _y);
+	if (laser_switch != -1) {
+		return false;	
+	}
 	
 	if ((_x < 0) || (_x > (room_width / global.tile_width)) || (_y < 0) || (_y > (room_height / global.tile_height))) {
 		return false;	

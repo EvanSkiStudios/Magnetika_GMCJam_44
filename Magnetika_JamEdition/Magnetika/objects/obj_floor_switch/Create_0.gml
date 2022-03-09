@@ -1,26 +1,34 @@
 event_inherited();
 
-switch_id = 0;
-floor_entry_delay = 0;
-floor_num = -1;
-is_toggle = false;
-is_pressure = false;
-pressure_applied = false;
+switch_delay = 0;
+switch_type = SWITCH_TYPES.ONE_SHOT;
 
 image_speed = 0;
 image_index = 0;
 
 switch_activated = false;
 
-floors = [];
+switchables_list = [];
+switchables = [];
+current_switch_id = -1;
 switch_color = c_green;
 
-/// @function get_switch_at(_tile_x, _tile_y);
-get_switch_at = function (_tile_x, _tile_y) {
-	if (current_tile_pos[0] == _tile_x && current_tile_pos[1] == _tile_y) {
-		return true;	
-	}
-	return false;
+interval_timer = 0;
+interval_time_on = 3 * room_speed;
+interval_time_off = 3 * room_speed;
+
+button_invisible = false;
+
+enum SWITCH_TYPES {
+	TOGGLE,
+	PRESSURE,
+	ONE_SHOT,
+	INTERVAL
+}
+
+/// @function is_switch_at(_tile_x, _tile_y);
+is_switch_at = function (_tile_x, _tile_y) {
+	return current_tile_pos[0] == _tile_x && current_tile_pos[1] == _tile_y;
 }
 
 /// @function girl_standing();
@@ -30,41 +38,27 @@ girl_standing = function () {
 
 /// @function pressed_by_moveable();
 pressed_by_moveable = function () {
-	var pressed = false;
-	var len = array_length(global.moveable_objects);
-	for (var i = 0; i < len; i++) {
-		var b = global.moveable_objects[i];
-		//show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
-		//show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
-		//show_debug_message("MOVEABLE " + string(i) + " POSITION:" + string(b.current_tile_pos[0]) + "," + string(b.current_tile_pos[1]));
-		
-		if (b.current_tile_pos[0] == current_tile_pos[0] && b.current_tile_pos[1] == current_tile_pos[1]) {
-			if (obj_girl.current_moveable_piece != -1 && obj_girl.current_moveable_piece.current_tile_pos[0] == current_tile_pos[0] && obj_girl.current_moveable_piece.current_tile_pos[1] == current_tile_pos[1]) {
-				if (!obj_girl.current_moveable_piece.floating) {
-					return true;	
-				}
-			} else {
-				//show_debug_message("MOVEABLE OBJECT COUNT:" + string(len));
-				//show_debug_message("SWITCH POSITION:" + string(current_tile_pos[0]) + "," + string(current_tile_pos[1]));
-				return true;
-			}
+	var b = global.moveable_objects[current_tile_pos[0], current_tile_pos[1]];
+	if (b != -1) {
+		if (!b.floating) {
+			return true;	
 		}
 	}
-	return pressed;
+	return false;
 }
 
-/// @function floors_ready();;
-floors_ready = function() {
+/// @function switchables_ready();;
+switchables_ready = function() {
 	var all_ready = true;
-	var len = array_length(floors);
+	var len = array_length(switchables);
 	for (var i = 0; i < len; i++) {
-		var a_floor = floors[i];
-		if (!a_floor.movement_complete) {
+		var a_switchable = switchables[i];
+		if (!a_switchable.switch_completed) {
 			all_ready = false;	
 		}
 	}
 	if (all_ready == true) {
-		show_debug_message("SWITCH ALL FLOORS READY!");	
+		//show_debug_message("SWITCH ALL SWITCHABLES READY!");	
 	}
 	return all_ready;
 }
@@ -72,58 +66,60 @@ floors_ready = function() {
 /// @function activate_switch();
 activate_switch = function () {
 	if (!switch_activated) {
-		//show_debug_message("SWITCH ACTIVATED!");
-		if (floors_ready()) {
+		if (switchables_ready()) {
+			//show_debug_message("SWITCH ACTIVATED!");
 			image_index = 1;
 			switch_activated = true;
-			toggle_floors(floor_list, floor_entry_delay);
+			toggle_switches();
 		}
 	}
 }
+
+
 /// @function deactivate_switch();
 deactivate_switch = function() {
 	if (switch_activated) {
-		//show_debug_message("SWITCH DEACTIVATED!");
-		if (floors_ready()) {
+		if (switchables_ready()) {
+			//show_debug_message("SWITCH DEACTIVATED!");
 			image_index = 0;
 			switch_activated = false;
-			toggle_floors(floor_list, floor_entry_delay);
+			toggle_switches();
 		}
 	}
 }
 
-
-
-function toggle_floors (floor_list, _delay) {
+function toggle_switches () {
 		var this_delay = 0;
-		for (var i = 0; i < array_length(floors); i++) {
-			var a_floor = floors[i];
-			a_floor.movement_complete = false;
-			if (a_floor.state == FLOOR_STATES.idle) {
-				a_floor.deactivate(this_delay);
-			} else if (a_floor.state == FLOOR_STATES.standby) {
-				a_floor.do_intro(this_delay);
+		for (var i = 0; i < array_length(switchables); i++) {
+			var a_switchable = switchables[i];
+			if (a_switchable.switch_activated) {
+				a_switchable.deactivate(this_delay);
+			} else {
+				a_switchable.activate(this_delay);
 			}
-		this_delay += _delay;
+			
+		this_delay += switch_delay;
 	}
 }
 
-///@function init_floors
-init_floors = function () {
-	show_debug_message("INIT_FLOORS()");
-	for (var i = 0; i < array_length(floor_list); i++) {
-		with (obj_icon_hidden_floor) {
-			var _tile_x = x / global.tile_width;
-			var _tile_y = y / global.tile_height;
-			
-			if (floor_id == other.floor_list[i]) {
-				other.insert_floor(get_floor_at(_tile_x, _tile_y));
+
+///@function init_switchables
+init_switchables = function () {
+	show_debug_message("init_switchables()");
+	var len = array_length(switchables_list);
+	for (var i = 0; i < len; i++) {
+		current_switch_id = switchables_list[i];
+		with (obj_switchable) {
+			if (switch_id == other.current_switch_id) {
+				other.insert_switchable(id);	
 			}
 		}
 	}
 }
 
-insert_floor = function (_floor) {
-	show_debug_message("INSERTING FLOOR: " + string(_floor.floor_id))
-	array_push(floors, _floor);	
+
+insert_switchable = function (_switchable) {
+	show_debug_message("INSERTING SWITCHABLE: " + string(_switchable.switch_id))
+	array_push(switchables, _switchable);	
 }
+

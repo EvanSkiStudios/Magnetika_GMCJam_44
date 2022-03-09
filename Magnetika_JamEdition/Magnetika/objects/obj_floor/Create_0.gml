@@ -1,9 +1,8 @@
-floor_id = -1;
+event_inherited()
 dip_height = 2;
 dip_current = 0;
 hover_dist = 0;
 true_y = y;
-timer = 0;
 delay = 1 * room_speed;
 
 fall_speed = 0;
@@ -44,17 +43,12 @@ enum FLOOR_STATES {
 
 state = FLOOR_STATES.standby;
 
-update_tile_position = function () {
-	current_tile_pos[0] = floor(_x / global.tile_width);
-	current_tile_pos[1] = floor(_y / global.tile_height);
-}
-
 /// @function set_delay(_delay);
 set_delay = function (_delay) {
 	//show_debug_message ("set_delay:" + string(_delay));
 	delay = _delay * room_speed;	
 	if (current_tile_pos[0] == 8 && current_tile_pos[1] == 10) {
-		show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
+		//show_debug_message("floor:" + string(id) + "set_delay(), timer:" + string(timer) + ", delay:" + string(delay));
 	}
 }
 
@@ -84,10 +78,18 @@ do_outro = function (_delay) {
 
 }
 
+activate = function (_delay) {
+	switch_activated = true;
+	switch_completed = false;
+	do_intro(_delay);
+}
+
 ///@function deactivate();
 deactivate = function (_delay) {
 	fall_speed = 0;
+	switch_activated = false;
 	movement_complete = false;
+	switch_completed = false;
 	set_delay(_delay);
 	timer = 0;
 	//tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);

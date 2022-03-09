@@ -1,11 +1,9 @@
 depth = -_y;
 
 //TEST ONLY
-/*
 if (keyboard_check_pressed( ord("R"))) {
-	room_restart();	
+	//room_restart();	
 }
-*/
 
 obj_gun.sprite_index = gun_sprite;
 obj_gun.image_xscale = image_xscale;
@@ -52,7 +50,7 @@ switch (state) {
 		
 		if (fire_pressed) {
 			gun_sprite = gun_neutral_sprite;
-			shoot_gun(facing_dir);	
+			shoot_gun(facing_dir);
 		}
 		
 		sprite_index = stand_sprite;
@@ -135,7 +133,7 @@ switch (state) {
 	case GIRL_STATES.room_intro:
 	
 		x = _x;
-		y = lerp(y, _y, .25);
+		y = lerp(y, _y, .2);
 	
 	break;
 	
@@ -176,7 +174,7 @@ switch (state) {
 				audio_stop_sound(snd_laser_loop);
 				global.playing_laser_hum = false;
 			}
-			girl_death_reset();
+			room_restart();
 		}
 	break;
 }

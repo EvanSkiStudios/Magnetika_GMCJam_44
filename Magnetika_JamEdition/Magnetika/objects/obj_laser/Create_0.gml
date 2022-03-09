@@ -4,7 +4,9 @@ image_index = 0;
 
 time_on = .5 * room_speed;
 time_off = .5 * room_speed;
-timer = 0;
+
+switch_time = 0;
+switch_delay = 0;
 
 laser_calc_timer = 0;
 laser_calc_time = .05 * room_speed;
@@ -12,13 +14,10 @@ laser_calc_time = .05 * room_speed;
 aim_direction = LASER_DIRECTIONS.RIGHT;
 powered_on = true;
 laser_on = false;
-
+shadow_on = true;
 laser_state = LASER_STATES.powered_off;
 
-laser_points = [0,0];
 laser_length = 0;
-
-max_beam_count = room_width / global.tile_width;
 
 laser_offset = [];
 laser_offset_right = [32,-12];
@@ -33,12 +32,28 @@ laser_offset_down_end = [-1,-32];
 laser_offset_left_end = [11,-28];
 laser_offset_up_end = [-1,-10];
 
-//laser_offset_right_end = [16,-12];
-//laser_offset_down_end = [15,-16];
-//laser_offset_left_end = [18,-12];
-//laser_offset_up_end = [15,-6];
+laser_color = irandom_range(c_aqua, c_silver);
+turret_color = c_green;
 
 beam_list = [];
+
+switchable = false;
+off_at_start = false;
+
+hit_object = -1;
+
+turret_heat = 0;
+
+/// @function get_max_beam_count();
+/// @description returns the max number of laser segments to create
+get_max_beam_count = function () {
+	if (room_width > room_height) {
+		return room_width / global.tile_width;
+	} 
+	return room_height / global.tile_height;
+}
+
+max_beam_count = get_max_beam_count();
 
 for (var i = 0; i < max_beam_count; i++) {
 	var beam = instance_create_layer(0, 0, "Event_Layer", obj_beam);
@@ -55,113 +70,34 @@ enum LASER_DIRECTIONS {
 enum LASER_STATES {
 	powered_off,
 	powered_on,
+	powering_on,
+	powering_off,
 	off,
 	on,
 }
 
-
-get_laser_points = function () {
-	laser_points = [];
-	set_beams_on(false);
-	var c_random = irandom_range(c_aqua, c_silver);
-	set_beams_color(c_random);
-	laser_length = 0;
-	var blocked = false;
-	var len = array_length(global.moveable_objects);
-	var test_position = current_tile_pos;
-	var offset = [0, 0];
-	
-	var horizontal = true;
-	
-	switch (aim_direction) {
-		
-		case LASER_DIRECTIONS.RIGHT:
-			offset[0] = 1;
-			laser_offset = laser_offset_right;
-			laser_offset_end = laser_offset_right_end;
-		break;
-		case LASER_DIRECTIONS.DOWN:
-			offset[1] = 1;
-			laser_offset = laser_offset_down;
-			laser_offset_end = laser_offset_down_end;
-			horizontal = false;
-		break;
-		case LASER_DIRECTIONS.LEFT:
-			offset[0] = -1;
-			laser_offset = laser_offset_left;
-			laser_offset_end = laser_offset_left_end;
-		break;
-		case LASER_DIRECTIONS.UP:
-			offset[1] = -1;
-			laser_offset = laser_offset_up;
-			laser_offset_end = laser_offset_up_end;
-			horizontal = false;
-		break;
-	}
-	
-	
-	while(!blocked) {
-		
-		beam_list[laser_length].x1 = test_position[0] * global.tile_width;
-		beam_list[laser_length].y1 = test_position[1] * global.tile_height;
-		
-		test_position[0] += offset[0];
-		test_position[1] += offset[1];
-		
-		beam_list[laser_length].x2 = (test_position[0] * global.tile_width);
-		beam_list[laser_length].y2 = (test_position[1] * global.tile_height);
-		
-		if (test_position[0] >= 0 && test_position[0] < room_width / global.tile_width && test_position[1] >= 0 && test_position[1] < room_height / global.tile_height) {
-				for (var i = 0; i < len; i++) {
-					var a_moveable = global.moveable_objects[i];
-					if (a_moveable != -1) {
-						if (a_moveable.current_tile_pos[0] == test_position[0] && a_moveable.current_tile_pos[1] == test_position[1]) {
-							//test_position[0] += offset[0] * .25;
-						
-							if (horizontal) {
-								beam_list[laser_length].x2 = a_moveable.x + 16; 
-								beam_list[laser_length].y2 += 16;
-							} else {
-								beam_list[laser_length].y2 = a_moveable.true_y + 16;
-								beam_list[laser_length].x2 += 16;
-							}
-						
-							//array_push(laser_points, [a_moveable.x + 16, a_moveable.y + 16]);
-							laser_length++;
-							blocked = true;
-							show_debug_message("LASER BLOCKED");
-							return;
-						}
-					}
-				}
-				//show_debug_message("LASER ADD POS:" + string(test_position[0]) + "," + string(test_position[1]));
-				//array_push(laser_points, [test_position[0], test_position[1]]);
-				laser_length++;
-				
-			//TEST IF HIT GIRL
-			if (obj_girl.current_tile_pos[0] == test_position[0] && obj_girl.current_tile_pos[1] == test_position[1]) {
-				obj_girl.vaporize();
-				show_debug_message("GIRL VAPORIZED");
-			}
-		} else {
-			blocked = true;
-		}
-	}
-	//var lp =  [laser_points[0], laser_points[laser_length -1]];
-	//laser_points = lp;
-	//laser_length = 2;
-}
-
 /// @function set_beams_on(_on);
 set_beams_on = function (_on) {
+	for (var i = 0; i < max_beam_count; i++) {
+		var beam = beam_list[i];
+		beam.laser_on = false;
+	}
 	for (var i = 0; i < laser_length; i++) {
 		var beam = beam_list[i];
+		beam.laser_color = laser_color;
 		beam.laser_offset = laser_offset;
 		beam.laser_on = _on;
-		if (i == laser_length -1) {
+		if (beam.laser_on) beam.shadow_on = shadow_on;
+		if (i == laser_length -1) {//removed -1
 			beam.laser_offset_end = laser_offset_end;	
 		} else {
 			beam.laser_offset_end = laser_offset;	
+		}
+	}
+	if (!_on) {
+		if (hit_object != -1) {
+			hit_object.set_all_beams_off();
+			hit_object = -1;
 		}
 	}
 }
@@ -177,4 +113,63 @@ set_beams_color = function (_color) {
 /// @function power_on();
 power_on = function () {
 	laser_state = LASER_STATES.powered_on;
+}
+
+/// @function power_off();
+power_off = function () {
+	laser_state = LASER_STATES.powered_off;
+}
+
+activate = function (_delay) {
+	switch_activated = true;
+	switch_delay = _delay * room_speed;
+	switch_timer = 0;
+	laser_state = LASER_STATES.powering_on;
+}
+
+/// @function switch_deactivate();
+deactivate = function (_delay) {
+	switch_activated = false;
+	switch_delay = _delay * room_speed;
+	switch_timer = 0;
+	laser_state = LASER_STATES.powering_off;
+}
+
+/// @function kill_turret();
+kill_turret = function () {
+	set_beams_on(false);
+	global.laser_objects[current_tile_pos[0]][current_tile_pos[1]] = -1;
+	with (obj_floor_switch) {
+		var len = array_length(switchables) - 1;
+		for (var i = 0; i < len; i++) {
+			var laser = switchables[i];
+			if (laser == other.id) {
+				array_delete(switchables, i, 1);	
+			}
+		}
+	}
+	laser_on = false;
+	show_debug_message("TURRET DESTROYED");
+	var explo = instance_create_layer(x, y, "Event_Layer", obj_explosion);
+	explo.depth = depth;
+	stop_laser_sound();
+	instance_destroy();
+}
+
+/// @function stop_laser_sound();
+stop_laser_sound = function () {
+	var all_lasers_off = true;
+		if (obj_laser.laser_on) {
+				all_lasers_off = false;	
+		}
+		if (all_lasers_off) {
+			global.playing_laser_hum = false;
+			audio_stop_sound(snd_laser_loop);	
+		}
+			audio_play_sound(snd_laser_off, 1, false);	
+}
+
+/// @function draw_turret_color();
+draw_turret_color = function () {
+	draw_sprite_ext(spr_laser_color, image_index, x, y, 1, 1, 0, turret_color, 1);	
 }
