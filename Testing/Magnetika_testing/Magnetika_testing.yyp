@@ -1,9 +1,11 @@
 {
   "resources": [
+    {"id":{"name":"Save_CTRL","path":"objects/Save_CTRL/Save_CTRL.yy",},"order":0,},
     {"id":{"name":"test_save_load","path":"scripts/test_save_load/test_save_load.yy",},"order":0,},
     {"id":{"name":"Script2","path":"scripts/Script2/Script2.yy",},"order":1,},
-    {"id":{"name":"obj_inst_name_to_get_here_yeah","path":"objects/obj_inst_name_to_get_here_yeah/obj_inst_name_to_get_here_yeah.yy",},"order":1,},
-    {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},"order":0,},
+    {"id":{"name":"type_save","path":"objects/type_save/type_save.yy",},"order":1,},
+    {"id":{"name":"obj_inst_name_to_get_here_yeah","path":"objects/obj_inst_name_to_get_here_yeah/obj_inst_name_to_get_here_yeah.yy",},"order":3,},
+    {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},"order":2,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
@@ -51,7 +53,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.2.0.614",
+    "IDEVersion": "2022.2.1.618",
   },
   "resourceVersion": "1.5",
   "name": "Magnetika_testing",
