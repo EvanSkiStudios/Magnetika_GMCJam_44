@@ -17,5 +17,5 @@ enum LEVEL_STATES {
 
 init_level();
 init_level_create_bloom();
-init_create_level_text_drawer();
+//init_create_level_text_drawer();
 

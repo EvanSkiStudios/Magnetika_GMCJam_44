@@ -111,8 +111,8 @@ do_laser_hit = function (_laser_id, _dir) {
 			if (deflector_direction == DEFLECTOR_DIR.LEFT_UP) {
 				calculate_laser(switch_id, LASER_DIRECTIONS.LEFT);
 				was_hit = true;
-			} else if (deflector_direction == DEFLECTOR_DIR.LEFT_UP) {
-				calculate_laser(switch_id, LASER_DIRECTIONS.UP);
+			} else if (deflector_direction == DEFLECTOR_DIR.RIGHT_UP) {
+				calculate_laser(switch_id, LASER_DIRECTIONS.RIGHT);
 				was_hit = true;
 			}
 		
