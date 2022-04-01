@@ -336,7 +336,7 @@
     "name": "Sequences",
     "path": "folders/Sequences/Sequences.yy",
   },
-  "resourceVersion": "1.3",
+  "resourceVersion": "1.4",
   "name": "logo_sequence",
   "tags": [],
   "resourceType": "GMSequence",

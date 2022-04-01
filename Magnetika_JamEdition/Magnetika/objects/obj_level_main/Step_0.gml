@@ -27,6 +27,7 @@ switch (state) {
 		with (obj_floor) {
 			if (!movement_complete) {
 				alldone = false;
+				show_debug_message("not all done:" + string(switch_id));
 			}
 		}
 		if (alldone) {
@@ -47,6 +48,7 @@ switch (state) {
 		with (obj_floor) {
 			if (!movement_complete) {
 				alldone = false;
+				show_debug_message("not all done:" + string(switch_id));
 			}
 		}
 		if (alldone) {

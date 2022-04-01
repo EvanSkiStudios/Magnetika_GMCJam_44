@@ -110,7 +110,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_girl_run_down","path":"sprites/spr_girl_run_down/spr_girl_run_down.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_girl_run_down",
     "tags": [],
     "resourceType": "GMSequence",

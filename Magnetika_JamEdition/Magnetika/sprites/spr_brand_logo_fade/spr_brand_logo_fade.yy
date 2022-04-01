@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_brand_logo_fade","path":"sprites/spr_brand_logo_fade/spr_brand_logo_fade.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_brand_logo_fade",
     "tags": [],
     "resourceType": "GMSequence",

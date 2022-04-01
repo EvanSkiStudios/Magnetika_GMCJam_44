@@ -79,7 +79,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gun_energy_front","path":"sprites/spr_gun_energy_front/spr_gun_energy_front.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gun_energy_front",
     "tags": [],
     "resourceType": "GMSequence",

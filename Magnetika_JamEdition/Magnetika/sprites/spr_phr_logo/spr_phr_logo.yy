@@ -315,7 +315,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_phr_logo","path":"sprites/spr_phr_logo/spr_phr_logo.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_phr_logo",
     "tags": [],
     "resourceType": "GMSequence",

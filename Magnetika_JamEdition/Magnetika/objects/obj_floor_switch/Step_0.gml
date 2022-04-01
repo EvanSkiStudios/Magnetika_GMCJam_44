@@ -3,34 +3,42 @@ event_inherited();
 	switch (state) {
 		case FLOOR_STATES.idle:
 			
-			if (is_toggle) {
-				
+			if (switch_type == SWITCH_TYPES.TOGGLE) {
 				if (girl_standing() || pressed_by_moveable()) {
-					if (floors_ready()) {
-						activate_switch();
-					}
+					image_index = 1;
+					activate_switch();
 				} else {
-					if (floors_ready()) {
-						image_index = 0;
-						switch_activated = false;
-					}
+					switch_activated = false;
+					image_index = 0;
 				}
-	
-			} else if (is_pressure) {
-			
-			if (girl_standing() || pressed_by_moveable() ) {
-				image_index = 1;
-				activate_switch();	
-			} else {
-				image_index = 0;
-				deactivate_switch();	
-			}
-			
-			} else {
-				if (girl_standing() || pressed_by_moveable() && floors_ready()) {
+			} else if (switch_type == SWITCH_TYPES.PRESSURE) {
+				if (girl_standing() || pressed_by_moveable() ) {
+					image_index = 1;
+					activate_switch();	
+				} else {
+					image_index = 0;
+					deactivate_switch();	
+				}
+			} else if (switch_type == SWITCH_TYPES.ONE_SHOT) {
+				if (girl_standing() || pressed_by_moveable() && switchables_ready()) {
 					activate_switch();
 				} else if (!girl_standing() && !pressed_by_moveable()) {
 					image_index = 0;
+				}
+			} else if (switch_type == SWITCH_TYPES.INTERVAL) {
+				if (switchables_ready()) {
+					interval_timer++;
+					if (!switch_activated) {
+						if (interval_timer >= interval_time_off) {
+							interval_timer = 0;
+							activate_switch();
+						}
+					} else {
+						if (interval_timer >= interval_time_on) {
+							interval_timer = 0;
+							deactivate_switch();
+						}
+					}
 				}
 			}
 

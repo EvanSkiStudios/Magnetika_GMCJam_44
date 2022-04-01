@@ -99,7 +99,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_levels","path":"sprites/spr_levels/spr_levels.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_levels",
     "tags": [],
     "resourceType": "GMSequence",

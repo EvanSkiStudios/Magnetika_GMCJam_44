@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_floor_switch_floating","path":"sprites/spr_floor_switch_floating/spr_floor_switch_floating.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_floor_switch_floating",
     "tags": [],
     "resourceType": "GMSequence",

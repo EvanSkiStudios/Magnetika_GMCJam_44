@@ -103,7 +103,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_energy_field","path":"sprites/spr_energy_field/spr_energy_field.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_energy_field",
     "tags": [],
     "resourceType": "GMSequence",

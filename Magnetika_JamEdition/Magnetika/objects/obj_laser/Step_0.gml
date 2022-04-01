@@ -1,34 +1,29 @@
 event_inherited();
+depth = -(_y + 1);
+
+if (turret_heat >= 15) {
+	kill_turret();
+	return;
+}
 
 switch (laser_state) {
 	
 	case LASER_STATES.on:
-		//get_laser_points();
 		laser_calc_timer++;
 		if (laser_calc_timer >= laser_calc_time) {
 			laser_calc_timer = 0;
-			get_laser_points();	
+			calculate_laser(switch_id, aim_direction);	
 		}
 		laser_on = true;
+		laser_color = irandom_range(c_aqua, c_silver);
 		set_beams_on(true);
-		
-		
-		
 		
 		timer++;
 		if (timer >= time_on) {
 			timer = 0;
 			if (time_off > 0) {
 				laser_on = false;
-				var all_lasers_off = true;
-				if (obj_laser.laser_on) {
-					all_lasers_off = false;	
-				}
-				if (all_lasers_off) {
-					global.playing_laser_hum = false;
-					audio_stop_sound(snd_laser_loop);	
-				}
-				audio_play_sound(snd_laser_off, 1, false);
+				stop_laser_sound();
 				show_debug_message("LASER_POINTS LENGTH:" + string(laser_length));
 				show_debug_message("LASER OFF");
 				laser_state = LASER_STATES.off;
@@ -73,4 +68,19 @@ switch (laser_state) {
 				audio_play_sound(snd_laser_begin, 1, 0);
 		laser_state = LASER_STATES.on;
 	break;
+	
+	case LASER_STATES.powering_on:
+		switch_timer ++;
+		if (switch_timer >= switch_delay) {
+			power_on();
+		}
+	break;
+	case LASER_STATES.powering_off:
+		switch_timer ++;
+		if (switch_timer >= switch_delay) {
+			power_off();
+		}
+	break;
+	
+	
 }

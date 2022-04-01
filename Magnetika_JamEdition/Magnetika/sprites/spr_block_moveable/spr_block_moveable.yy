@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_block_moveable","path":"sprites/spr_block_moveable/spr_block_moveable.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_block_moveable",
     "tags": [],
     "resourceType": "GMSequence",

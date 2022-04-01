@@ -79,7 +79,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gun_neutral_front","path":"sprites/spr_gun_neutral_front/spr_gun_neutral_front.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gun_neutral_front",
     "tags": [],
     "resourceType": "GMSequence",

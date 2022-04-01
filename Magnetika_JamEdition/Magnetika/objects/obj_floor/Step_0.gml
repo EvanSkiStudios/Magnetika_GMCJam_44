@@ -1,3 +1,4 @@
+event_inherited();
 depth = -_y;
 
 switch (state) {
@@ -33,12 +34,16 @@ switch (state) {
 	
 	case FLOOR_STATES.intro:
 	x = _x;
-	y = lerp(y, _y, .25);
+	y = lerp(y, _y, .2);
 	
 	if (y <= _y + 1) {
 		movement_complete = true;
+		switch_completed = true;
 		y = _y;
 		//show_debug_message("floor:" + string(id) + ",x:" + string(_x) + ", y:" + string(_y) + ", timer:" + string(timer) + ", delay:" + string(delay));
+		if (switch_id == 14) {
+			show_debug_message("PAT WAS HERE");	
+		}
 		state = FLOOR_STATES.idle;
 		tilemap_set(global.map_id, TILE_DATA.floor, current_tile_pos[0], current_tile_pos[1]);
 	
@@ -96,7 +101,6 @@ switch (state) {
 	break;
 	
 	case FLOOR_STATES.deactivate_init:
-		movement_complete = false;
 		timer ++;
 		if (timer >= delay) {
 			tilemap_set(global.map_id, TILE_DATA.none, current_tile_pos[0], current_tile_pos[1]);
@@ -112,6 +116,7 @@ switch (state) {
 			y += fall_speed;
 		} else {
 			movement_complete = true;
+			switch_completed = true;
 			state = FLOOR_STATES.standby;	
 		}
 		

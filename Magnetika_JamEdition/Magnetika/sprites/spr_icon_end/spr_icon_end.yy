@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_icon_end","path":"sprites/spr_icon_end/spr_icon_end.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_icon_end",
     "tags": [],
     "resourceType": "GMSequence",
