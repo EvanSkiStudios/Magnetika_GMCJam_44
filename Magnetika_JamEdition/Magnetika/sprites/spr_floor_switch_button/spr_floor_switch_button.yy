@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_floor_switch_button","path":"sprites/spr_floor_switch_button/spr_floor_switch_button.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_floor_switch_button",
     "tags": [],
     "resourceType": "GMSequence",

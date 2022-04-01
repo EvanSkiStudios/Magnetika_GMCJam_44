@@ -179,7 +179,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_exit_light_background","path":"sprites/spr_exit_light_background/spr_exit_light_background.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_exit_light_background",
     "tags": [],
     "resourceType": "GMSequence",

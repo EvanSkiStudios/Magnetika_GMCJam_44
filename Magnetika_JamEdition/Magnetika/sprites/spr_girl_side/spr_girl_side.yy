@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_girl_side","path":"sprites/spr_girl_side/spr_girl_side.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_girl_side",
     "tags": [],
     "resourceType": "GMSequence",

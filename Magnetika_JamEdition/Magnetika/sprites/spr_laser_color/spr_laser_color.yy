@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_laser_color","path":"sprites/spr_laser_color/spr_laser_color.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_laser_color",
     "tags": [],
     "resourceType": "GMSequence",

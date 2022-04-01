@@ -71,7 +71,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_deflector","path":"sprites/spr_deflector/spr_deflector.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_deflector",
     "tags": [],
     "resourceType": "GMSequence",

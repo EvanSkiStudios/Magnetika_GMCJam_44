@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_icon_hidden_floor","path":"sprites/spr_icon_hidden_floor/spr_icon_hidden_floor.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_icon_hidden_floor",
     "tags": [],
     "resourceType": "GMSequence",

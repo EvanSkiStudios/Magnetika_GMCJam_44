@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"__fhInputSprButton","path":"sprites/__fhInputSprButton/__fhInputSprButton.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "__fhInputSprButton",
     "tags": [],
     "resourceType": "GMSequence",

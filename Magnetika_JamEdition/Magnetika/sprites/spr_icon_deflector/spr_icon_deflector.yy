@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_icon_deflector","path":"sprites/spr_icon_deflector/spr_icon_deflector.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_icon_deflector",
     "tags": [],
     "resourceType": "GMSequence",

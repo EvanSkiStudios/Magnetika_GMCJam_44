@@ -32,6 +32,9 @@ global.Load_save = true;
 #macro Level_10 rm_level_10
 #macro Level_11 rm_level_11
 #macro Level_12 rm_level_12
+#macro Level_13 rm_bonus_level_13
+#macro Level_14 rm_bonus_level_19
+#macro Level_15 rm_bonus_level_20
 
 //LEVELS
 //methodz
@@ -56,6 +59,9 @@ lvl_array[++i] = new lvl_select(Level_9, 9, "Phototricholysis", true);
 lvl_array[++i] = new lvl_select(Level_10, 10, "Companion cube", true);
 lvl_array[++i] = new lvl_select(Level_11, 11, "Pew Pew Pew", true);
 lvl_array[++i] = new lvl_select(Level_12, 12, "Closing in", true);
+lvl_array[++i] = new lvl_select(Level_13, 13, "A little Reflection", true);
+lvl_array[++i] = new lvl_select(Level_14, 14, "Make Your Way", true);
+lvl_array[++i] = new lvl_select(Level_15, 15, "Don't get Lasered", true);
 
 global.lvl_list_array = lvl_array;
 

@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_scaffold_on","path":"sprites/spr_scaffold_on/spr_scaffold_on.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_scaffold_on",
     "tags": [],
     "resourceType": "GMSequence",

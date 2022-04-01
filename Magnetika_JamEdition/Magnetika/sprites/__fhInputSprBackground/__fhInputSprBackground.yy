@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"__fhInputSprBackground","path":"sprites/__fhInputSprBackground/__fhInputSprBackground.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "__fhInputSprBackground",
     "tags": [],
     "resourceType": "GMSequence",

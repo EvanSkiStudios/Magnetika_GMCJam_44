@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_laser_switch_light","path":"sprites/spr_laser_switch_light/spr_laser_switch_light.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_laser_switch_light",
     "tags": [],
     "resourceType": "GMSequence",

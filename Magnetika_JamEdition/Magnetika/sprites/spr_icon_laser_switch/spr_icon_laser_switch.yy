@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_icon_laser_switch","path":"sprites/spr_icon_laser_switch/spr_icon_laser_switch.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_icon_laser_switch",
     "tags": [],
     "resourceType": "GMSequence",

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_icon_laser","path":"sprites/spr_icon_laser/spr_icon_laser.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_icon_laser",
     "tags": [],
     "resourceType": "GMSequence",

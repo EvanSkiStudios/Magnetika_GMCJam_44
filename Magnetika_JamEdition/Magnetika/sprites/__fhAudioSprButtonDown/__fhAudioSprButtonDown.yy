@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"__fhAudioSprButtonDown","path":"sprites/__fhAudioSprButtonDown/__fhAudioSprButtonDown.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "__fhAudioSprButtonDown",
     "tags": [],
     "resourceType": "GMSequence",

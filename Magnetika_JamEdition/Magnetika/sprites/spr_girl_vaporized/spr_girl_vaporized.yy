@@ -103,7 +103,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_girl_vaporized","path":"sprites/spr_girl_vaporized/spr_girl_vaporized.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_girl_vaporized",
     "tags": [],
     "resourceType": "GMSequence",
